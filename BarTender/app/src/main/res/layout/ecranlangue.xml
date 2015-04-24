@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose a language please"
+        android:gravity="center"
+        android:textSize="25dp"/>
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/Francais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Français"/>
+    <Button
+        android:id="@+id/English"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="English"/>
+    <Button
+        android:id="@+id/Neederlands"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Neederlands"/>
+</LinearLayout>
