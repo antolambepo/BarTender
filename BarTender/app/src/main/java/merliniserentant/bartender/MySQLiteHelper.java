@@ -53,7 +53,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      *
      * @param context Contexte de l'application.
      */
-    private MySQLiteHelper(Context context) {
+    public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         instance = this;
     }
