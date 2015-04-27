@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.List;
 
 
 public class LigneCommande extends ActionBarActivity implements View.OnClickListener {
 
-    private Button boisson;
+    private Spinner boisson;
+    private EditText quantité;
+    private EditText tabl;
     private int num;
     private String login;
     private String bsn;
@@ -72,9 +79,17 @@ public class LigneCommande extends ActionBarActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ligne_commande);
         // Locate the button
-        boisson = (Button) findViewById(R.id.boisson);
-        // Capture the button click
-        boisson.setOnClickListener(this);
+        boisson = (Spinner) findViewById(R.id.boisson);
+        List<String> listBoisson = ?; // compléter avec boisson de la BDD
+        ArrayAdapter list = new ArrayAdapter(this, R.layout.activity_ligne_commande, listBoisson);
+        boisson.setAdapter(list);
+        // Locate the EditText
+        quantité = (EditText) findViewById(R.id.quantité);
+        tabl = (EditText) findViewById(R.id.table);
+        // Get values from EditText
+        qté = Integer.parseInt(quantité.getText().toString());
+        table = Integer.parseInt(tabl.getText().toString());
+        // Attribuer num et récupérer login ??
     }
 
 
