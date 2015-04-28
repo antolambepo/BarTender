@@ -12,7 +12,12 @@
 
         <TextView android:text="Commande" android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textCommande"/>
+            android:id="@+id/textCommande"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,6 +58,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"/>
+
+        <Button
+            android:id="@+id/commander"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Commander"
+            android:layout_marginTop="48dp"/>
+
+        <Button
+            android:id="@+id/annuler"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Annuler"
+            android:layout_marginTop="28dp"/>
 
     </TableLayout>
 
