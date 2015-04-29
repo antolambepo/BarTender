@@ -25,15 +25,11 @@ import java.io.InputStreamReader;
  */
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
+
     /**
-     * Nom du fichier sql contenant les instructions de création de la base de données. Le fichier
-     * doit être placé dans le dossier assets/
-     */
-    private static final String DATABASE_SQL_FILENAME = "???.sql"; ==> Fournir fichier!!
-     /**
      * Nom du fichier de la base de données.
      */
-    private static final String DATABASE_NAME = "PROJET.sqlite";
+    private static final String DATABASE_NAME = "PROJET2.sqlite";
 
     /**
      * Version de la base de données (à incrémenter en cas de modification de celle-ci afin que la
@@ -53,7 +49,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      *
      * @param context Contexte de l'application.
      */
-    public MySQLiteHelper(Context context) {
+    private MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         instance = this;
     }
@@ -117,31 +113,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      * enregistrées.
      */
     private void initDatabase(SQLiteDatabase db) {
-
-        try {
-            // Ouverture du fichier sql.
-            BufferedReader in = new BufferedReader(new InputStreamReader(CollectorApp.getContext().getAssets().open(DATABASE_SQL_FILENAME)));
-
-            String line;
-            // Parcourt du fichier ligne par ligne.
-            while ((line = in.readLine()) != null) {
-                /**
-                 * @note : Pour des raisons de facilité, on ne prend en charge ici que les fichiers
-                 * contenant une instruction par ligne. Si des instructions SQL se trouvent sur deux
-                 * lignes, cela produira des erreurs (car l'instruction sera coupée)
-                 */
-                if (!line.trim().isEmpty() && !line.trim().startsWith("--")) {
-                    Log.d("MySQL query", line);
-                    db.execSQL(line);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Erreur de lecture du fichier " + DATABASE_SQL_FILENAME + " : " + e.getMessage(), e);
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur SQL lors de la création de la base de données." +
-                    "Vérifiez que chaque instruction SQL est au plus sur une ligne." +
-                    "L'erreur est : " + e.getMessage(), e);
-        }
+        // Comment initialiser la bdd?
     }
 
 
