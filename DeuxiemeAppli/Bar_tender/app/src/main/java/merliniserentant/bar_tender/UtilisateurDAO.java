@@ -79,6 +79,7 @@ public class UtilisateurDAO {
         utilisateur.settype(c.getString(NUM_COL_TYPE));
         utilisateur.setname(c.getString(NUM_COL_NAME));
 
+
         return utilisateur;
     }
 
