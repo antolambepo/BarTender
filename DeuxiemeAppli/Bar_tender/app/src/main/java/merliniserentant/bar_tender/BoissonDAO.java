@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import merliniserentant.bar_tender.MySQLite;
 
 import java.util.ArrayList;
 
@@ -128,38 +129,32 @@ public class BoissonDAO {
 
         return boisson;
     }
-    //Renvoit l'inventaire.
 
-    public static ArrayList<Boisson> getInventaire() {
+    public int[] getNum() {
 
-        // Initialisation de la liste des songs.
-        ArrayList<Boisson> dataStock = new ArrayList<Boisson>();
+        Cursor c = db.query(TABLE_BOISSON, new String [] {COL_NUMBOISSON, }, null, null, null, null, null);
+        int count = c.getCount();
+        if(count==0)
+            return null;
 
-        // Récupération du SQLiteHelper pour récupérer la base de données.
-        SQLiteDatabase bdd = MySQLite.get().getReadableDatabase(); //?? A changer
-
-        // Requête SELECT à la base de données.
-        Cursor c = bdd.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON, COL_STOCK, COL_STOCKMAX, COL_SEUIL},null, null, null, null,null); //Prends toutes les boissons avec stock,...
-
+        int [] boisson = new int[count];
         c.moveToFirst();
-        while (!c.isAfterLast()) {
 
-            //Besoin de objet Boisson de Julie
-
-            //Boisson boisson= new Boisson(...);
-            //...=c.getInt(...);
-            //...=c.getString(...);
-            //dataStock.add(boisson);
-
+        for(int i=0; i<count-1; i++) {
+            boisson[i]= c.getInt(i);
             c.moveToNext();
         }
-
-        // Fermeture du curseur et de la base de données.
-        c.close();
-        bdd.close();
-
-        return dataStock;
+        return boisson;
     }
 
+    public ArrayList <Boisson> getCarte(int[]numBoisson) { //Surement aussi valable pour l'inventaire.
+        ArrayList<Boisson> drink = new ArrayList<Boisson>();
+
+        for(int i =0; i<numBoisson.length; i++ ) {
+            Boisson bebida = getBoissonwithNumboisson(numBoisson[i]);
+            drink.add(bebida);
+        }
+        return drink;
+    }
 
 }
