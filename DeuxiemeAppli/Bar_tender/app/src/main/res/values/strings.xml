@@ -18,4 +18,5 @@
     <string name="stockmax">Stock max :</string>
     <string name="applique">Appliquer</string>
     <string name="retour">Retour</string>
+    <string name="title_activity_carte">carte</string>
 </resources>
