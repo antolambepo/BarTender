@@ -16,10 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"
-            android:label="Bar_tender"></activity>
-        <activity android:name=".Main"
-            android:label="Bar_tender"></activity>
+        <activity
+            android:name=".Login"
+            android:label="Bar_tender" />
+        <activity
+            android:name=".Main"
+            android:label="Bar_tender" />
+        <activity
+            android:name=".carte"
+            android:label="@string/title_activity_carte" >
+        </activity>
     </application>
 
 </manifest>
