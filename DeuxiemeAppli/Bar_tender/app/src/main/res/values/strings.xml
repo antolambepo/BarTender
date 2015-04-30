@@ -3,4 +3,19 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    //Inventaire
+    <string name="affichage_inventaire">Afficher l'inventaire</string>
+    <string name="ajout_boisson">Ajouter une boisson</string>
+    <string name="retrait_boisson">Retirer une boisson</string>
+    <string name="modification_dataStock">Modifier les données</string>
+
+    //Modification datastock
+    <string name="modif">Modifications</string>
+    <string name="nomboisson">Boisson :</string>
+    <string name="stock">Stock :</string>
+    <string name="seuil">Seuil :</string>
+    <string name="stockmax">Stock max :</string>
+    <string name="applique">Appliquer</string>
+    <string name="retour">Retour</string>
 </resources>

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Created by merliniserentant on 30/04/15.
  */
@@ -106,5 +108,58 @@ public class BoissonDAO {
         boisson.setNom(c.getString(NUM_COL_NOMBOISSONLANGUE));
         return boisson;
     }
+
+    public int[] underSeuil(){
+
+        Cursor c = db.query(TABLE_BOISSON, new String[]{COL_NUMBOISSON}, COL_STOCK+"<"+COL_SEUIL, null, null, null, null );
+        int count = c.getCount();
+        if (count==0)
+            return null;
+        int[] boisson = new int[count];
+        c.moveToFirst();
+
+        for(int i=0; i<count-1; i++) {
+            boisson[i]=c.getInt(NUM_COL_NUMBOISSON);
+            c.moveToNext();
+        }
+        boisson[count-1]=c.getInt(NUM_COL_NUMBOISSON);
+
+        c.close();
+
+        return boisson;
+    }
+    //Renvoit l'inventaire.
+
+    public static ArrayList<Boisson> getInventaire() {
+
+        // Initialisation de la liste des songs.
+        ArrayList<Boisson> dataStock = new ArrayList<Boisson>();
+
+        // Récupération du SQLiteHelper pour récupérer la base de données.
+        SQLiteDatabase bdd = MySQLite.get().getReadableDatabase(); //?? A changer
+
+        // Requête SELECT à la base de données.
+        Cursor c = bdd.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON, COL_STOCK, COL_STOCKMAX, COL_SEUIL},null, null, null, null,null); //Prends toutes les boissons avec stock,...
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+
+            //Besoin de objet Boisson de Julie
+
+            //Boisson boisson= new Boisson(...);
+            //...=c.getInt(...);
+            //...=c.getString(...);
+            //dataStock.add(boisson);
+
+            c.moveToNext();
+        }
+
+        // Fermeture du curseur et de la base de données.
+        c.close();
+        bdd.close();
+
+        return dataStock;
+    }
+
 
 }

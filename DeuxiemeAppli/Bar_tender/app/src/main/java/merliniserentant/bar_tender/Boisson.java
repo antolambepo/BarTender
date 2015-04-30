@@ -90,5 +90,13 @@ public class Boisson {
         this.Description= Description;
     }
 
+    public void upStock(int up) { setStock( getStock()+up); }
 
+    public void downStock(int down) { setStock( getStock()- down);} //Attention traiter cas où down>stock.
+
+    public String alertStock(String boisson) {
+
+        return " La boisson "+ boisson +" est en quantité insuffisante. Pensez à réapprovisionner le stock.";
+
+    }
 }
