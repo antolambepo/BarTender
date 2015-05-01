@@ -34,12 +34,12 @@ public class Boisson {
         this.Stockmax= Stockmax;
     }
 
-    public int getlNumboisson() {
+    public int getNumboisson() {
         return Numboisson;
     }
 
-    public void setNumboisson( int Stockmax) {
-        this.Numboisson= Numboisson;
+    public void setNumboisson( int Numboisson) {
+        this.Numboisson = Numboisson;
     }
 
     public int getStock() {

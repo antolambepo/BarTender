@@ -4,7 +4,12 @@
     android:layout_height="match_parent">
     <Button
         android:id="@+id/finconsult"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour"/>
+    <ListView
+        android:id="@+id/listviewboisson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ListView>
 </LinearLayout>

@@ -99,8 +99,9 @@ public class BoissonDAO {
 
         //il faut charger le reste des données
 
+        System.out.println("Voila ce qui est mis" + c.getInt(NUM_COL_NUMBOISSON) );
 
-        Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_LANGAGE + " LIKE \"" + maBaseSQLite.getLangue() +"\"", null, null, null, null);
+        Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_LANGAGE + " LIKE \"" + maBaseSQLite.getLangue() +"\" AND " + COL_NUMBOISSON + " LIKE \""+ boisson.getNumboisson() +"\"", null, null, null, null);
 
         if(cc.getCount() ==0){
 

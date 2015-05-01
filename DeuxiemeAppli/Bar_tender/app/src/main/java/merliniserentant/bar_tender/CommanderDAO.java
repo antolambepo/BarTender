@@ -1,4 +1,4 @@
-package com.example.roselien.bartender;
+package merliniserentant.bar_tender;
 
 /**
  * Created by Roselien on 01/05/15.
