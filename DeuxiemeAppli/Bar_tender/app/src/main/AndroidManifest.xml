@@ -29,6 +29,9 @@
         <activity android:name=".Consult"
             android:label="Bar_tender">
         </activity>
+        <activity android:name=".ConsultTag"
+            android:label="Bar_tender">
+        </activity>
     </application>
 
 </manifest>

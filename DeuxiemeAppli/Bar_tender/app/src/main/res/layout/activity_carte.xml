@@ -15,11 +15,20 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:onClick="carte"/>
+    <EditText
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:id="@+id/texte_recherche"
+
+        android:layout_below="@+id/button_carte"
+        android:layout_centerHorizontal="true"
+        android:hint="Mot de recherche"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Recherche"
+        android:text="Rechercher"
         android:id="@+id/button_recherche"
         android:layout_marginTop="91dp"
         android:layout_below="@+id/button_carte"

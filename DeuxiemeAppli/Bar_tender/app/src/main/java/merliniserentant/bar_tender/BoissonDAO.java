@@ -41,7 +41,7 @@ public class BoissonDAO {
     private static final String COL_LANGAGE = "LANGAGE";
     private static final int NUM_COL_LANGUE = 0;
     private static final int NUM_COL_IDLANGUE = 1;
-    private static final int NUM_COL_NOMBOISSONLANGUE = 2;
+    private static final int NUM_COL_NUMBOISSONLANGUE = 2;
 
     private MySQLite maBaseSQLite; // notre gestionnaire du fichier SQLite
     private SQLiteDatabase db;
@@ -70,16 +70,44 @@ public class BoissonDAO {
         //on ferme l'accès à la BDD
         db.close();
     }
+    public ArrayList<Boisson> getBoissonwithTag(String Tag){
+        Cursor c = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_TAG + " LIKE \"" + Tag +"\"", null, null, null, null);
+        ArrayList<Boisson> list = new ArrayList<Boisson>();
+        if(c.getCount() == 0){return null;}
+        c.moveToFirst();
+        int i;
 
+        for(i = 0;i<c.getCount();i++){
+            Boisson boisson = new Boisson();
+            //Info disponible dans la table IDs
+            boisson.setDescription(c.getString(NUM_COL_DESCRIPTION));
+            boisson.setNom(c.getString(NUM_COL_NOMBOISSON));
+            Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_ID + " LIKE \""+ c.getString(NUM_COL_ID) +"\" AND " + COL_LANGAGE+" LIKE \""+maBaseSQLite.getLangue() + "\"", null, null, null, null);
+            if(cc.getCount()!=0) { // Ca devrait pas arriver! Sinon c'est que la bdd est mal remplie!
+                //Info disponible dans la table BOISSON
+                cc.moveToFirst();
+                boisson.setNumboisson(cc.getInt(NUM_COL_NUMBOISSONLANGUE));
+                Cursor ccc = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON, COL_STOCK,COL_STOCKMAX, COL_LOGOTYPE,COL_SEUIL,COL_PRIX}, COL_NUMBOISSON + " LIKE \"" + boisson.getNumboisson()+"\"", null, null, null, null);
+                if(ccc.getCount()!=0) {
+                    ccc.moveToFirst();
+                    boisson.setStock(ccc.getInt(NUM_COL_STOCK));
+                    boisson.setStockmax(ccc.getInt(NUM_COL_STOCKMAX));
+                    boisson.setSeuil(ccc.getInt(NUM_COL_SEUIL));
+                    boisson.setPrix(ccc.getDouble(NUM_COL_PRIX));
+                    boisson.setLogotype(ccc.getString(NUM_COL_LOGOTYPE));
+                    list.add(boisson);
+                }
+            }
+            c.moveToNext();
+        }
+        return list;
+    }
     public Boisson getBoissonwithNumboisson(int Numboisson){
 
         //Cursor c = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_ID + " LIKE \"" + ID +"\"", null, null, null, null);
         Cursor c = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON, COL_STOCK,COL_STOCKMAX, COL_LOGOTYPE,COL_SEUIL,COL_PRIX}, COL_NUMBOISSON + " LIKE \"" + Numboisson+"\"", null, null, null, null);
         //pas oublier COL_TYPE au dessus
-        return cursorToLogin(c);
-    }
 
-    private Boisson cursorToLogin(Cursor c){
         //si aucun élément n'a été retourné dans la requête, on renvoie null
         if (c.getCount() == 0)
             return null;

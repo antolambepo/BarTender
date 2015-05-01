@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -14,6 +15,7 @@ public class Carte extends Activity {
 
     private Button carteBoisson = null;
     private Button recherche = null;
+    private EditText texte_recherche =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +23,9 @@ public class Carte extends Activity {
         setContentView(R.layout.activity_carte);
         carteBoisson = (Button) findViewById(R.id.button_carte);
         recherche = (Button) findViewById(R.id.button_recherche);
-
+        texte_recherche = (EditText) findViewById(R.id.texte_recherche);
         carteBoisson.setOnClickListener(carteBoissonListener);
-      recherche.setOnClickListener(rechercheListener);
+        recherche.setOnClickListener(rechercheListener);
     }
 
     private View.OnClickListener carteBoissonListener = new View.OnClickListener() {
@@ -38,9 +40,11 @@ public class Carte extends Activity {
     private View.OnClickListener rechercheListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(Carte.this, "A faire",Toast.LENGTH_LONG).show();
-  //          Intent intent = new Intent(Carte.this, Search.class);
-    //        startActivity(intent);
+
+
+            Intent intent = new Intent(Carte.this, ConsultTag.class);
+            intent.putExtra("Tag",texte_recherche.getText().toString());
+            startActivity(intent);
         }
     };
 }
