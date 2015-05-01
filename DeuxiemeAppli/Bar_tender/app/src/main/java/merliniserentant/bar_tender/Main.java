@@ -1,6 +1,7 @@
 package merliniserentant.bar_tender;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,8 +49,8 @@ public class Main extends Activity {
         carte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(Main.this, ???.class);
-                // startActivity(intent);
+                 Intent intent = new Intent(Main.this, Carte.class);
+                 startActivity(intent);
             }
         });
         commande.setOnClickListener(new View.OnClickListener() {
