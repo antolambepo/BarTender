@@ -32,7 +32,7 @@ public class BoissonDAO {
     private static final int NUM_COL_ID = 0;
     private static final String COL_NOMBOISSON = "NOMBOISSON";
     private static final int NUM_COL_NOMBOISSON = 1;
-    private static final String COL_DESCRIPTION = "DESCRIPTION";
+    private static final String COL_DESCRIPTION = "DESCBOISSON";
     private static final int NUM_COL_DESCRIPTION = 2;
     private static final String COL_TAG = "TAG";
     private static final int NUM_COL_TAG = 3;
@@ -59,8 +59,12 @@ public class BoissonDAO {
     {
         //on ouvre la table en lecture/écriture
         db = maBaseSQLite.getWritableDatabase();
-    }
 
+
+    }
+    public boolean test(){
+        return (db==null);
+    }
     public void close()
     {
         //on ferme l'accès à la BDD
@@ -86,6 +90,7 @@ public class BoissonDAO {
         Boisson boisson = new Boisson();
         //On peut deja remplir quelque information
         boisson.setNumboisson(c.getInt(NUM_COL_NUMBOISSON));
+        System.out.println(c.getInt(NUM_COL_NUMBOISSON));
         boisson.setStock(c.getInt(NUM_COL_STOCK));
         boisson.setStockmax(c.getInt(NUM_COL_STOCKMAX));
         boisson.setSeuil(c.getInt(NUM_COL_SEUIL));
@@ -93,20 +98,28 @@ public class BoissonDAO {
         boisson.setLogotype(c.getString(NUM_COL_LOGOTYPE));
 
         //il faut charger le reste des données
+
+
         Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_LANGAGE + " LIKE \"" + maBaseSQLite.getLangue() +"\"", null, null, null, null);
 
-        if(cc.getCount() ==0)
-            return null;
+        if(cc.getCount() ==0){
+
+
+        return null;}
 
         cc.moveToFirst();
+        System.out.println(cc.getString(NUM_COL_IDLANGUE));
+        Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_ID + " LIKE \"" + cc.getString(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
+        if(ccc.getCount() ==0){
 
-        Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_ID + " LIKE \"" + cc.getInt(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
-        if(ccc.getCount() ==0)
             return null;
+        }
 
         ccc.moveToFirst();
-        boisson.setDescription(c.getString(NUM_COL_DESCRIPTION));
-        boisson.setNom(c.getString(NUM_COL_NOMBOISSONLANGUE));
+        System.out.println(ccc.getString(NUM_COL_NOMBOISSON));
+        boisson.setDescription(ccc.getString(NUM_COL_DESCRIPTION));
+
+        boisson.setNom(ccc.getString(NUM_COL_NOMBOISSON));
         return boisson;
     }
 

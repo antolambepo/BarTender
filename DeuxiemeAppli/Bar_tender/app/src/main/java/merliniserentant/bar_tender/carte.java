@@ -23,7 +23,7 @@ public class Carte extends Activity {
         recherche = (Button) findViewById(R.id.button_recherche);
 
         carteBoisson.setOnClickListener(carteBoissonListener);
-  //    recherche.setOnClickListener(rechercheListener);
+      recherche.setOnClickListener(rechercheListener);
     }
 
     private View.OnClickListener carteBoissonListener = new View.OnClickListener() {
@@ -38,7 +38,7 @@ public class Carte extends Activity {
     private View.OnClickListener rechercheListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(Carte.this, "A faire",Toast.LENGTH_LONG);
+            Toast.makeText(Carte.this, "A faire",Toast.LENGTH_LONG).show();
   //          Intent intent = new Intent(Carte.this, Search.class);
     //        startActivity(intent);
         }

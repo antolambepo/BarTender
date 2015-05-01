@@ -17,14 +17,23 @@ import java.util.ArrayList;
  */
 public class Consult extends Activity{
     Button retour = null;
+    BoissonDAO boissondao = null;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consult);
+        boissondao = new BoissonDAO(this);
+
         retour = (Button)findViewById(R.id.finconsult);
 
-        Toast.makeText(Consult.this, "Holla",Toast.LENGTH_LONG).show();
-
+        boissondao.open();
+        Boisson myboisson = boissondao.getBoissonwithNumboisson(17);
+        if(myboisson==null){        Toast.makeText(Consult.this, "Pas trouvé la boisson",Toast.LENGTH_SHORT).show();
+        }
+        else {
+                Toast.makeText(Consult.this, myboisson.getNom(), Toast.LENGTH_SHORT).show();
+            }
+        boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
