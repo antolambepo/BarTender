@@ -19,7 +19,7 @@ public class consult_details extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consult_details);
 
-        int number = getIntent().getIntExtra("", -1);
+        int number = getIntent().getIntExtra("numBoisson", -1);
         if (number==-1) {
             throw new RuntimeException("Aucun numéro de boisson n'est spécifié");
         }
@@ -42,6 +42,4 @@ public class consult_details extends Activity {
             pictureLL.setVisibility(View.GONE);
         }
     }
-
-
 }

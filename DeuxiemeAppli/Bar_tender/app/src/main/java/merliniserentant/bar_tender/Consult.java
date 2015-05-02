@@ -3,10 +3,12 @@ package merliniserentant.bar_tender;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,6 +53,16 @@ public class Consult extends Activity{
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this, consult_details.class);
+
+        // Pour la ligne en dessous j'ai un beug pour savoir comment passer le numero de la boisson
+        // à la prochaine activity :/ ce qu'il y a mis après numboisson ca vient du tp 10
+        intent.putExtra("numBoisson", collectedItems.get(position).getId());
+        startActivity(intent);
     }
 
 }
