@@ -19,4 +19,7 @@
     <string name="applique">Appliquer</string>
     <string name="retour">Retour</string>
     <string name="title_activity_carte">carte</string>
+
+    // Carte
+    <string name="beug">Aucune recherche spécifiée</string>
 </resources>

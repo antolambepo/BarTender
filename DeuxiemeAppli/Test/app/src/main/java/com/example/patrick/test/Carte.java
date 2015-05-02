@@ -1,4 +1,4 @@
-package merliniserentant.bar_tender;
+package com.example.patrick.test;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +36,6 @@ public class Carte extends Activity {
             startActivity(intent);
         }
     };
-
     private View.OnClickListener rechercheListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -46,9 +45,9 @@ public class Carte extends Activity {
                 Toast.makeText(Carte.this, R.string.beug, Toast.LENGTH_SHORT).show();
             }
             else {
-                Intent intent = new Intent(Carte.this, ConsultTag.class);
-                intent.putExtra("Tag",texte_recherche.getText().toString());
-                startActivity(intent);}
+            Intent intent = new Intent(Carte.this, ConsultTag.class);
+            intent.putExtra("Tag",texte_recherche.getText().toString());
+            startActivity(intent);}
         }
     };
 }
