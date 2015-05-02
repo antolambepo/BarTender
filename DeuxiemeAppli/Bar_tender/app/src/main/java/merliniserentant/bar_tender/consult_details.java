@@ -39,7 +39,7 @@ public class consult_details extends Activity {
         }
         else {
             View pictureLL = findViewById(R.id.consult_details_picture_ll);
-            pictureLL.setVisibility(View GONE);
+            pictureLL.setVisibility(View.GONE);
         }
     }
 
