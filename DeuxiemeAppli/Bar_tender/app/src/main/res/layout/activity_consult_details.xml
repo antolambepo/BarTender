@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/show_details_description_ll"
-        android:id="@+id/show_details_picture_ll">
+        android:id="@+id/consult_details_picture_ll">
 
         <TextView
             android:text="@string/consult_details_picture_title"
@@ -59,7 +59,7 @@
 
         <ImageView
             android:layout_height="300dp"
-            android:id="@+id/show_details_picture"
+            android:id="@+id/consult_details_picture"
             android:layout_width="wrap_content"
             />
     </LinearLayout>
