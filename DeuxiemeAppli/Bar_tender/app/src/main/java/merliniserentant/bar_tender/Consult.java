@@ -47,7 +47,7 @@ public class Consult extends Activity{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
         listviewboisson.setAdapter(adapter);
-       
+
         boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {
             @Override

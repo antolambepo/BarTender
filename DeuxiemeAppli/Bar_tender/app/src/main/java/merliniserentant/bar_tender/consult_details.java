@@ -3,11 +3,12 @@ package merliniserentant.bar_tender;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
+
+
+
 
 
 public class consult_details extends Activity {
