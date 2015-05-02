@@ -47,9 +47,7 @@ public class Consult extends Activity{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
         listviewboisson.setAdapter(adapter);
-        // Indique que le clic d'un élément de la liste doit appeler la méthode onItemClick d
-        // cette classe (this).
-        listviewboisson.setOnItemClickListener(this);
+       
         boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
