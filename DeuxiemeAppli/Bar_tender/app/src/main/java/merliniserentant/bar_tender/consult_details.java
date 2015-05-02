@@ -1,24 +1,24 @@
-package com.example.patrick.test;
+package merliniserentant.bar_tender;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Consult extends ActionBarActivity {
+public class consult_details extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consult);
+        setContentView(R.layout.activity_consult_details);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_consult, menu);
+        getMenuInflater().inflate(R.menu.menu_consult_details, menu);
         return true;
     }
 

@@ -22,4 +22,5 @@
 
     // Carte
     <string name="beug">Aucune recherche spécifiée</string>
+    <string name="title_activity_consult_details">consult_details</string>
 </resources>
