@@ -23,7 +23,7 @@ public class consult_details extends Activity {
         if (number==-1) {
             throw new RuntimeException("Aucun numéro de boisson n'est spécifié");
         }
-        currentBoisson = BoissonDAO.getBoissonwithNumboisson(number);
+        currentBoisson = BoissonDAO.getBoissonwithNumboisson(number); // J'ai le droit de faire ca??
 
         TextView name = (TextView) findViewById(R.id.consult_details_name);
         name.setText(currentBoisson.getNom());
