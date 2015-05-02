@@ -3,8 +3,8 @@
 
 
 package merliniserentant.bar_tender;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +20,7 @@ import java.util.List;
 import merliniserentant.bar_tender.BoissonDAO;
 
 
-public class Ajouter extends ActionBarActivity implements View.OnClickListener {
+public class Ajouter extends Activity implements View.OnClickListener {
 
     private AutoCompleteTextView boisson;
     private EditText quantité;
