@@ -1,6 +1,4 @@
 
-
-
 package merliniserentant.bar_tender;
 
 import android.content.Intent;
@@ -102,10 +100,10 @@ public class Commander extends ActionBarActivity implements View.OnClickListener
                 else {
                     while (Ajouter.newBoisson != null) { // parcourir la liste des boissons ajoutées
                         bsn = Ajouter.newBoisson.get(0);
-                        numBsn = b.getBoissonwithName(bsn).getlNumboisson();
+                        numBsn = b.getBoissonwithName(bsn).getNumboisson();
                         qté = Ajouter.newQté.get(0);
                         // créér une nouvelle ligne de commande
-                        LigneCommande newLigne = new LigneCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
+                        LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
                         l.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
                         num = num + 1;
                         Ajouter.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
@@ -121,3 +119,5 @@ public class Commander extends ActionBarActivity implements View.OnClickListener
     }
 
 }
+
+

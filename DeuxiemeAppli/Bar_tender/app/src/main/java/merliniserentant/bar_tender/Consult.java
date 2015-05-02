@@ -50,7 +50,6 @@ public class Consult extends Activity{
         // Indique que le clic d'un élément de la liste doit appeler la méthode onItemClick d
         // cette classe (this).
         listviewboisson.setOnItemClickListener(this);
-
         boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
