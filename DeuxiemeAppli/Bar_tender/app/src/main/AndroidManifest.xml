@@ -38,6 +38,10 @@
             android:name=".consult_details"
             android:label="@string/title_activity_consult_details" >
         </activity>
+        <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>
