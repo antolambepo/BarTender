@@ -57,14 +57,14 @@ public class Consult extends Activity{
         });
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position) {
-        Intent intent = new Intent(this, consult_details.class);
+    //@Override
+    //public void onItemClick(AdapterView<?> parent, View view, int position) {
+       // Intent intent = new Intent(this, consult_details.class);
 
         // Pour la ligne en dessous j'ai un beug pour savoir comment passer le numero de la boisson
         // à la prochaine activity :/ ce qu'il y a mis après numboisson ca vient du tp 10
-        intent.putExtra("numBoisson", listboisson.get(position).getNumboisson());
-        startActivity(intent);
-    }
+       // intent.putExtra("numBoisson", listboisson.get(position).getNumboisson());
+       // startActivity(intent);
+    //}
 
 }

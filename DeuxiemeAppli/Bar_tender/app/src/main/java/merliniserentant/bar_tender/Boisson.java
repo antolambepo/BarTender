@@ -1,5 +1,12 @@
 package merliniserentant.bar_tender;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Created by merliniserentant on 30/04/15.
  */
@@ -98,5 +105,32 @@ public class Boisson {
 
         return " La boisson "+ boisson +" est en quantité insuffisante. Pensez à réapprovisionner le stock.";
 
+    }
+
+    public Bitmap getPicture() {
+        if (this.LOGOTYPE == null) {
+            // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
+            return null;
+        }
+
+        try {
+            /**
+             *  @note Pour des questions de facilité, le choix a été fait de stocker les fichiers
+             *  des photos dans la mémoire interne de l'application.
+             *  Lisez https://developer.android.com/training/basics/data-storage/files.html afin de
+             *  comprendre les différentes possibilités.
+             */
+
+            FileInputStream in = CollectorApp.getContext().openFileInput(LOGOTYPE);
+            Bitmap bitmap = BitmapFactory.decodeStream(in);
+            in.close();
+
+            return bitmap;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -33,7 +33,7 @@ public class consult_details extends Activity {
         TextView description = (TextView) findViewById(R.id.consult_details_description);
         description.setText(currentBoisson.getDescription());
 
-        Bitmap bitmap = currentBoisson.getLogotype();
+        Bitmap bitmap = currentBoisson.getPicture();
 
         if(bitmap!=null) {
             ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
