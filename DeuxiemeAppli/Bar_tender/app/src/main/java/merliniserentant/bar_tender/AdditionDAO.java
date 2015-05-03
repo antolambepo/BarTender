@@ -13,7 +13,7 @@ import java.util.List;
 public class AdditionDAO {
 
     public static int num = 1;
-    public LigneCommandeDAO ldao;
+    public LigneDeCommandeDAO ldao;
     public BoissonDAO bdao;
 
     public final static String TABLE_ADDITION = "TABLE_ADDITION";
