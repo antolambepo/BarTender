@@ -48,7 +48,7 @@ public class Login extends Activity {
             creer.setText("Create");
             retourlangue.setText("Chose another language");
         }
-        else if(Langue.equals("Neerlandais")){
+        else if(Langue.equals("Néerlandais")){
             textpseudo.setText("gebruikersnaam");
             textmdp.setText("wachtwoord");
             textconnection.setText("Log In");
