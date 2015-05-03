@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,7 +37,8 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
-        List<String> listBoisson = null; // à remplir avec liste de boisson
+        List<String> listBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
+        //Il faut pas mettre = null; Sinon on sait pas faire appel aux méthodes
         bdao.open();
         Boisson[] listNumBoisson = bdao.aboveSeuil();
         if (listNumBoisson !=null){

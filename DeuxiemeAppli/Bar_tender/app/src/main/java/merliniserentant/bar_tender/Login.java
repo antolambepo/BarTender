@@ -74,7 +74,7 @@ public class Login extends Activity {
         @Override
         public void onClick(View v) {
 
-            Utilisateur newlogin = new Utilisateur(login.getText().toString(),mdp.getText().toString(),"CLIENT","Nom par défaut");
+            Utilisateur newlogin = new Utilisateur(login.getText().toString(),mdp.getText().toString(),"PROPRIETAIRE","Nom par défaut");
             //A changer!!!!!!!!!!!!!!!!!!!!!
 
 

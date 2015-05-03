@@ -29,6 +29,7 @@ public class Addition extends Activity {
 
         table = (EditText) findViewById(R.id.tableAddition);
         numtbl = table.getText().toString();
+        //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder 
         numTable = Integer.parseInt(numtbl);
 
         mPasserelle = (Button) findViewById(R.id.premier);

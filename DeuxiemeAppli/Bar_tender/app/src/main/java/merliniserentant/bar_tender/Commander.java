@@ -34,34 +34,26 @@ public class Commander extends Activity implements View.OnClickListener{
     private String table;
 
     BoissonDAO bdao = null;
-    LigneCommandeDAO ldao = null;
+    LigneDeCommandeDAO ldao = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        CommanderDAO cdao = new CommanderDAO(this);
-        LigneCommandeDAO ldao = new LigneCommandeDAO(this);
+        bdao = new BoissonDAO(this);
+        ldao = new LigneDeCommandeDAO(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
-        b.open();
-        l.open();
+        bdao.open();
+        ldao.open();
         // récupérer le numéro de tables
         tabl = (EditText) findViewById(R.id.table);
         table = tabl.getText().toString();
 
         // Créer tableau de commandes à valider pour la table sélectionnée
-<<<<<<< HEAD
-        ArrayAdapter<String> ListAdapterBsn = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Ajouter.newBoisson);
-        ListView listBsn = (ListView) findViewById(R.id.list_Boisson);
-        listBsn.setAdapter(ListAdapterBsn);
 
-        ArrayAdapter<Integer> ListAdapterQté = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, Ajouter.newQté);
-        ListView listQté = (ListView) findViewById(R.id.list_Qté);
-        listBsn.setAdapter(ListAdapterQté);
-        b.close();
-        l.close();
-=======
+
+
         if (Ajouter.newBoisson != null) {
             ArrayAdapter<String> ListAdapterBsn = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Ajouter.newBoisson);
             ListView listBsn = (ListView) findViewById(R.id.list_Boisson);
@@ -71,7 +63,9 @@ public class Commander extends Activity implements View.OnClickListener{
             ListView listQté = (ListView) findViewById(R.id.list_Qté);
             listBsn.setAdapter(ListAdapterQté);
         }
->>>>>>> 6e0bce6a3b0e36a696652297f5c6d0fa3572170b
+        bdao.close();
+        ldao.close();
+
 
         // localise les Button
         ajouter = (Button) findViewById(R.id.ajouter);
@@ -85,8 +79,8 @@ public class Commander extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        b.open();
-        l.open();
+        bdao.open();
+        ldao.open();
         switch (v.getId()) {
             case R.id.ajouter:
                 Intent intent = new Intent(Commander.this, Ajouter.class);
@@ -101,11 +95,11 @@ public class Commander extends Activity implements View.OnClickListener{
                     while (Ajouter.newBoisson != null) { // parcourir la liste des boissons ajoutées
                         bsn = Ajouter.newBoisson.get(0);
                         bdao.open();
-                        numBsn = bdao.getBoissonwithName(bsn).getlNumboisson();
+                        numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
                         qté = Ajouter.newQté.get(0);
                         bdao.close();
                         // créér une nouvelle ligne de commande
-                        LigneCommande newLigne = new LigneCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, Integer.parseInt(table));
+                        LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, Integer.parseInt(table));
                         ldao.open();
                         ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
                         ldao.close();
@@ -118,12 +112,12 @@ public class Commander extends Activity implements View.OnClickListener{
             // IL FAUDRAIT PAS AJOUTER DES ENTREES DANS LA TABLE COMMANDE?
             case R.id.annuler:
                 // retourner à la page précédente
-                l.close();
-                b.close();
+                ldao.close();
+                bdao.close();
                 finish();
         }
-        l.close();
-        b.close();
+        ldao.close();
+        bdao.close();
     }
 
 }

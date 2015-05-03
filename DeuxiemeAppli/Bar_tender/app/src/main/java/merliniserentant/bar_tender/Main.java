@@ -63,10 +63,8 @@ public class Main extends Activity {
         addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(Main.this, ???.class);
-
-
-                // startActivity(intent);
+                 Intent intent = new Intent(Main.this, Addition.class);
+                 startActivity(intent);
             }
         });
         inventaire.setOnClickListener(new View.OnClickListener() {

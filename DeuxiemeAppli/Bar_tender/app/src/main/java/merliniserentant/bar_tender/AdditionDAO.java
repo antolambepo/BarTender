@@ -42,6 +42,8 @@ public class AdditionDAO {
     // Constructeur
     public AdditionDAO(Context context) {
         maBaseSQLite = new MySQLite(context);
+        ldao = new LigneDeCommandeDAO(context);
+        bdao = new BoissonDAO(context);
     }
 
     public String getLangue() {
@@ -130,9 +132,14 @@ public class AdditionDAO {
         double prix = 0;
         for (int i = 0; i < additionsApayer.size(); i++){
             int numCommande = (additionsApayer.get(i)).getNumLignedeCommande();
-            int numBoisson = (ldao.getLignewithnum(numCommande)).getBoisson();
-            int qté = (ldao.getLignewithnum(numCommande)).getQuantité();
+            ldao.open();
+            int numBoisson = (ldao.getLignewithnumboisson(numCommande)).getBoisson(); // C'EST BIEN WITHNUMBOISSON???
+
+            int qté = (ldao.getLignewithnumboisson(numCommande)).getQuantité();
+            ldao.close();
+            bdao.open();
             double prixBoisson = (bdao.getBoissonwithNumboisson(numBoisson)).getPrix();
+            bdao.close();
             prix = prix + qté * prixBoisson; //possible? pas de perte de précision ?
         }
         return prix;
