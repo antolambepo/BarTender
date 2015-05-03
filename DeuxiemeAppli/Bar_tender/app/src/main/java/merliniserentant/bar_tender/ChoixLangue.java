@@ -45,7 +45,7 @@ public class ChoixLangue extends Activity {
         @Override
         public void onClick(View v) {
             utilisateurdao.open();
-            utilisateurdao.setLangue("English");
+            utilisateurdao.setLangue("Anglais");
             utilisateurdao.close();
             Intent intent = new Intent(ChoixLangue.this, Login.class);
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -18,6 +19,9 @@ public class Login extends Activity {
     private Button retourlangue= null;
     private EditText login = null;
     private EditText mdp= null;
+    private TextView textmdp=null;
+    private TextView textpseudo = null;
+    private TextView textconnection=null;
     UtilisateurDAO utilisateurdao = null;
 
     @Override
@@ -32,6 +36,26 @@ public class Login extends Activity {
         retourlangue=  (Button) findViewById(R.id.retourlangue);
         login = (EditText) findViewById(R.id.input1);
         mdp = (EditText) findViewById(R.id.input2);
+        textmdp = (TextView) findViewById(R.id.mdp);
+        textpseudo = (TextView)findViewById(R.id.pseudo);
+        textconnection = (TextView)findViewById(R.id.connection);
+        String Langue  = utilisateurdao.getLangue();
+        if(Langue.equals("Anglais")){
+            textpseudo.setText("Username");
+            textmdp.setText("Password");
+            textconnection.setText("Login");
+            test.setText("Login");
+            creer.setText("Create");
+            retourlangue.setText("Chose another language");
+        }
+        else if(Langue.equals("Neerlandais")){
+            textpseudo.setText("gebruikersnaam");
+            textmdp.setText("wachtwoord");
+            textconnection.setText("Log In");
+            test.setText("Log In");
+            creer.setText("Creëren");
+            retourlangue.setText("Kies een andere taal");
+        }
 
         test.setOnClickListener(testlistener);
         creer.setOnClickListener(creerlistener);
