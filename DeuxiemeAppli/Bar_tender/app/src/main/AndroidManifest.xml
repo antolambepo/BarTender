@@ -46,6 +46,14 @@
             android:name=".Ajouter"
             android:label="@string/title_activity_search" >
         </activity>
+                <activity
+            android:name=".Addition"
+            android:label="@string/title_activity_addition" >
+        </activity>
+        <activity
+            android:name=".Paiement"
+            android:label="@string/title_activity_paiement" >
+        </activity>
     </application>
 
 
