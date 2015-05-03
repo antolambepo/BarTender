@@ -48,7 +48,7 @@ public class Main extends Activity {
         carte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Intent intent = new Intent(Main.this, Carte.class);
+                 Intent intent = new Intent(Main.this, carte.class);
                  startActivity(intent);
             }
         });

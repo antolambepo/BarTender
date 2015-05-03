@@ -23,7 +23,7 @@
             android:name=".Main"
             android:label="Bar_tender" />
         <activity
-            android:name=".Carte"
+            android:name=".carte"
             android:label="@string/title_activity_carte" >
         </activity>
         <activity

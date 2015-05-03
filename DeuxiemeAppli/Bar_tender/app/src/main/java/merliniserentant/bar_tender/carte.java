@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class Carte extends Activity {
+public class carte extends Activity {
 
     private Button carteBoisson = null;
     private Button recherche = null;
@@ -34,7 +34,7 @@ public class Carte extends Activity {
         @Override
         public void onClick(View v) {
 
-            Intent intent = new Intent(Carte.this, Consult.class);
+            Intent intent = new Intent(carte.this, Consult.class);
             startActivity(intent);
         }
     };
@@ -45,10 +45,10 @@ public class Carte extends Activity {
 
 
             if(texte_recherche.getText().toString().equals("")) {
-                Toast.makeText(Carte.this, R.string.beug, Toast.LENGTH_SHORT).show();
+                Toast.makeText(carte.this, R.string.beug, Toast.LENGTH_SHORT).show();
             }
             else {
-                Intent intent = new Intent(Carte.this, ConsultTag.class);
+                Intent intent = new Intent(carte.this, ConsultTag.class);
                 intent.putExtra("Tag",texte_recherche.getText().toString());
                 startActivity(intent);}
         }

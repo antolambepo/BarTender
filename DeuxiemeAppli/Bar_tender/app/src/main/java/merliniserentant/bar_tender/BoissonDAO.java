@@ -34,8 +34,12 @@ public class BoissonDAO {
     private static final int NUM_COL_NOMBOISSON = 1;
     private static final String COL_DESCRIPTION = "DESCBOISSON";
     private static final int NUM_COL_DESCRIPTION = 2;
-    private static final String COL_TAG = "TAG";
-    private static final int NUM_COL_TAG = 3;
+
+    private static final String TABLE_TAG = "TAG";
+
+    private static final String COL_TAG= "TAG";
+    private static final int NUM_COL_TAG = 1;
+
 
     private static final String TABLE_LANGUE = "LANGUE";
     private static final String COL_LANGAGE = "LANGAGE";
@@ -71,15 +75,16 @@ public class BoissonDAO {
         db.close();
     }
     public ArrayList<Boisson> getBoissonwithTag(String Tag){
-        Cursor c = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_TAG + " LIKE \"" + Tag +"\"", null, null, null, null);
+        Cursor cccc=db.query(TABLE_TAG, new String[] {COL_ID,COL_TAG}, COL_TAG+" LIKE \"" + Tag +"\"", null, null, null, null);
         ArrayList<Boisson> list = new ArrayList<Boisson>();
-        if(c.getCount() == 0){return null;}
-        c.moveToFirst();
+        if(cccc.getCount()==0){return null;}
+        cccc.moveToFirst();
         int i;
-
-        for(i = 0;i<c.getCount();i++){
+        for(i=0;i<cccc.getCount();i++){
             Boisson boisson = new Boisson();
-            //Info disponible dans la table IDs
+            Cursor c = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION}, COL_ID + " LIKE \"" + cccc.getString(NUM_COL_ID) +"\"", null, null, null, null);
+            if(c.getCount() == 0){return null;}
+            c.moveToFirst();
             boisson.setDescription(c.getString(NUM_COL_DESCRIPTION));
             boisson.setNom(c.getString(NUM_COL_NOMBOISSON));
             Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_ID + " LIKE \""+ c.getString(NUM_COL_ID) +"\" AND " + COL_LANGAGE+" LIKE \""+maBaseSQLite.getLangue() + "\"", null, null, null, null);
@@ -98,8 +103,11 @@ public class BoissonDAO {
                     list.add(boisson);
                 }
             }
-            c.moveToNext();
+            cccc.moveToNext();
+
         }
+
+
         return list;
     }
     public Boisson getBoissonwithNumboisson(int Numboisson){
@@ -138,7 +146,7 @@ public class BoissonDAO {
 
         cc.moveToFirst();
         System.out.println(cc.getString(NUM_COL_IDLANGUE));
-        Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION, COL_TAG}, COL_ID + " LIKE \"" + cc.getString(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
+        Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION}, COL_ID + " LIKE \"" + cc.getString(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
         if(ccc.getCount() ==0){
 
             return null;
