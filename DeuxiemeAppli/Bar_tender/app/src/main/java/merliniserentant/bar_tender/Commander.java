@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-//import android.support.v7.app.ActionBarActivity; Ca sert a quoi?? pcq ca fait une erreur
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,23 +31,27 @@ public class Commander extends Activity implements View.OnClickListener{
     private String bsn;
     private int numBsn;
     private int qté;
-    private int table;
+    private String table;
 
-    CommanderDAO b = new CommanderDAO(null);
-    LigneDeCommandeDAO l = new LigneDeCommandeDAO(null);
+    BoissonDAO bdao = null;
+    LigneCommandeDAO ldao = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        CommanderDAO cdao = new CommanderDAO(this);
+        LigneCommandeDAO ldao = new LigneCommandeDAO(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
         b.open();
         l.open();
         // récupérer le numéro de tables
         tabl = (EditText) findViewById(R.id.table);
-        table = Integer.parseInt(tabl.getText().toString());
+        table = tabl.getText().toString();
 
         // Créer tableau de commandes à valider pour la table sélectionnée
+<<<<<<< HEAD
         ArrayAdapter<String> ListAdapterBsn = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Ajouter.newBoisson);
         ListView listBsn = (ListView) findViewById(R.id.list_Boisson);
         listBsn.setAdapter(ListAdapterBsn);
@@ -59,6 +61,17 @@ public class Commander extends Activity implements View.OnClickListener{
         listBsn.setAdapter(ListAdapterQté);
         b.close();
         l.close();
+=======
+        if (Ajouter.newBoisson != null) {
+            ArrayAdapter<String> ListAdapterBsn = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Ajouter.newBoisson);
+            ListView listBsn = (ListView) findViewById(R.id.list_Boisson);
+            listBsn.setAdapter(ListAdapterBsn);
+
+            ArrayAdapter<Integer> ListAdapterQté = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, Ajouter.newQté);
+            ListView listQté = (ListView) findViewById(R.id.list_Qté);
+            listBsn.setAdapter(ListAdapterQté);
+        }
+>>>>>>> 6e0bce6a3b0e36a696652297f5c6d0fa3572170b
 
         // localise les Button
         ajouter = (Button) findViewById(R.id.ajouter);
@@ -87,11 +100,15 @@ public class Commander extends Activity implements View.OnClickListener{
                 else {
                     while (Ajouter.newBoisson != null) { // parcourir la liste des boissons ajoutées
                         bsn = Ajouter.newBoisson.get(0);
-                        numBsn = b.getBoissonwithName(bsn).getNumboisson();
+                        bdao.open();
+                        numBsn = bdao.getBoissonwithName(bsn).getlNumboisson();
                         qté = Ajouter.newQté.get(0);
+                        bdao.close();
                         // créér une nouvelle ligne de commande
-                        LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
-                        l.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
+                        LigneCommande newLigne = new LigneCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, Integer.parseInt(table));
+                        ldao.open();
+                        ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
+                        ldao.close();
                         num = num + 1;
                         Ajouter.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
                         Ajouter.newQté.remove(0);
@@ -110,5 +127,3 @@ public class Commander extends Activity implements View.OnClickListener{
     }
 
 }
-
-

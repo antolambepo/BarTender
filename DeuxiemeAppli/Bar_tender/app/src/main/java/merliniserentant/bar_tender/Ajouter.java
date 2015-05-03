@@ -1,8 +1,5 @@
-
-
-
-
 package merliniserentant.bar_tender;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,41 +14,42 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import merliniserentant.bar_tender.BoissonDAO;
-
 
 public class Ajouter extends Activity implements View.OnClickListener {
 
     private AutoCompleteTextView boisson;
     private EditText quantité;
-    private int qté;
+    private String qté;
     private String bsn;
     private Button ajouter;
     private Button annuler;
     public static List<String> newBoisson;
     public static List<Integer> newQté;
-    BoissonDAO dao = new BoissonDAO(null);
-    CommanderDAO l = new CommanderDAO(null);
+    BoissonDAO bdao = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        bdao = new BoissonDAO(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter);
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
         List<String> listBoisson = null; // à remplir avec liste de boisson
-        while (l.getNumBoissonInStock() != null)
-        {
-            Boisson b = dao.getBoissonwithNumboisson (l.getNumBoissonInStock().get(0));
-            listBoisson.add(b.getNom());
+        bdao.open();
+        Boisson[] listNumBoisson = bdao.aboveSeuil();
+        if (listNumBoisson !=null){
+            for (int i = 0; i<listNumBoisson.length; i++){
+                listBoisson.add(listNumBoisson[i].getNom());
+            }
         }
-
+        bdao.close();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listBoisson);
         boisson.setAdapter(adapter);
         quantité = (EditText) findViewById(R.id.quantité);
         // Reprend les valeurs
-        qté = Integer.parseInt(quantité.getText().toString());
+        qté = quantité.getText().toString();
         bsn = boisson.getText().toString();
 
         // localise les boutons
@@ -64,13 +62,13 @@ public class Ajouter extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ajouter:
-                if (qté == 0 || bsn == null){
+                if (Integer.parseInt(qté) == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
-                    if (l.getBoissonwithName(bsn).getStock() >= qté) { // vérifie si il y a assez de stock
+                    if (bdao.getBoissonwithName(bsn).getStock() >= Integer.parseInt(qté)) { // vérifie si il y a assez de stock
                         newBoisson.add(bsn);
-                        newQté.add(qté);
+                        newQté.add(Integer.parseInt(qté));
                     } else {
                         Toast.makeText(Ajouter.this, "Plus de stock", Toast.LENGTH_SHORT).show(); // message d'erreur
                     }
@@ -82,14 +80,3 @@ public class Ajouter extends Activity implements View.OnClickListener {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

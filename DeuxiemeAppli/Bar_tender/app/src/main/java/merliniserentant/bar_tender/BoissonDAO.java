@@ -206,5 +206,33 @@ public class BoissonDAO {
         }
         return drink;
     }
+    
+    // retrouver une boisson avec le nom
+    public Boisson getBoissonwithName (String NomBoisson){
+        Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION, COL_TAG}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
+        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + "LIKE\" " + id.getInt(NUM_COL_ID), null, null, null, null);
+        return getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
+    }
+
+    // reprend les boissons de stock > seuil
+    public Boisson[] aboveSeuil() {
+
+        Cursor c = db.query(TABLE_BOISSON, new String[]{COL_NUMBOISSON}, COL_STOCK + ">" + COL_SEUIL, null, null, null, null);
+        int count = c.getCount();
+        if (count == 0)
+            return null;
+        Boisson[] boisson = new Boisson[count];
+        c.moveToFirst();
+
+        for (int i = 0; i < count - 1; i++) {
+            boisson[i] = getBoissonwithNumboisson(c.getInt(NUM_COL_NUMBOISSON));
+            c.moveToNext();
+        }
+        boisson[count - 1] = getBoissonwithNumboisson(c.getInt(NUM_COL_NUMBOISSON));
+
+        c.close();
+
+        return boisson;
+    }
 
 }

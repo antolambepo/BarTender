@@ -55,13 +55,13 @@
                     android:id="@+id/list_Boisson"
                     android:layout_column="1"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="4dp">
                 </ListView>
 
                 <ListView
                     android:id="@+id/list_Qté"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:layout_width="4dp">
                 </ListView>
             </TableRow>
         </TableLayout>
