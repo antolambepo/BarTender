@@ -25,6 +25,7 @@ public class consult_details extends Activity {
             throw new RuntimeException("Aucun numéro de boisson n'est spécifié");
         }
         BoissonDAO boissondao = new BoissonDAO(this);
+        boissondao.open();
         currentBoisson = boissondao.getBoissonwithNumboisson(number); // J'ai le droit de faire ca??
 
         TextView name = (TextView) findViewById(R.id.consult_details_name);
@@ -43,5 +44,6 @@ public class consult_details extends Activity {
             View pictureLL = findViewById(R.id.consult_details_picture_ll);
             pictureLL.setVisibility(View.GONE);
         }
+        boissondao.close();
     }
 }

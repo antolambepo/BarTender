@@ -39,9 +39,14 @@
             android:label="@string/title_activity_consult_details" >
         </activity>
         <activity
-            android:name=".Search"
+            android:name=".Commander"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".Ajouter"
             android:label="@string/title_activity_search" >
         </activity>
     </application>
+
 
 </manifest>

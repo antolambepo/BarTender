@@ -55,9 +55,9 @@ public class Main extends Activity {
         commande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(Main.this, ???.class);
+                Intent intent = new Intent(Main.this, Commander.class);
 
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
         addition.setOnClickListener(new View.OnClickListener() {

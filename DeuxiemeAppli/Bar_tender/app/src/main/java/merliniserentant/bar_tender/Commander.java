@@ -43,7 +43,8 @@ public class Commander extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
-
+        b.open();
+        l.open();
         // récupérer le numéro de tables
         tabl = (EditText) findViewById(R.id.table);
         table = Integer.parseInt(tabl.getText().toString());
@@ -56,7 +57,8 @@ public class Commander extends Activity implements View.OnClickListener{
         ArrayAdapter<Integer> ListAdapterQté = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, Ajouter.newQté);
         ListView listQté = (ListView) findViewById(R.id.list_Qté);
         listBsn.setAdapter(ListAdapterQté);
-
+        b.close();
+        l.close();
 
         // localise les Button
         ajouter = (Button) findViewById(R.id.ajouter);
@@ -70,6 +72,8 @@ public class Commander extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        b.open();
+        l.open();
         switch (v.getId()) {
             case R.id.ajouter:
                 Intent intent = new Intent(Commander.this, Ajouter.class);
@@ -94,11 +98,15 @@ public class Commander extends Activity implements View.OnClickListener{
                     }
                 }
                 finish();
-
+            // IL FAUDRAIT PAS AJOUTER DES ENTREES DANS LA TABLE COMMANDE?
             case R.id.annuler:
                 // retourner à la page précédente
+                l.close();
+                b.close();
                 finish();
         }
+        l.close();
+        b.close();
     }
 
 }
