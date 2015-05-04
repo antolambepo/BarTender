@@ -31,7 +31,7 @@ public class LigneDeCommandeDAO {
     public final static int NUM_COL_NUMLIGNECOMMANDE = 1;
     public final static String COL_TYPEPAIEMENT = "TYPEPAIEMENT";
     public final static int NUM_COL_TYPEPAIEMENT = 2;
-    
+
         private MySQLite maBaseSQLite; // notre gestionnaire du fichier SQLite
         private SQLiteDatabase db;
 
@@ -69,9 +69,6 @@ public class LigneDeCommandeDAO {
         }
 
         public LigneDeCommande getLignewithnumboisson(int numboisson){
-
-
-
             Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[] {COL_NUMLIGNE, COL_NUMTABLE,COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMBOISSON + " LIKE \"" + numboisson +"\"", null, null, null, null);
             //pas oublier COL_TYPE au dessus
             return cursorToLigne(c);
