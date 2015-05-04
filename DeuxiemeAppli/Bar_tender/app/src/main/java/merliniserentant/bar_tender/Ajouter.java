@@ -37,17 +37,17 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
-        List<String> listBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
-        //Il faut pas mettre = null; Sinon on sait pas faire appel aux méthodes
-        bdao.open();
-        Boisson[] listNumBoisson = bdao.aboveSeuil();
-        if (listNumBoisson !=null){
-            for (int i = 0; i<listNumBoisson.length; i++){
-                listBoisson.add(listNumBoisson[i].getNom());
-            }
-        }
-        bdao.close();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listBoisson);
+        List<String> listNomBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
+        listNomBoisson.add("Orval");
+        //bdao.open();
+        //Boisson[] listBoisson = bdao.aboveSeuil();
+        //if (listBoisson !=null){
+        //    for (int i = 0; i<listBoisson.length - 1; i++){
+        //        listNomBoisson.add(listBoisson[i].getNom());
+        //    }
+        //}
+        //bdao.close();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listNomBoisson);
         boisson.setAdapter(adapter);
         boisson.setThreshold(1); //nombre de caractère pour suggestion
         // Quand l'utilisateur appuie sur une boisson de la liste
@@ -75,7 +75,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ajouter:
+            case R.id.ajouterBoisson:
                 if (Integer.parseInt(qté) == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
