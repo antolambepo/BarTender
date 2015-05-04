@@ -31,6 +31,8 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        newBoisson = new ArrayList<String>();
+        newQté = new ArrayList<Integer>();
         bdao = new BoissonDAO(this);
 
         super.onCreate(savedInstanceState);
@@ -79,13 +81,16 @@ public class Ajouter extends Activity implements View.OnClickListener {
                 qté = quantité.getText().toString();
                 System.out.println("-----------"+qté);
                 bsn = boisson.getText().toString();
-
+                System.out.println("-----------"+bsn);
                 if (Integer.parseInt(qté) == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
+                    System.out.println("-----------"+qté);
                         newBoisson.add(bsn);
-                        newQté.add(Integer.parseInt(qté));
+                    System.out.println("-----------"+qté);
+
+                    newQté.add(Integer.parseInt(qté));
                 }
                 finish();
             case R.id.annuler:

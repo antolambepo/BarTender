@@ -25,7 +25,7 @@ class MySQLite extends SQLiteOpenHelper {
     private static String Langue = "Français";
 
 
-    public String getLangue(){return this.Langue;};
+    public String getLangue(){return this.Langue;}
 
     public void setLangue(String Langue){this.Langue =Langue;}
 
