@@ -108,7 +108,7 @@ public class Boisson {
     }
 
     public Bitmap getPicture() {
-        if (this.LOGOTYPE == null) {
+        if (this.LOGOTYPE.equals("soft")) { //A CHANGER
             // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
             return null;
         }
@@ -131,7 +131,7 @@ public class Boisson {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return null;
     }
 }
