@@ -24,6 +24,14 @@ public class LigneDeCommandeDAO {
         private static final String COL_NUMBOISSON = "NUMBOISSON";
         private static final int NUM_COL_NUMBOISSON = 4;
 
+    public final static String TABLE_ADDITION = "TABLE_ADDITION";
+    public final static String COL_NUMADDITION = "NUMADDITION";
+    public final static int NUM_COL_NUMADDITION = 0;
+    public final static String COL_NUMLIGNECOMMANDE = "NUMCOMMANDE";
+    public final static int NUM_COL_NUMLIGNECOMMANDE = 1;
+    public final static String COL_TYPEPAIEMENT = "TYPEPAIEMENT";
+    public final static int NUM_COL_TYPEPAIEMENT = 2;
+    
         private MySQLite maBaseSQLite; // notre gestionnaire du fichier SQLite
         private SQLiteDatabase db;
 
@@ -92,5 +100,30 @@ public class LigneDeCommandeDAO {
 
             return lignedecommande;
         }
+    // crée une additionClass à partir d'un cursor
+    public AdditionClass cursorToAddition (Cursor c){
+        //si aucun élément n'a été retourné dans la requête, on renvoie null
+        if (c.getCount() == 0)
+            return null;
+
+        //Sinon on se place sur le premier élément
+        c.moveToFirst();
+        //on créée un addition vide
+        AdditionClass addition = new AdditionClass(0, 0, null);
+        // on lui affecte les infos du cursor
+        addition.setNumAddition(c.getInt(NUM_COL_NUMADDITION));
+        addition.setNumLignedeCommande(c.getInt(NUM_COL_NUMLIGNECOMMANDE));
+        addition.setTypePaiement(c.getString(NUM_COL_TYPEPAIEMENT));
+        return addition;
+    }
+
+    public void insertCommande (AdditionClass add){
+        ContentValues values = new ContentValues();
+
+        values.put(COL_NUMADDITION, add.getNumAddition());
+        values.put(COL_NUMLIGNECOMMANDE, add.getNumLignedeCommande());
+        values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
+        db.insert(TABLE_ADDITION, null, values);
+    }
 
     }
