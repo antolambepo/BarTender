@@ -209,8 +209,8 @@ public class BoissonDAO {
     
     // retrouver une boisson avec le nom
     public Boisson getBoissonwithName (String NomBoisson){
-        Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION, COL_TAG}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
-        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + "LIKE\" " + id.getInt(NUM_COL_ID), null, null, null, null);
+        Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
+        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + "LIKE\" " + id.getString(NUM_COL_ID), null, null, null, null);
         return getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
     }
 

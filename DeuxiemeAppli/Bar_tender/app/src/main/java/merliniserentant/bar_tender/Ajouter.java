@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        newBoisson = new ArrayList<String>();
+        newQté = new ArrayList<Integer>();
         bdao = new BoissonDAO(this);
 
         super.onCreate(savedInstanceState);
@@ -37,22 +40,33 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
-        List<String> listBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
-        //Il faut pas mettre = null; Sinon on sait pas faire appel aux méthodes
+        List<String> listNomBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
+       // listNomBoisson.add("Orval");
         bdao.open();
-        Boisson[] listNumBoisson = bdao.aboveSeuil();
-        if (listNumBoisson !=null){
-            for (int i = 0; i<listNumBoisson.length; i++){
-                listBoisson.add(listNumBoisson[i].getNom());
+        int i;
+        for(i=1;i<20;i++){
+           Boisson boisson  = bdao.getBoissonwithNumboisson(i);
+            if(boisson!=null && boisson.getStock()>0){
+                listNomBoisson.add(boisson.getNom());
             }
         }
         bdao.close();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listBoisson);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listNomBoisson);
         boisson.setAdapter(adapter);
+        boisson.setThreshold(1); //nombre de caractère pour suggestion
+        // Quand l'utilisateur appuie sur une boisson de la liste
+        boisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bsn = (String) parent.getItemAtPosition(position);
+            }
+            public void onNothingSelected(AdapterView<?> parent){
+                Toast.makeText(Ajouter.this, "Sélectionner boisson", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
         quantité = (EditText) findViewById(R.id.quantité);
         // Reprend les valeurs
-        qté = quantité.getText().toString();
-        bsn = boisson.getText().toString();
 
         // localise les boutons
         ajouter = (Button) findViewById(R.id.ajouterBoisson);
@@ -63,18 +77,24 @@ public class Ajouter extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ajouter:
+            case R.id.ajouterBoisson:
+                qté = quantité.getText().toString();
+                System.out.println("-----------"+qté);
+                bsn = boisson.getText().toString();
+                System.out.println("-----------"+bsn);
                 if (Integer.parseInt(qté) == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
-                    if (bdao.getBoissonwithName(bsn).getStock() >= Integer.parseInt(qté)) { // vérifie si il y a assez de stock
+                    System.out.println("-----------"+qté);
                         newBoisson.add(bsn);
-                        newQté.add(Integer.parseInt(qté));
-                    } else {
-                        Toast.makeText(Ajouter.this, "Plus de stock", Toast.LENGTH_SHORT).show(); // message d'erreur
-                    }
+                    System.out.println("-----------"+qté);
+
+                    newQté.add(Integer.parseInt(qté));
+                    System.out.println("-----------"+qté);
+
                 }
+                System.out.println("Se fini bien");
                 finish();
             case R.id.annuler:
                 // retourner à la page précédente

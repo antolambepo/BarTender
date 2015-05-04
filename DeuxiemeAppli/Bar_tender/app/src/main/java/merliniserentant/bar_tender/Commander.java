@@ -28,6 +28,7 @@ public class Commander extends Activity implements View.OnClickListener{
     private Button annuler;
     private EditText tabl;
     private static int num = 1;
+    private static int numCom =1;
     private String bsn;
     private int numBsn;
     private int qté;
@@ -48,11 +49,8 @@ public class Commander extends Activity implements View.OnClickListener{
         ldao.open();
         // récupérer le numéro de tables
         tabl = (EditText) findViewById(R.id.table);
-        table = tabl.getText().toString();
 
         // Créer tableau de commandes à valider pour la table sélectionnée
-
-
 
         if (Ajouter.newBoisson != null) {
             ArrayAdapter<String> ListAdapterBsn = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Ajouter.newBoisson);
@@ -81,7 +79,10 @@ public class Commander extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         bdao.open();
         ldao.open();
+        table = tabl.getText().toString();
+
         switch (v.getId()) {
+
             case R.id.ajouter:
                 Intent intent = new Intent(Commander.this, Ajouter.class);
                 startActivity(intent);
@@ -89,29 +90,35 @@ public class Commander extends Activity implements View.OnClickListener{
             case R.id.commander:
                 // insérer les nouvelles ligne de commande dans la BDD
                 if (Ajouter.newBoisson == null || Ajouter.newQté == null){
-                    Toast.makeText(Commander.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
                     while (Ajouter.newBoisson != null) { // parcourir la liste des boissons ajoutées
                         bsn = Ajouter.newBoisson.get(0);
+                        System.out.println("++++++++" + bsn);
                         bdao.open();
                         numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
                         qté = Ajouter.newQté.get(0);
+                        System.out.println(qté);
                         bdao.close();
                         // créér une nouvelle ligne de commande
                         LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, Integer.parseInt(table));
+                        AdditionClass newCommande = new AdditionClass(numCom, num, null);
                         ldao.open();
                         ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
+                        ldao.insertCommande(newCommande); // ajouter la commande dans la BDD
                         ldao.close();
                         num = num + 1;
                         Ajouter.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
                         Ajouter.newQté.remove(0);
                     }
+                    numCom = numCom +1;
                 }
                 finish();
-            // IL FAUDRAIT PAS AJOUTER DES ENTREES DANS LA TABLE COMMANDE?
+
             case R.id.annuler:
-                // retourner à la page précédente
+                Ajouter.newBoisson = null;
+                Ajouter.newQté = null;
                 ldao.close();
                 bdao.close();
                 finish();
