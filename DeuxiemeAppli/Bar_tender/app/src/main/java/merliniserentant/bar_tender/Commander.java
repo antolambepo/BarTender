@@ -49,7 +49,6 @@ public class Commander extends Activity implements View.OnClickListener{
         ldao.open();
         // récupérer le numéro de tables
         tabl = (EditText) findViewById(R.id.table);
-        table = tabl.getText().toString();
 
         // Créer tableau de commandes à valider pour la table sélectionnée
 
@@ -80,7 +79,10 @@ public class Commander extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         bdao.open();
         ldao.open();
+        table = tabl.getText().toString();
+
         switch (v.getId()) {
+
             case R.id.ajouter:
                 Intent intent = new Intent(Commander.this, Ajouter.class);
                 startActivity(intent);

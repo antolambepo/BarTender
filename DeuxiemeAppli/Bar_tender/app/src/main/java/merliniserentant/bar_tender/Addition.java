@@ -28,14 +28,16 @@ public class Addition extends Activity {
         adao = new AdditionDAO(this);
 
         table = (EditText) findViewById(R.id.tableAddition);
-        numtbl = table.getText().toString();
-        //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder 
-        numTable = Integer.parseInt(numtbl);
+        //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder
 
         mPasserelle = (Button) findViewById(R.id.premier);
         mPasserelle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                numtbl = table.getText().toString();
+
+                numTable = Integer.parseInt(numtbl);
+
                 adao.open();
                 if (adao.getAdditionToPay(numTable) == null){
                     Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();

@@ -39,15 +39,16 @@ public class Ajouter extends Activity implements View.OnClickListener {
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
         List<String> listNomBoisson = new ArrayList<String>(); // à remplir avec liste de boisson
-        listNomBoisson.add("Orval");
-        //bdao.open();
-        //Boisson[] listBoisson = bdao.aboveSeuil();
-        //if (listBoisson !=null){
-        //    for (int i = 0; i<listBoisson.length - 1; i++){
-        //        listNomBoisson.add(listBoisson[i].getNom());
-        //    }
-        //}
-        //bdao.close();
+       // listNomBoisson.add("Orval");
+        bdao.open();
+        int i;
+        for(i=1;i<20;i++){
+           Boisson boisson  = bdao.getBoissonwithNumboisson(i);
+            if(boisson.getStock()>0){
+                listNomBoisson.add(boisson.getNom());
+            }
+        }
+        bdao.close();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listNomBoisson);
         boisson.setAdapter(adapter);
         boisson.setThreshold(1); //nombre de caractère pour suggestion
@@ -64,8 +65,6 @@ public class Ajouter extends Activity implements View.OnClickListener {
         
         quantité = (EditText) findViewById(R.id.quantité);
         // Reprend les valeurs
-        qté = quantité.getText().toString();
-        bsn = boisson.getText().toString();
 
         // localise les boutons
         ajouter = (Button) findViewById(R.id.ajouterBoisson);
@@ -77,16 +76,16 @@ public class Ajouter extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ajouterBoisson:
+                qté = quantité.getText().toString();
+                System.out.println("-----------"+qté);
+                bsn = boisson.getText().toString();
+
                 if (Integer.parseInt(qté) == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
-                    if (bdao.getBoissonwithName(bsn).getStock() >= Integer.parseInt(qté)) { // vérifie si il y a assez de stock
                         newBoisson.add(bsn);
                         newQté.add(Integer.parseInt(qté));
-                    } else {
-                        Toast.makeText(Ajouter.this, "Plus de stock", Toast.LENGTH_SHORT).show(); // message d'erreur
-                    }
                 }
                 finish();
             case R.id.annuler:
