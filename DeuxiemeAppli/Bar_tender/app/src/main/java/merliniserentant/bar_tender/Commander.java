@@ -90,14 +90,16 @@ public class Commander extends Activity implements View.OnClickListener{
             case R.id.commander:
                 // insérer les nouvelles ligne de commande dans la BDD
                 if (Ajouter.newBoisson == null || Ajouter.newQté == null){
-                    Toast.makeText(Commander.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
                     while (Ajouter.newBoisson != null) { // parcourir la liste des boissons ajoutées
                         bsn = Ajouter.newBoisson.get(0);
+                        System.out.println("++++++++" + bsn);
                         bdao.open();
                         numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
                         qté = Ajouter.newQté.get(0);
+                        System.out.println(qté);
                         bdao.close();
                         // créér une nouvelle ligne de commande
                         LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, Integer.parseInt(table));

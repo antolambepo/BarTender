@@ -91,7 +91,10 @@ public class Ajouter extends Activity implements View.OnClickListener {
                     System.out.println("-----------"+qté);
 
                     newQté.add(Integer.parseInt(qté));
+                    System.out.println("-----------"+qté);
+
                 }
+                System.out.println("Se fini bien");
                 finish();
             case R.id.annuler:
                 // retourner à la page précédente
