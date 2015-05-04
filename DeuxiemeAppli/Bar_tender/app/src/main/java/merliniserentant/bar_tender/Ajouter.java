@@ -49,6 +49,18 @@ public class Ajouter extends Activity implements View.OnClickListener {
         bdao.close();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listBoisson);
         boisson.setAdapter(adapter);
+        boisson.setThreshold(1); //nombre de caractère pour suggestion
+        // Quand l'utilisateur appuie sur une boisson de la liste
+        boisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bsn = (String) parent.getItemAtPosition(position);
+            }
+            public void onNothingSelected(AdapterView<?> parent){
+                Toast.makeText(Ajouter.this, "Sélectionner boisson", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
         quantité = (EditText) findViewById(R.id.quantité);
         // Reprend les valeurs
         qté = quantité.getText().toString();
