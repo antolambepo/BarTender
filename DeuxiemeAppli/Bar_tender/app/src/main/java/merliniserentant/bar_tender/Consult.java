@@ -47,7 +47,14 @@ public class Consult extends Activity{
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
         listviewboisson.setAdapter(adapter);
-
+        listviewboisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myintent = new Intent(Consult.this, consult_details.class);
+                myintent.putExtra("numBoisson", listboisson.get(position).getNumboisson());
+                startActivity(myintent);
+            }
+        });
         boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {
             @Override

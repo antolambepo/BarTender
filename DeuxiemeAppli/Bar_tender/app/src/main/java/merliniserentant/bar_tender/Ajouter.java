@@ -44,7 +44,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
         int i;
         for(i=1;i<20;i++){
            Boisson boisson  = bdao.getBoissonwithNumboisson(i);
-            if(boisson.getStock()>0){
+            if(boisson!=null && boisson.getStock()>0){
                 listNomBoisson.add(boisson.getNom());
             }
         }
