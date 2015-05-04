@@ -133,9 +133,8 @@ public class AdditionDAO {
         for (int i = 0; i < additionsApayer.size(); i++){
             int numCommande = (additionsApayer.get(i)).getNumLignedeCommande();
             ldao.open();
-            int numBoisson = (ldao.getLignewithnumboisson(numCommande)).getBoisson(); // C'EST BIEN WITHNUMBOISSON???
-
-            int qté = (ldao.getLignewithnumboisson(numCommande)).getQuantité();
+            int numBoisson = (ldao.getLignewithnum(numCommande)).getBoisson();
+            int qté = (ldao.getLignewithnum(numCommande)).getQuantité();
             ldao.close();
             bdao.open();
             double prixBoisson = (bdao.getBoissonwithNumboisson(numBoisson)).getPrix();
