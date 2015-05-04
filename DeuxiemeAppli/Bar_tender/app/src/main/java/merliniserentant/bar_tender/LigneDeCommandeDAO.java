@@ -68,7 +68,12 @@ public class LigneDeCommandeDAO {
             //pas oublier COL_TYPE au dessus
             return cursorToLogin(c);
         }
-
+     
+     public LigneCommande getLignewithnum(int num){
+        Cursor c = db.query(TABLE_COMMANDE, new String[] {COL_NUMCOMMANDE, COL_NUMTABLE,COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMCOMMANDE + " LIKE \"" + num +"\"", null, null, null, null);
+        //pas oublier COL_TYPE au dessus
+        return cursorToLigne(c);
+    }
         private LigneDeCommande cursorToLogin(Cursor c){
             //si aucun élément n'a été retourné dans la requête, on renvoie null
             if (c.getCount() == 0)
