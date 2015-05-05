@@ -58,7 +58,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/show_list_titles"/>
+        android:layout_below="@+id/show_list_titles"
+        android:layout_above="@+id/returninv"/>
         
         <Button
         android:id="@+id/returninv"
