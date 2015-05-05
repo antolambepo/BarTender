@@ -30,13 +30,22 @@ public class Main extends Activity {
         commande = (Button) findViewById(R.id.commande);
         inventaire = (Button) findViewById(R.id.inventaire);
         carte = (Button) findViewById(R.id.carte);
-        if(boissondao.getLangue().equals("Néerlandais")){
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Néerlandais")){
             retour.setText("Terug");
             addition.setText("Betalen");
             commande.setText("Bestellen");
             inventaire.setText("Stock");
             carte.setText("Kaart");
         }
+        if(Langue.equals("Anglais")){
+            retour.setText("Return");
+            addition.setText("Bill");
+            commande.setText("Order");
+            inventaire.setText("Stock");
+            carte.setText("Board");
+        }
+
 
 
         String typeoflogin = Utilisateur.connectedUser.gettype();
