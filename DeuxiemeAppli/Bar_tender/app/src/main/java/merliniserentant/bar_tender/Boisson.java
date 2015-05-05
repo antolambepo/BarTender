@@ -108,7 +108,7 @@ public class Boisson {
     }
 
     public Bitmap getPicture() {
-        if (this.LOGOTYPE.equals("soft")) { //A CHANGER
+        if (this.LOGOTYPE.equals(null)) { //A CHANGER
             // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
             return null;
         }
@@ -120,8 +120,8 @@ public class Boisson {
              *  Lisez https://developer.android.com/training/basics/data-storage/files.html afin de
              *  comprendre les différentes possibilités.
              */
-
-            FileInputStream in = CollectorApp.getContext().openFileInput(LOGOTYPE);
+            System.out.println("-----------------------------------------"+Integer.toString(Numboisson));
+            FileInputStream in = CollectorApp.getContext().openFileInput(Integer.toString(Numboisson));
             Bitmap bitmap = BitmapFactory.decodeStream(in);
             in.close();
 

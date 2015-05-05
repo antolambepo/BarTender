@@ -39,7 +39,7 @@ public class Login extends Activity {
         textmdp = (TextView) findViewById(R.id.mdp);
         textpseudo = (TextView)findViewById(R.id.pseudo);
         textconnection = (TextView)findViewById(R.id.connection);
-        String Langue  = utilisateurdao.getLangue();
+        String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
             textpseudo.setText("Username");
             textmdp.setText("Password");
