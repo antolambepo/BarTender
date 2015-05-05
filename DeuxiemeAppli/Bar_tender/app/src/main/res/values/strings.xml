@@ -9,6 +9,7 @@
     <string name="ajout_boisson">Ajouter une boisson</string>
     <string name="retrait_boisson">Retirer une boisson</string>
     <string name="modification_dataStock">Modifier les données</string>
+    <string name="title_activity_inventaire">Inventaire</string>
 
     //Modification datastock
     <string name="modif">Modifications</string>

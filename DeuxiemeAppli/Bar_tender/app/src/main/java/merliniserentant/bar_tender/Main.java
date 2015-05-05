@@ -93,6 +93,14 @@ public class Main extends Activity {
                 // startActivity(intent);
             }
         });
+        
+        inventaire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 Intent intent = new Intent(Main.this, ConsultInventaire.class);
+                 startActivity(intent);
+            }
+        });
 
     }
 }
