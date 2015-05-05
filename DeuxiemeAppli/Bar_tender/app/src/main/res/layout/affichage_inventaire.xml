@@ -59,5 +59,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/show_list_titles"/>
+        
+        <Button
+        android:id="@+id/returninv"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"/>
 
 </RelativeLayout>
