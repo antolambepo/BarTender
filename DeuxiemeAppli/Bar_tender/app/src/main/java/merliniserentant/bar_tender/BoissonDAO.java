@@ -235,4 +235,45 @@ public class BoissonDAO {
         return boisson;
     }
 
+    public boolean create(String name, String description, String logotype, double price, int stock, int stockmax, int seuil) {
+
+        // Définition des valeurs pour le nouvel élément dans la table BOISSON
+        //A changer!!!
+        ContentValues cv = new ContentValues();
+        cv.put(COL_NOMBOISSON,name);
+        cv.put(COL_DESCRIPTION,description);
+        cv.put(COL_LOGOTYPE, logotype);
+        cv.put(COL_PRIX, price);
+        cv.put(COL_STOCK, stock);
+        cv.put(COL_STOCKMAX,stockmax);
+        cv.put(COL_SEUIL, seuil);
+
+
+
+        // Ajout à la base de données (table songs).
+        int ci_id = (int) db.insert(TABLE_BOISSON, null, cv);
+
+        if (ci_id == -1) {
+            return false; // En cas d'erreur d'ajout, on retourne false directement.
+        }
+        cv.clear();
+
+        // Définition des valeurs pour le nouvel élément dans la table "owns".
+       // cv.put(DB_COL_ID, ci_id);
+        //cv.put(DB_COL_UID, User.getConnectedUser().getId());
+        //cv.put(DB_COL_RATING, rating);
+
+        //int result = (int) db.insert(DB_TABLE_OWNS, null, cv);
+
+        //if (result == -1) {
+            // En cas d'erreur dans l'ajout de la deuxième table, il faut supprimer la ligne qu'on
+            // vient d'ajouter dans la première table pour ne pas qu'il y ait un élément qui n'est
+            // dans la collection de personne.
+          //  db.delete(DB_TABLE_S, DB_COL_ID + " = ?", new String[]{String.valueOf(ci_id)});
+           // return false;
+        //}
+        return true;
+    }
+
+
 }
