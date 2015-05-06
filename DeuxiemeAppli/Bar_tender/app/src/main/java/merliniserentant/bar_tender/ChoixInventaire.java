@@ -15,6 +15,7 @@ public class ChoixInventaire extends Activity {
     private Button retrait = null;
     private Button modification = null;
     private Button affichage = null;
+    private Button retour = null;
 
     private BoissonDAO boissondao = null;
 
@@ -26,11 +27,13 @@ public class ChoixInventaire extends Activity {
         retrait = (Button) findViewById(R.id.removeboisson);
         modification = (Button) findViewById(R.id.changedata);
         affichage = (Button) findViewById(R.id.showinventaire);
+        retour = (Button) findViewById(R.id.returnbutton);
 
         ajout.setOnClickListener(ajoutListener);
         retrait.setOnClickListener(retraitListener);
         modification.setOnClickListener(modificationListener);
         affichage.setOnClickListener(affichageListener);
+        retour.setOnClickListener(retourListener);
         boissondao = new BoissonDAO(this);
 
     }
@@ -69,6 +72,13 @@ public class ChoixInventaire extends Activity {
         public void onClick(View v) {
             Intent intent = new Intent(ChoixInventaire.this, ConsultInventaire.class);
             startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener retourListener =new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
         }
     };
 }

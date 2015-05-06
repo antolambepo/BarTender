@@ -35,5 +35,12 @@
         android:text="@string/affichage_inventaire"
         android:id="@+id/showinventaire"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        android:id="@+id/returnbutton"
+        android:layout_gravity="center_horizontal" />
+
 
 </LinearLayout>
