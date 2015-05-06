@@ -12,23 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ajout_boisson"
+        android:id="@+id/addboisson"
         />
 
     <Button
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/retrait_boisson"/>
+        android:text="@string/retrait_boisson"
+        android:id="@+id/removeboisson"/>
     <Button
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/modification_dataStock" />
+        android:text="@string/modification_dataStock"
+        android:id="@+id/changedata"
+        />
     <Button
         android:layout_margin="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/affichage_inventaire"/>
+        android:text="@string/affichage_inventaire"
+        android:id="@+id/showinventaire"/>
 
 
 </LinearLayout>

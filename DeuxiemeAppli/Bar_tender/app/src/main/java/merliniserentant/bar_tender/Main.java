@@ -97,7 +97,7 @@ public class Main extends Activity {
         inventaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Intent intent = new Intent(Main.this, ConsultInventaire.class);
+                 Intent intent = new Intent(Main.this, ChoixInventaire.class);
                  startActivity(intent);
             }
         });

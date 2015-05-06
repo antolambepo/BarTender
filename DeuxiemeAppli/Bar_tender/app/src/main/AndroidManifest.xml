@@ -58,6 +58,10 @@
             android:name=".ConsultInventaire"
             android:label="@string/title_activity_inventaire" >
         </activity>
+        <activity
+            android:name=".ChoixInventaire"
+            android:label="@string/title_activity_choixinventaire" >
+        </activity>
     </application>
 
 
