@@ -33,7 +33,7 @@ public class Boisson {
         this.Description = Desciption;
     }
 
-    public int getlStockmax() {
+    public int getStockmax() {
         return Stockmax;
     }
 
