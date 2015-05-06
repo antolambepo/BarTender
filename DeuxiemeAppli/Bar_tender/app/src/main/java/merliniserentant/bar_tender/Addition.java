@@ -38,14 +38,21 @@ public class Addition extends Activity {
 
                 numTable = Integer.parseInt(numtbl);
 
+
                 adao.open();
-                if (adao.getAdditionToPay(numTable) == null){
-                    Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
+                if (adao.tableExist(numTable)){
+                    if (adao.getAdditionToPay(numTable) == null) {
+                        Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
+                    }
+
+                    prix = adao.getTotalPrix(numTable);
+                    Intent secondeActivite = new Intent(Addition.this, Paiement.class);
+                    startActivity(secondeActivite);
+                    adao.close();
                 }
-                prix = adao.getTotalPrix(numTable);
-                Intent secondeActivite = new Intent(Addition.this, Paiement.class);
-                startActivity(secondeActivite);
-                adao.close();
+                else {
+                    Toast.makeText(Addition.this, "Cette table n'existe pas", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

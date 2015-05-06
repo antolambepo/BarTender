@@ -76,7 +76,7 @@ public class MyListViewAdapter extends BaseAdapter {
 
         nameTextView.setText(boisson.getNom());
         stockTextView.setText(Integer.toString(boisson.getStock()));
-        stockMaxTextView.setText(Integer.toString(boisson.getStockmax()));
+        stockMaxTextView.setText(Integer.toString(boisson.getlStockmax()));
         seuilTextView.setText(Integer.toString(boisson.getSeuil()));
 
         return convertView;
