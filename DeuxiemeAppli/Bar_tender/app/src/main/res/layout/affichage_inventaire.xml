@@ -55,17 +55,18 @@
         android:id="@+id/show_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/show_list_titles"
-        android:layout_above="@+id/returninv"/>
+        android:layout_above="@+id/returninv" />
         
         <Button
         android:id="@+id/returninv"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour"/>
+        android:text="Retour"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
