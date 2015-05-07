@@ -28,7 +28,7 @@ public class Consult extends Activity{
     private List<Double> listprix;
     private ListView listviewboisson;
     private ListView listviewprix;
-
+    private TexVieuw textCommande;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -54,6 +54,14 @@ public class Consult extends Activity{
         ArrayAdapter<Double> adapter1 = new ArrayAdapter<Double>(this, android.R.layout.simple_list_item_1, listprix);
         listviewboisson.setAdapter(adapter);
         listviewprix.setAdapter(adapter1);
+        textCommande = (TextView) findViewById(R.id.textComande);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            textCommande.setText("Board");
+        }
+        else if(Langue.equals("Néerlandais")){
+            textCommande.setText("Kaart");
+        }
         listviewboisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
