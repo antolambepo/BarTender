@@ -7,13 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
 
-
-
-
-
 public class consult_details extends Activity {
 
     private Boisson currentBoisson;
+    private TextView nomBoisson;
+    private TextView detailsDescription;
 
 
     @Override
@@ -35,6 +33,20 @@ public class consult_details extends Activity {
 
         TextView description = (TextView) findViewById(R.id.consult_details_description);
         description.setText(currentBoisson.getDescription());
+
+        nomBoisson = (TextView) findViewById(R.id.nomBoisson);
+        detailsDescription = (TextView) findViewById(R.id.detailsDescription);
+
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            nomBoisson.setText("Name of the beverage");
+            detailsDescription.setText("Description");
+        }
+        else if(Langue.equals("Néerlandais")){
+            nomBoisson.setText("Name van drank");
+            detailsDescription.setText("Beschrijving");
+        }
+
 
         //Bitmap bitmap = currentBoisson.getPicture();
 

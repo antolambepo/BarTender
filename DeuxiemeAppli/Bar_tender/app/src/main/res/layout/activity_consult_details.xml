@@ -26,6 +26,7 @@
         >
 
         <TextView
+            android:id="@+id/nomBoisson"
             android:text="@string/consult_details_name_title"
             style="@style/show_details_title"
             />
@@ -48,6 +49,7 @@
         android:id="@+id/show_details_description_ll">
 
         <TextView
+            android:id="@+id/detailsDescription"
             android:text="@string/consult_details_description_title"
             style="@style/show_details_title"
             />

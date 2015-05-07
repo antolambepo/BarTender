@@ -95,7 +95,7 @@ public class Commander extends Activity  {
             commander.setText("Bestalen");
             annuler.setText("Canceleren");
             Nicomachine_Boisson.setText("Drank");
-            Nicomachine_Quantite.setText("hoeveelheid");
+            Nicomachine_Quantite.setText("Hoeveelheid");
             Nicomachine_Table.setText("Tafel");
         }
 
