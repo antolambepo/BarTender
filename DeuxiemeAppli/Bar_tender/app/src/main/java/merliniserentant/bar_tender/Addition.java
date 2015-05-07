@@ -55,10 +55,10 @@ public class Addition extends Activity{
             @Override
             public void onClick(View v) {
                 numtable = Integer.parseInt(table.getText().toString());
+                numCommande = new ArrayList<Integer>();
                 ldao.open();
                 if (ldao.tableExist(numtable)){
                     adao.open();
-                    System.out.println("BDD ouverte");
                     if (adao.getAdditionToPay(numtable).size()==0) {
                         Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
                     }

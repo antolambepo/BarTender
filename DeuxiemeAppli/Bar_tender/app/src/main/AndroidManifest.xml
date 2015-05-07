@@ -62,6 +62,10 @@
             android:name=".ChoixInventaire"
             android:label="@string/title_activity_choixinventaire" >
         </activity>
+        <activity
+            android:name=".AjoutBoisson"
+            android:label="@string/title_activity_ajoutboisson" >
+        </activity>
     </application>
 
 

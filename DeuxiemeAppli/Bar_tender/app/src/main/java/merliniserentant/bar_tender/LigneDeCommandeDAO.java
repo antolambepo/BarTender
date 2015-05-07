@@ -138,7 +138,7 @@ public class LigneDeCommandeDAO {
     }
     // Regroupe toutes les commandes qui ont le même numéro de tables
     public int[] getNumLignedeCommandeWithTable(int table){
-        Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMTABLE + "=" + table , null, null, null, null);
+        Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMTABLE + " LIKE \"" + table +"\"" , null, null, null, null);
         int count = c.getCount();
         if (count == 0){
             return null;
