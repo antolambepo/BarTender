@@ -23,6 +23,7 @@
         <TableRow
             android:weightSum="3">
                 <TextView
+                    android:id="@+id/Nicomachine_Boisson"
                     android:layout_column="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -31,15 +32,17 @@
                     android:layout_weight="1"/>
 
                 <TextView
+                    android:id="@+id/Nicomachine_Quantite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quantité"
                     android:layout_weight="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Table"
-                android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/Nicomachine_Table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Table"
+                    android:layout_weight="1"/>
         </TableRow>
 
             <TableRow
