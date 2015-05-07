@@ -77,7 +77,6 @@ public class AdditionDAO {
 
     public void insertCommande (AdditionClass add){
         ContentValues values = new ContentValues();
-
         values.put(COL_NUMCOMMANDE, add.getNumAddition());
         values.put(COL_NUMLIGNE, add.getNumLignedeCommande());
         values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
@@ -106,6 +105,7 @@ public class AdditionDAO {
                 additionsApayer.add(add);
             }
         }
+        System.out.println (additionsApayer.get(0).getNumAddition());
         return additionsApayer;
     }
 
