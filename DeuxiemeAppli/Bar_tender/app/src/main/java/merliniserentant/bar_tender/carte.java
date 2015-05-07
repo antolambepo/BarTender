@@ -28,6 +28,18 @@ public class carte extends Activity {
         texte_recherche = (EditText) findViewById(R.id.texte_recherche);
         carteBoisson.setOnClickListener(carteBoissonListener);
         recherche.setOnClickListener(rechercheListener);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            recherche.setText("search");
+            carteBoisson.setText("Board");
+            texte_recherche.setText("search word");
+        }
+        else if(Langue.equals("Néerlandais")){
+            recherche.setText("zoeken");
+            carteBoisson.setText("Board");
+            texte_recherche.setText("zoekword");
+        }
+
     }
 
     private View.OnClickListener carteBoissonListener = new View.OnClickListener() {
