@@ -142,7 +142,7 @@ public class BoissonDAO {
         if(cc.getCount() ==0){
 
 
-        return null;}
+            return null;}
 
         cc.moveToFirst();
         System.out.println(cc.getString(NUM_COL_IDLANGUE));
@@ -206,15 +206,26 @@ public class BoissonDAO {
         }
         return drink;
     }
-    
+
     // retrouver une boisson avec le nom
     public Boisson getBoissonwithName (String NomBoisson){
+        System.out.println("ici1");
         Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
-        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + "LIKE\" " + id.getString(NUM_COL_ID), null, null, null, null);
-        return getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
+        id.moveToFirst();
+        System.out.println(id.getString(NUM_COL_ID));
+        System.out.println(TABLE_LANGUE + COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"");
+        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
+        if(lang.getCount()==0){System.out.println("ici3");}
+        lang.moveToFirst();
+        System.out.println("ici4");
+
+        Boisson retour = getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
+        System.out.println("ici5");
+
+        return retour;
     }
 
-    // reprend les boissons de stock > seuil
+    //     reprend les boissons de stock > seuil
     public Boisson[] aboveSeuil() {
 
         Cursor c = db.query(TABLE_BOISSON, new String[]{COL_NUMBOISSON}, COL_STOCK + ">" + COL_SEUIL, null, null, null, null);
@@ -259,18 +270,18 @@ public class BoissonDAO {
         cv.clear();
 
         // Définition des valeurs pour le nouvel élément dans la table "owns".
-       // cv.put(DB_COL_ID, ci_id);
+        // cv.put(DB_COL_ID, ci_id);
         //cv.put(DB_COL_UID, User.getConnectedUser().getId());
         //cv.put(DB_COL_RATING, rating);
 
         //int result = (int) db.insert(DB_TABLE_OWNS, null, cv);
 
         //if (result == -1) {
-            // En cas d'erreur dans l'ajout de la deuxième table, il faut supprimer la ligne qu'on
-            // vient d'ajouter dans la première table pour ne pas qu'il y ait un élément qui n'est
-            // dans la collection de personne.
-          //  db.delete(DB_TABLE_S, DB_COL_ID + " = ?", new String[]{String.valueOf(ci_id)});
-           // return false;
+        // En cas d'erreur dans l'ajout de la deuxième table, il faut supprimer la ligne qu'on
+        // vient d'ajouter dans la première table pour ne pas qu'il y ait un élément qui n'est
+        // dans la collection de personne.
+        //  db.delete(DB_TABLE_S, DB_COL_ID + " = ?", new String[]{String.valueOf(ci_id)});
+        // return false;
         //}
         return true;
     }
