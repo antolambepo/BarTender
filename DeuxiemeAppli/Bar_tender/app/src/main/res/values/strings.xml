@@ -8,12 +8,12 @@
     <string name="affichage_inventaire">Afficher l\'inventaire</string>
     <string name="ajout_boisson">Ajouter une boisson</string>
     <string name="retrait_boisson">Retirer une boisson</string>
-    <string name="modification_dataStock">Modifier les données</string>
+    <string name="modification_dataStock">Modifier le stock</string>
     <string name="title_activity_choixinventaire">Choix</string>
     <string name="title_activity_inventaire">Inventaire</string>
 
     //Modification datastock
-    <string name="modif">Modifications</string>
+    <string name="modif">Modification du stock</string>
     <string name="nomboisson">Boisson :</string>
     <string name="stock">Stock :</string>
     <string name="seuil">Seuil :</string>
