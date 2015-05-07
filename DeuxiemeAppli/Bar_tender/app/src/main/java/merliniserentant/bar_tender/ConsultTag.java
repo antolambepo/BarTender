@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class ConsultTag extends Activity {
     private List<String> listnom;
     private ListView listviewboisson;
     private ArrayList<Boisson> listboisson;
+    private ArrayAdapter<String> adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -46,9 +48,17 @@ public class ConsultTag extends Activity {
             for (i = 0; i < listboisson.size(); i++) {
                 listnom.add(listboisson.get(i).getNom());
             }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
             listviewboisson.setAdapter(adapter);
         }
+        listviewboisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent myintent = new Intent(ConsultTag.this, consult_details.class);
+                myintent.putExtra("numBoisson", listboisson.get(position).getNumboisson());
+                startActivity(myintent);
+            }
+        });
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,7 +15,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
-public class Addition extends Activity {
+public class Addition extends Activity{
     private Button mPasserelle;
     private EditText table;
     private Button retour;
@@ -37,7 +37,6 @@ public class Addition extends Activity {
         table = (EditText) findViewById(R.id.tableAddition);
         tablelangue=(TextView) findViewById(R.id.table);
         //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder
-
         mPasserelle = (Button) findViewById(R.id.premier);
         String Langue  = MySQLite.Langue;
         if(Langue.equals("Néerlandais")){

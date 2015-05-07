@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class Ajouter extends Activity implements View.OnClickListener {
     private int tbl;
     private Button ajouter;
     private Button annuler;
+    private TextView tableTexte;
+    private TextView boissonTexte;
+    private TextView texteQuantité;
 
     BoissonDAO bdao = null;
 
@@ -38,6 +42,27 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter);
+        tableTexte = (TextView) findViewById(R.id.tableTexte);
+        boissonTexte = (TextView) findViewById(R.id.boissonTexte);
+        texteQuantité = (TextView) findViewById(R.id.texteQuantité);
+        ajouter = (Button) findViewById(R.id.ajouterBoisson);
+        annuler = (Button) findViewById(R.id.annuler);
+
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            tableTexte.setText("table");
+            boissonTexte.setText("drink");
+            texteQuantité.setText("amount");
+            ajouter.setText("Add");
+            annuler.setText("Cancel");
+        }
+        else if(Langue.equals("Néerlandais")){
+            tableTexte.setText("tafel");
+            boissonTexte.setText("drank");
+            texteQuantité.setText("hoeveelheid");
+            ajouter.setText("Toevoegen");
+            annuler.setText("Annuleren");
+        }
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
@@ -72,8 +97,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
         // Reprend les valeurs
 
         // localise les boutons
-        ajouter = (Button) findViewById(R.id.ajouterBoisson);
-        annuler = (Button) findViewById(R.id.annuler);
+
         ajouter.setOnClickListener(this);
         annuler.setOnClickListener(this);
     }
