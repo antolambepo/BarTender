@@ -110,7 +110,8 @@ public class Commander extends Activity  {
                     System.out.println(table);
                     bdao.close();
                     // créér une nouvelle ligne de commande
-                    LigneDeCommande newLigne = new LigneDeCommande(ldao.nextnumligne(), Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
+                    int num = ldao.nextnumligne();
+                    LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
 
 
                     AdditionClass newCommande = new AdditionClass(numCom, num, null);

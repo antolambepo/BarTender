@@ -64,7 +64,7 @@ public class LigneDeCommandeDAO {
             values.put(COL_LOGINCODE, lignedecommande.getLogin());
             values.put(COL_QUANTITE, lignedecommande.getQuantité());
             values.put(COL_NUMBOISSON, lignedecommande.getBoisson());
-            System.out.println(Commander.num+ " Verfier que bien incrementer et que recommence pas à 6 a chaque fois qu'on relance l'app!");
+            //System.out.println(Commander.num+ " Verfier que bien incrementer et que recommence pas à 6 a chaque fois qu'on relance l'app!");
             //on insère l'objet dans la BDD via le ContentValues
             db.insert(TABLE_LIGNEDECOMMANDE,null,values);
         }
