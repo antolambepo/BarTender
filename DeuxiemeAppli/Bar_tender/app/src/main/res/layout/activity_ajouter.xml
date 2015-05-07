@@ -15,7 +15,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <TextView
@@ -30,7 +30,8 @@
             android:id="@+id/tableAjouter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:layout_marginBottom="18dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,12 +39,14 @@
             android:text="Boisson"
             android:id="@+id/textBoisson"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            />
 
         <AutoCompleteTextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:id="@+id/giveBoisson"/>
+            android:id="@+id/giveBoisson"
+            android:layout_marginBottom="18dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +60,8 @@
             android:id="@+id/quantitéAjouter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number"
+            />
 
         <Button
             android:id="@+id/ajouterBoisson"
@@ -71,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Annuler"
-            android:layout_marginTop="28dp"/>
+            android:layout_marginTop="20dp"/>
 
     </TableLayout>
 
