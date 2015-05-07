@@ -12,37 +12,78 @@ import android.widget.EditText;
  */
 public class AjoutBoisson extends Activity{
 
+    private Button appliquer;
+    private Button retour;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ajout_boisson);
+
+        retour = (Button) findViewById(R.id.retourajout);
+        appliquer = (Button) findViewById(R.id.appajout);
+
+
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        appliquer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+                finish();
+            }
+        });
+
+
+    }
+
+
+        public boolean onCreateOptionsMenu (Menu menu){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_add, menu);
+            return true;
+        }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                save();
-                return true; //On retourne true pour indiquer que l'action a été gérée.
+                return save();  //On retourne true pour indiquer que l'action a été gérée.
 
             case R.id.action_quit:
                 finish(); // On termine l'activité d'ajout sans enregistrer les données saisies.
                 return true; //On retourne true pour indiquer que l'action a été gérée.
-
         }
         return false;
-    }
+     }
 
 
+    private boolean save() {
+        BoissonDAO boissondao = new BoissonDAO(this);
 
-    private void save() {
-        BoissonDAO boissondao;
-
+        boissondao.open();
         String name = getName();
         String description = getDescription();
         int stock = getStock();
         int stockmax = getStockMax();
         int seuil = getSeuil();
         double price = getPrice();
-
-
+        if(boissondao.create(name, description, null, price, stock, stockmax, seuil)){
+            System.out.println("La boisson a été bien ajouté");
+            return true;
+        }
+        else {
+            System.out.println("Une erreur est survenue");
+            return false;
+        }
 
     }
+
+
 
     private String getName() {
         /* Récupération du nom  */

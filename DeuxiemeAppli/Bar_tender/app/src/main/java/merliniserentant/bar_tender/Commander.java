@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +26,11 @@ public class Commander extends Activity  {
     private Button ajouter;
     private Button commander;
     private Button annuler;
+    private TextView Nicomachine_Boisson;
+    private TextView Nicomachine_Table;
+    private TextView Nicomachine_Quantite;
     private int table;
-    public static int num = 8;
-    private static int numCom = 6;
+
     private String bsn;
     private int numBsn;
     private int qté;
@@ -73,9 +75,29 @@ public class Commander extends Activity  {
         ajouter = (Button) findViewById(R.id.ajouter);
         commander = (Button) findViewById(R.id.commander);
         annuler = (Button) findViewById(R.id.annulerCom);
+        Nicomachine_Boisson = (TextView) findViewById(R.id.Nicomachine_Boisson);
+        Nicomachine_Quantite =(TextView) findViewById(R.id.Nicomachine_Quantite);
+        Nicomachine_Table = (TextView) findViewById(R.id.Nicomachine_Table);
         ajouter.setOnClickListener(onClickajouter);
         commander.setOnClickListener(onClickcommander);
         annuler.setOnClickListener(onClickannuler);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            ajouter.setText("Add");
+            commander.setText("Order");
+            annuler.setText("Cancel");
+            Nicomachine_Boisson.setText("Drink");
+            Nicomachine_Quantite.setText("Amount");
+            Nicomachine_Table.setText("Table");
+        }
+        else if(Langue.equals("Néerlandais")){
+            ajouter.setText("Toevoegen");
+            commander.setText("Bestalen");
+            annuler.setText("Canceleren");
+            Nicomachine_Boisson.setText("Drank");
+            Nicomachine_Quantite.setText("hoeveelheid");
+            Nicomachine_Table.setText("Tafel");
+        }
 
 
     }
@@ -98,6 +120,7 @@ public class Commander extends Activity  {
             if (Login.newBoisson == null || Login.newQté == null) {
                 Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
             } else {
+                int numCom = adao.nextnumcommande();
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
 
@@ -110,6 +133,7 @@ public class Commander extends Activity  {
                     System.out.println(table);
                     bdao.close();
                     // créér une nouvelle ligne de commande
+                    int num = ldao.nextnumligne();
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
 
 
