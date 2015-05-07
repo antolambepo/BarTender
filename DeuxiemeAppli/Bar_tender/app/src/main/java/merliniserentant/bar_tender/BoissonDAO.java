@@ -210,18 +210,14 @@ public class BoissonDAO {
 
     // retrouver une boisson avec le nom
     public Boisson getBoissonwithName (String NomBoisson){
-        System.out.println("ici1");
         Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
         id.moveToFirst();
-       // System.out.println(id.getString(NUM_COL_ID));
-        System.out.println(TABLE_LANGUE + COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"");
+
         Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \"" + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
         if(lang.getCount()==0){System.out.println("ici3");}
         lang.moveToFirst();
-        System.out.println("ici4");
 
         Boisson retour = getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
-        System.out.println("ici5");
 
         return retour;
     }
@@ -271,12 +267,10 @@ public class BoissonDAO {
      * @return un numero de boisson disponible
      */
     public int createNum(){
-        System.out.println("Ca passe dans createNum");
         int n = 1;
         while(this.isPresent(n)){
             n++;
         }
-        System.out.println("Ca sors de createNum");
         return n;
 
     }
@@ -286,7 +280,6 @@ public class BoissonDAO {
     }
     public boolean create(String name, String description, String logotype, double price, int stock, int stockmax, int seuil) {
 
-        System.out.println("Ca passe dans create");
         int numboisson = createNum();
         String langue = this.getLangue();
         String id = this.createID(numboisson, langue);
@@ -335,7 +328,6 @@ public class BoissonDAO {
             db.delete(TABLE_IDs, COL_ROWID + " = ?", new String[]{String.valueOf(row1)});
             return false;
         }
-        System.out.println("Ca sors de create");
         return true;
     }
 
@@ -351,6 +343,32 @@ public class BoissonDAO {
         db.delete(TABLE_IDs, COL_ID + "= ?", new String[] {id});
     }
 
+    //enlève la quantité de la ligne de commande au stock de la boisson
+    public void downStock (int numboisson, int quantité){
+        Boisson bsn = getBoissonwithNumboisson(numboisson);
+        int stock = bsn.getStock();
+        stock = stock - quantité;
+        String nom = bsn.getNom();
+        String desc = bsn.getDescription();
+        String logo = bsn.getLogotype();
+        Double prix = bsn.getPrix();
+        int stockmax = bsn.getStockmax();
+        int seuil = bsn.getSeuil();
+        remove (numboisson);
+        create(nom, desc, logo, prix, stock, stockmax, seuil);
+    }
 
-
+    public void upStock (int numboisson, int quantité){
+        Boisson bsn = getBoissonwithNumboisson(numboisson);
+        int stock = bsn.getStock();
+        stock = stock + quantité;
+        String nom = bsn.getNom();
+        String desc = bsn.getDescription();
+        String logo = bsn.getLogotype();
+        Double prix = bsn.getPrix();
+        int stockmax = bsn.getStockmax();
+        int seuil = bsn.getSeuil();
+        remove (numboisson);
+        create(nom, desc, logo, prix, stock, stockmax, seuil);
+    }
 }

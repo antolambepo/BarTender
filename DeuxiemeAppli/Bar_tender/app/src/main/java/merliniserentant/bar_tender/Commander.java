@@ -133,6 +133,7 @@ public class Commander extends Activity  {
                     int num = ldao.nextnumligne();
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
                     AdditionClass newCommande = new AdditionClass(numCom, num, null);
+                    bdao.downStock(numBsn, qté);
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
                     adao.insertCommande(newCommande); // ajouter la commande dans la BDD
                     Login.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
