@@ -15,6 +15,7 @@ public class consult_details extends Activity {
 
     private Boisson currentBoisson;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,21 +30,26 @@ public class consult_details extends Activity {
         currentBoisson = boissondao.getBoissonwithNumboisson(number); // J'ai le droit de faire ca??
 
         TextView name = (TextView) findViewById(R.id.consult_details_name);
+
         name.setText(currentBoisson.getNom());
 
         TextView description = (TextView) findViewById(R.id.consult_details_description);
         description.setText(currentBoisson.getDescription());
 
-        Bitmap bitmap = currentBoisson.getPicture();
+        //Bitmap bitmap = currentBoisson.getPicture();
 
-        if(bitmap!=null) {
-            ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
-            picture.setImageBitmap(bitmap);
-        }
-        else {
-            View pictureLL = findViewById(R.id.consult_details_picture_ll);
-            pictureLL.setVisibility(View.GONE);
-        }
-        boissondao.close();
+        //if(bitmap!=null) {
+         //   ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
+           // picture.setImageBitmap(bitmap);
+        //}
+        //else {
+          //  View pictureLL = findViewById(R.id.consult_details_picture_ll);
+           // pictureLL.setVisibility(View.GONE);
+        //}
+        //boissondao.close();
+        ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
+        System.out.println("a"+Integer.toString(currentBoisson.getNumboisson()));
+        picture.setImageResource(getResources().getIdentifier("a"+Integer.toString(currentBoisson.getNumboisson()), "drawable", getPackageName()));
+
     }
 }
