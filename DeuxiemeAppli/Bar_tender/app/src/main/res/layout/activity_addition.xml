@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="40dp"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -16,17 +16,19 @@
     <TextView
         android:text="Table:"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tableAddition"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:ems="3" />
     </LinearLayout>
 
     <Button
         android:id="@+id/premier"
         android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:text="Payement" />
 </LinearLayout>

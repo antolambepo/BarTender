@@ -59,10 +59,11 @@ public class Paiement extends Activity {
             @Override
             public void onClick(View v) {
                 adao.open();
-
-                adao.setAdditionPayed(Addition.numTable, typePaiement);
-                Toast.makeText(Paiement.this, "Vous avez payez ! Félicitation", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i<Addition.numCommande.size(); i++){
+                    adao.setAdditionPayed(Addition.numCommande.get(i), typePaiement);
+                }
                 adao.close();
+                Toast.makeText(Paiement.this, "Vous avez payez ! Félicitation", Toast.LENGTH_SHORT).show();
             }
         });
     }
