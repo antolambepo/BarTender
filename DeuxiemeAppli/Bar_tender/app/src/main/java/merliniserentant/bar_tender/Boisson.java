@@ -108,7 +108,7 @@ public class Boisson {
     }
 
     public Bitmap getPicture() {
-        if (this.LOGOTYPE.equals(null)) { //A CHANGER
+        if (!this.LOGOTYPE.equals(null)) { //A CHANGER
             // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
             return null;
         }

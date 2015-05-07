@@ -2,14 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView android:text="Carte" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCommande"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <TableRow
+        android:weightSum="2">
+    <ListView
+        android:id="@+id/listviewboisson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></ListView>
+        <ListView
+            android:id="@+id/listprix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></ListView>
+    </TableRow>
+
+    </TableLayout>
     <Button
         android:id="@+id/finconsult"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retour"/>
-    <ListView
-        android:id="@+id/listviewboisson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ListView>
 </LinearLayout>

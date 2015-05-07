@@ -75,6 +75,8 @@ public class Commander extends Activity  {
         ajouter.setOnClickListener(onClickajouter);
         commander.setOnClickListener(onClickcommander);
         annuler.setOnClickListener(onClickannuler);
+
+
     }
 
     private View.OnClickListener onClickajouter = new View.OnClickListener() {
@@ -82,6 +84,8 @@ public class Commander extends Activity  {
         public void onClick(View v) {
             Intent intent = new Intent(Commander.this, Ajouter.class);
             startActivity(intent);
+            startActivityForResult(intent, 1);
+            Toast.makeText(Commander.this, "Ici", Toast.LENGTH_SHORT).show(); // message d'erreur
         }
     };
     private View.OnClickListener onClickcommander = new View.OnClickListener() {
@@ -130,4 +134,5 @@ public class Commander extends Activity  {
             finish();
         }
     };
+
 }

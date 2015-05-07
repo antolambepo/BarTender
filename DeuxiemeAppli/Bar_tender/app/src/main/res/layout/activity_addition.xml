@@ -1,17 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center">
-    <TextView
-        android:text="ADDITION"
-        android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView android:text="Addition" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="40dp"/>
+        android:id="@+id/textCommande"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <TextView
         android:text="Table:"
@@ -28,13 +30,13 @@
 
     <Button
         android:id="@+id/premier"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Payement" />
+        android:text="Paiement" />
 
     <Button
         android:id="@+id/annulerAddition"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Retour" />
 </LinearLayout>
