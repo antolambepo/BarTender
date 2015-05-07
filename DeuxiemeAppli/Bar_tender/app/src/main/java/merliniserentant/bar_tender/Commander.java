@@ -84,8 +84,7 @@ public class Commander extends Activity  {
         public void onClick(View v) {
             Intent intent = new Intent(Commander.this, Ajouter.class);
             startActivity(intent);
-            startActivityForResult(intent, 1);
-            Toast.makeText(Commander.this, "Ici", Toast.LENGTH_SHORT).show(); // message d'erreur
+            finish();
         }
     };
     private View.OnClickListener onClickcommander = new View.OnClickListener() {

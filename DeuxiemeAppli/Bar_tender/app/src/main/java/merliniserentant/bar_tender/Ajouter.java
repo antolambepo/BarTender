@@ -103,9 +103,13 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
                 }
                 System.out.println("Se fini bien");
+                Intent intent2 = new Intent(Ajouter.this, Commander.class);
+                startActivity(intent2);
                 finish();
             case R.id.annuler:
                 // retourner à la page précédente
+                Intent intent3 = new Intent(Ajouter.this, Commander.class);
+                startActivity(intent3);
                 finish();
         }
     }

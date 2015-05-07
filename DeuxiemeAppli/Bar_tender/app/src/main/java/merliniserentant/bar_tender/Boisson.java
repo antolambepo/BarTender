@@ -108,7 +108,7 @@ public class Boisson {
     }
 
     public Bitmap getPicture() {
-        if (!this.LOGOTYPE.equals(null)) { //A CHANGER
+        if (this.LOGOTYPE.equals(null)) { //A CHANGER
             // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
             return null;
         }
@@ -121,7 +121,7 @@ public class Boisson {
              *  comprendre les différentes possibilités.
              */
             System.out.println("-----------------------------------------"+Integer.toString(Numboisson));
-            FileInputStream in = CollectorApp.getContext().openFileInput(Integer.toString(Numboisson));
+            FileInputStream in = CollectorApp.getContext().openFileInput("a"+Integer.toString(Numboisson));
             Bitmap bitmap = BitmapFactory.decodeStream(in);
             in.close();
 
