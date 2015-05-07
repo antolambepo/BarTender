@@ -214,7 +214,7 @@ public class BoissonDAO {
         id.moveToFirst();
         System.out.println(id.getString(NUM_COL_ID));
         System.out.println(TABLE_LANGUE + COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"");
-        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
+        Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \"" + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
         if(lang.getCount()==0){System.out.println("ici3");}
         lang.moveToFirst();
         System.out.println("ici4");

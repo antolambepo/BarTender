@@ -98,9 +98,10 @@ public class Commander extends Activity  {
             } else {
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
-                    System.out.println("++++++++" + bsn);
                     bdao.open();
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
+                    System.out.println("ici6");
+
                     qté = Login.newQté.get(0);
                     System.out.println(qté);
                     table = Login.newTable.get(0);
@@ -108,10 +109,18 @@ public class Commander extends Activity  {
                     bdao.close();
                     // créér une nouvelle ligne de commande
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
+
+
                     AdditionClass newCommande = new AdditionClass(numCom, num, null);
                     ldao.open();
+                    System.out.println("ici7");
+
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
+                    System.out.println("ici8");
+
                     ldao.insertCommande(newCommande); // ajouter la commande dans la BDD
+                    System.out.println("ici9");
+
                     ldao.close();
                     num = num + 1;
                     Login.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
