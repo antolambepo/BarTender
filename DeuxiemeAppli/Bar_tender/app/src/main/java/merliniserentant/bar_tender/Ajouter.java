@@ -88,7 +88,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
                 else {
                     System.out.println("-----------"+qté);
                         newBoisson.add(bsn);
-                    System.out.println("-----------"+qté);
+                    System.out.println("-----------"+newBoisson.get(0));
 
                     newQté.add(Integer.parseInt(qté));
                     System.out.println("-----------"+qté);

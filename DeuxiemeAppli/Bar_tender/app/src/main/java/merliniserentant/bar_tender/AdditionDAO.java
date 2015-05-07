@@ -12,17 +12,16 @@ import java.util.List;
  */
 public class AdditionDAO {
 
-    public static int num = 1;
     public LigneDeCommandeDAO ldao;
     public BoissonDAO bdao;
 
-    public final static String TABLE_COMMANDE = "TABLE_COMMANDE";
-    public final static String COL_NUMCOMMANDE = "NUMCOMMANDE";
-    public final static int NUM_COL_NUMCOMMANDE = 0;
-    public final static String COL_NUMLIGNE = "NUMLIGNE";
-    public final static int NUM_COL_NUMLIGNE = 1;
-    public final static String COL_TYPEPAIEMENT = "TYPEPAIEMENT";
-    public final static int NUM_COL_TYPEPAIEMENT = 2;
+    private final static String TABLE_COMMANDE = "TABLE_COMMANDE";
+    private final static String COL_NUMCOMMANDE = "NUMCOMMANDE";
+    private final static int NUM_COL_NUMCOMMANDE = 0;
+    private final static String COL_NUMLIGNE = "NUMLIGNE";
+    private final static int NUM_COL_NUMLIGNE = 1;
+    private final static String COL_TYPEPAIEMENT = "TYPEPAIEMENT";
+    private final static int NUM_COL_TYPEPAIEMENT = 2;
 
 
     private MySQLite maBaseSQLite; // notre gestionnaire du fichier SQLite
@@ -78,7 +77,7 @@ public class AdditionDAO {
 
     // recherche la commande avec le numéro de ligne de commande
     public AdditionClass getCommandeWithNumLigne(int numLigne){
-        Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMLIGNE + "=" + numLigne , null, null, null, null);
+        Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMLIGNE + " LIKE \"" + numLigne +"\"" , null, null, null, null);
         int count = c.getCount();
         if (count == 0){
             return null;

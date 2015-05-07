@@ -43,6 +43,7 @@ public class Addition extends Activity {
                 ldao.open();
                 if (ldao.tableExist(numtable)){
                     adao.open();
+                    System.out.println("BDD ouverte");
                     if (adao.getAdditionToPay(numtable) == null) {
                         Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
                     }
