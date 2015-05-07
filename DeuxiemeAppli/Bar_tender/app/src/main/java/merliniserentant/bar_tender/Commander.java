@@ -27,7 +27,7 @@ public class Commander extends Activity  {
     private Button commander;
     private Button annuler;
     private int table;
-    public static int num = 7;
+    public static int num = 8;
     private static int numCom = 6;
     private String bsn;
     private int numBsn;
@@ -93,14 +93,14 @@ public class Commander extends Activity  {
         public void onClick(View v) {
             bdao.open();
             ldao.open();
+            adao.open();
             // insérer les nouvelles ligne de commande dans la BDD
             if (Login.newBoisson == null || Login.newQté == null) {
                 Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
             } else {
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
-                    bdao.open();
-                    adao.open();
+
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
                     System.out.println("ici6");
 
@@ -123,10 +123,12 @@ public class Commander extends Activity  {
                     adao.insertCommande(newCommande); // ajouter la commande dans la BDD
                     System.out.println("ici9");
 
-                    ldao.close();
+
                     num = num + 1;
                     Login.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
                     Login.newQté.remove(0);
+                    System.out.println("ici10");
+
                 }
                 numCom = numCom + 1;
             }
