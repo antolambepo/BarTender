@@ -19,7 +19,7 @@ class MySQLite extends SQLiteOpenHelper {
 
     private final Context mycontext;
 
-    private static final int DATABASE_VERSION = 6; // l'incrément appelle onUpgrade(), décrément => onDowngrade()
+    private static final int DATABASE_VERSION = 9; // l'incrément appelle onUpgrade(), décrément => onDowngrade()
     private String DATABASE_PATH; // chemin défini dans le constructeur
     private static final String DATABASE_NAME = "PROJET2.sqlite";
     public static String Langue = "Français";
