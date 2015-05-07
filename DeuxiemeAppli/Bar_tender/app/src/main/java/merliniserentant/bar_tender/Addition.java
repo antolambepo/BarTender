@@ -32,11 +32,18 @@ public class Addition extends Activity {
 
         adao = new AdditionDAO(this);
         ldao = new LigneDeCommandeDAO(this);
-
+        retour = (Button) findViewById(R.id.annulerAddition);
         table = (EditText) findViewById(R.id.tableAddition);
+        tablelangue=(TexView) findViewById(R.id.tableA);
         //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder
 
         mPasserelle = (Button) findViewById(R.id.premier);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Néerlandais")){
+            mPasserelle.setText("Betaling");
+            tablelangue.setText("Tafel");
+            retour.setText("Terug")
+        }
         mPasserelle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +77,7 @@ public class Addition extends Activity {
             }
         });
 
-        retour = (Button) findViewById(R.id.annulerAddition);
+
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
