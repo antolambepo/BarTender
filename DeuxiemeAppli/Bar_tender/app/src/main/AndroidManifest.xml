@@ -71,6 +71,11 @@
             android:name=".RetraitBoisson"
             android:label="Retrait" >
         </activity>
+        <activity
+            android:name=".ModificationInventaire"
+            android:label="Modification" >
+        </activity>
+
 
     </application>
 

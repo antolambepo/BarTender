@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:columnCount="4"
     android:useDefaultMargins="true"
-    android:id="@+id/">
+    >
 
     <TextView
         android:layout_column="0"
@@ -48,14 +48,15 @@
         android:ems="4" />
 
     <Button
+        android:id="@+id/appUp"
         android:layout_column="2"
         android:layout_row="3"
         android:text="@string/applique"
         android:layout_width="159dp" />
     <Button
+        android:id="@+id/retourUp"
         android:layout_column="2"
         android:layout_row="4"
-
         android:text="@string/retour"
         android:layout_width="159dp" />
 

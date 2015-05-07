@@ -1,6 +1,9 @@
 package merliniserentant.bar_tender;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -8,13 +11,41 @@ import android.widget.EditText;
  */
 public class ModificationInventaire extends Activity {
 
+    private Button appliquer;
+    private Button retour;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.modification_datastock);
+
+        retour = (Button) findViewById(R.id.retourUp);
+        appliquer = (Button) findViewById(R.id.appUp);
+
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        appliquer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveChange();
+                System.out.println("C'est fini!");
+                finish();
+            }
+        });
 
 
+    }
     private void saveChange() {
         BoissonDAO boissondao = new BoissonDAO(this);
         boissondao.open();
         String name = getName();
-        Boisson changeboisson = boissondao.getBoissonwithName(name);
+        int quantite = getStock();
+        boissondao.upStock(name,quantite);
 
     }
 
@@ -37,24 +68,6 @@ public class ModificationInventaire extends Activity {
             return 0;
         }
         return Integer.parseInt(stock);
-    }
-    private int getStockMax() {
-        /* Récupération du stockmax */
-        EditText stockmaxEditText = (EditText) findViewById(R.id.stockmax1);
-        String stockmax = String.valueOf(stockmaxEditText.getText());
-        if(stockmax.isEmpty()){
-            return 0;
-        }
-        return Integer.parseInt(stockmax);
-    }
-    private int getSeuil() {
-        /* Récupération de la description */
-        EditText seuilEditText = (EditText) findViewById(R.id.seuil1);
-        String seuil = String.valueOf(seuilEditText.getText());
-        if(seuil.isEmpty()){
-            return 0;
-        }
-        return Integer.parseInt(seuil);
     }
 
 }
