@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by merliniserentant on 30/04/15.
@@ -57,7 +58,14 @@ public class Boisson {
         this.Stock = Stock;
     }
 
-    public double getPrix() {
+    public double getPrix(){
+        Date date = new Date();
+        int h = date.getHours();
+
+        if(h>=15 && h<=17 && (this.LOGOTYPE.equals("bière")||this.LOGOTYPE.equals("alcool"))){
+            return Prix/2.0;
+        }
+
         return Prix;
     }
 
