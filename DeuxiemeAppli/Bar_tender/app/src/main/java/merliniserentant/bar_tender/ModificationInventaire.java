@@ -16,7 +16,7 @@ public class ModificationInventaire extends Activity {
 
         String name = getName();
         Boisson changeboisson = boissondao.getBoissonwithName(name);
-        
+
     }
 
     private String getName() {
