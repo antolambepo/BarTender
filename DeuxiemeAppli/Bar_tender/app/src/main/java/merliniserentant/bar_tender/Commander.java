@@ -27,21 +27,22 @@ public class Commander extends Activity  {
     private Button commander;
     private Button annuler;
     private int table;
-    private static int num = 1;
-    private static int numCom = 1;
+    public static int num = 7;
+    private static int numCom = 6;
     private String bsn;
     private int numBsn;
     private int qté;
 
     BoissonDAO bdao = null;
     LigneDeCommandeDAO ldao = null;
+    AdditionDAO adao =  null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         bdao = new BoissonDAO(this);
         ldao = new LigneDeCommandeDAO(this);
-
+        adao = new AdditionDAO(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
         bdao.open();
@@ -99,6 +100,7 @@ public class Commander extends Activity  {
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
                     bdao.open();
+                    adao.open();
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
                     System.out.println("ici6");
 
@@ -118,7 +120,7 @@ public class Commander extends Activity  {
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
                     System.out.println("ici8");
 
-                    ldao.insertCommande(newCommande); // ajouter la commande dans la BDD
+                    adao.insertCommande(newCommande); // ajouter la commande dans la BDD
                     System.out.println("ici9");
 
                     ldao.close();
@@ -128,6 +130,7 @@ public class Commander extends Activity  {
                 }
                 numCom = numCom + 1;
             }
+            adao.close();
             ldao.close();
             bdao.close();
             finish();

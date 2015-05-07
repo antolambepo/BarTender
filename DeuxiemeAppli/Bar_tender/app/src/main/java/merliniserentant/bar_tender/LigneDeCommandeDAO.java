@@ -64,6 +64,7 @@ public class LigneDeCommandeDAO {
             values.put(COL_LOGINCODE, lignedecommande.getLogin());
             values.put(COL_QUANTITE, lignedecommande.getQuantité());
             values.put(COL_NUMBOISSON, lignedecommande.getBoisson());
+            System.out.println(Commander.num+ " Verfier que bien incrementer et que recommence pas à 6 a chaque fois qu'on relance l'app!");
             //on insère l'objet dans la BDD via le ContentValues
             db.insert(TABLE_LIGNEDECOMMANDE,null,values);
         }
@@ -113,15 +114,15 @@ public class LigneDeCommandeDAO {
         addition.setTypePaiement(c.getString(NUM_COL_TYPEPAIEMENT));
         return addition;
     }
+//A SUPRIMER NORMALEMENT
+    //public void insertCommande (AdditionClass add){
+        //ContentValues values = new ContentValues();
 
-    public void insertCommande (AdditionClass add){
-        ContentValues values = new ContentValues();
-
-        values.put(COL_NUMADDITION, add.getNumAddition());
-        values.put(COL_NUMLIGNECOMMANDE, add.getNumLignedeCommande());
-        values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
-        db.insert(TABLE_ADDITION, null, values);
-    }
+        //values.put(COL_NUMADDITION, add.getNumAddition());
+        //values.put(COL_NUMLIGNECOMMANDE, add.getNumLignedeCommande());
+        //values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
+        //db.insert(TABLE_ADDITION, null, values);
+    //}
 
     // Regroupe toutes les commandes qui ont le même numéro de tables
     public int[] getNumLignedeCommandeWithTable(int table){
