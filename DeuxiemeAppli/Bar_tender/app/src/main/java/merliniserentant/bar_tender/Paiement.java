@@ -28,7 +28,7 @@ public class Paiement extends Activity {
         adao = new AdditionDAO(this);
 
         montant = (TextView) findViewById(R.id.montant);
-        montant.setText((char)Addition.prix);
+        montant.setText(Double.toString(Addition.prix));
 
         cash = (RadioButton) findViewById(R.id.radio1);
         cash.setOnClickListener(new View.OnClickListener() {
