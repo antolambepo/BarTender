@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Addition extends Activity {
     private Button mPasserelle;
     private EditText table;
+    private Button retour;
     public static double prix;
     private int numtable;
     public static ArrayList<Integer> numCommande;
@@ -44,9 +45,10 @@ public class Addition extends Activity {
                 if (ldao.tableExist(numtable)){
                     adao.open();
                     System.out.println("BDD ouverte");
-                    if (adao.getAdditionToPay(numtable) == null) {
+                    if (adao.getAdditionToPay(numtable).size()==0) {
                         Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
                     }
+                    else {
                     ArrayList<AdditionClass> additions = adao.getAdditionToPay(numtable);
                     // reprend les numCommande à payer
                     numCommande.add(additions.get(0).getNumAddition());
@@ -58,12 +60,21 @@ public class Addition extends Activity {
                     prix = adao.getTotalPrix(numtable);
                     Intent secondeActivite = new Intent(Addition.this, Paiement.class);
                     startActivity(secondeActivite);
+                    }
                     adao.close();
                 }
                 else {
                     Toast.makeText(Addition.this, "Cette table n'existe pas", Toast.LENGTH_SHORT).show();
                 }
                 ldao.close();
+            }
+        });
+
+        retour = (Button) findViewById(R.id.annulerAddition);
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

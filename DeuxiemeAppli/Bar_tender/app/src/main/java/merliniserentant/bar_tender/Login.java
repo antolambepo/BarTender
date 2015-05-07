@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by merliniserentant on 29/04/15.
  */
@@ -22,10 +25,17 @@ public class Login extends Activity {
     private TextView textmdp=null;
     private TextView textpseudo = null;
     private TextView textconnection=null;
+    public static List<String> newBoisson;
+    public static List<Integer> newQté;
+    public static List<Integer> newTable;
     UtilisateurDAO utilisateurdao = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        newBoisson = new ArrayList<String>();
+        newQté = new ArrayList<Integer>();
+        newTable = new ArrayList<Integer>();
+
         super.onCreate(savedInstanceState);
         utilisateurdao = new UtilisateurDAO(this);
 

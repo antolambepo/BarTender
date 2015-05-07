@@ -21,18 +21,19 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
     private AutoCompleteTextView boisson;
     private EditText quantité;
-    private String qté;
+    private EditText table;
+    private int qté;
     private String bsn;
+    private int tbl;
     private Button ajouter;
     private Button annuler;
-    public static List<String> newBoisson;
-    public static List<Integer> newQté;
+
     BoissonDAO bdao = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        newBoisson = new ArrayList<String>();
-        newQté = new ArrayList<Integer>();
+
         bdao = new BoissonDAO(this);
 
         super.onCreate(savedInstanceState);
@@ -65,7 +66,9 @@ public class Ajouter extends Activity implements View.OnClickListener {
             }
         });
         
-        quantité = (EditText) findViewById(R.id.quantité);
+        quantité = (EditText) findViewById(R.id.quantitéAjouter);
+        table = (EditText) findViewById(R.id.tableAjouter);
+
         // Reprend les valeurs
 
         // localise les boutons
@@ -78,20 +81,25 @@ public class Ajouter extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ajouterBoisson:
-                qté = quantité.getText().toString();
+                qté = Integer.parseInt(quantité.getText().toString());
+                tbl = Integer.parseInt(table.getText().toString());
+
                 System.out.println("-----------"+qté);
+
                 bsn = boisson.getText().toString();
                 System.out.println("-----------"+bsn);
-                if (Integer.parseInt(qté) == 0 || bsn == null){
+                if (qté == 0 || bsn == null){
                     Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
                 }
                 else {
                     System.out.println("-----------"+qté);
-                        newBoisson.add(bsn);
-                    System.out.println("-----------"+newBoisson.get(0));
+                        Login.newBoisson.add(bsn);
+                    System.out.println("-----------"+Login.newBoisson.get(0));
 
-                    newQté.add(Integer.parseInt(qté));
+                    Login.newQté.add(qté);
                     System.out.println("-----------"+qté);
+
+                    Login.newTable.add(tbl);
 
                 }
                 System.out.println("Se fini bien");

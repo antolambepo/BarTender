@@ -15,7 +15,7 @@ public class AdditionDAO {
     public LigneDeCommandeDAO ldao;
     public BoissonDAO bdao;
 
-    private final static String TABLE_COMMANDE = "TABLE_COMMANDE";
+    private final static String TABLE_COMMANDE = "COMMANDE";
     private final static String COL_NUMCOMMANDE = "NUMCOMMANDE";
     private final static int NUM_COL_NUMCOMMANDE = 0;
     private final static String COL_NUMLIGNE = "NUMLIGNE";

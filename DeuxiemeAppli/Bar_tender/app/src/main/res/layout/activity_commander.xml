@@ -20,24 +20,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <TableRow android:layout_width="match_parent">
-            <TextView
-                android:layout_column="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:text="Table"/>
-
-            <EditText
-                android:layout_column="2"
-                android:id="@+id/table"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </TableRow>
-
         <TableRow
-            android:weightSum="2">
+            android:weightSum="3">
                 <TextView
                     android:layout_column="1"
                     android:layout_width="wrap_content"
@@ -51,18 +35,30 @@
                     android:layout_height="wrap_content"
                     android:text="Quantité"
                     android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Table"
+                android:layout_weight="1"/>
         </TableRow>
 
             <TableRow
-                android:weightSum="2">
+                android:weightSum="3">
                 <ListView
-                    android:id="@+id/list_Qté"
+                    android:id="@+id/list_Boisson"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1">
                 </ListView>
                 <ListView
-                    android:id="@+id/list_Boisson"
+                    android:id="@+id/list_Qté"
+                    android:layout_column="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1">
+                </ListView>
+                <ListView
+                    android:id="@+id/list_Table"
                     android:layout_column="1"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
