@@ -35,7 +35,7 @@ public class ConsultInventaire extends Activity {
         listboisson = new ArrayList<Boisson>();
         boissondao.open();
         int i;
-        for(i=0;i<20;i++) {
+        for(i=0;i<50;i++) {
             Boisson myboisson = boissondao.getBoissonwithNumboisson(i);
             if(myboisson!=null){
                 listboisson.add(myboisson);

@@ -107,31 +107,4 @@ public class Boisson {
 
     }
 
-    public Bitmap getPicture() {
-        if (this.LOGOTYPE.equals(null)) { //A CHANGER
-            // S'il n'y a pas de nom de fichier, il n'y a pas d'image.
-            return null;
-        }
-
-        try {
-            /**
-             *  @note Pour des questions de facilité, le choix a été fait de stocker les fichiers
-             *  des photos dans la mémoire interne de l'application.
-             *  Lisez https://developer.android.com/training/basics/data-storage/files.html afin de
-             *  comprendre les différentes possibilités.
-             */
-            System.out.println("-----------------------------------------"+Integer.toString(Numboisson));
-            FileInputStream in = CollectorApp.getContext().openFileInput("a"+Integer.toString(Numboisson));
-            Bitmap bitmap = BitmapFactory.decodeStream(in);
-            in.close();
-
-            return bitmap;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }
