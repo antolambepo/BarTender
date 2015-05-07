@@ -109,6 +109,17 @@ public class AdditionDAO {
         return additionsApayer;
     }
 
+    private boolean isnumcomintable(int i){
+        Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMCOMMANDE + "=" + i , null, null, null, null);
+        return !(c.getCount()==0);
+    }
+    public int nextnumcommande(){
+        int i =1;
+        while(isnumcomintable(i)){
+            i++;
+        }
+        return i;
+    }
     public double getTotalPrix (int table){
         ArrayList<AdditionClass> additionsApayer = getAdditionToPay(table);
         double prix = 0;

@@ -245,46 +245,90 @@ public class BoissonDAO {
 
         return boisson;
     }
+     /*
+      *Permet de voir si un numero de boisson est deja pris
+      *
+     */
+    public boolean isPresent(int n) {
+        Cursor c = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON}, null, null, null, null, null);
+        if(c.getCount()==0)
+            return false;
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            if(n==c.getInt(NUM_COL_NUMBOISSON))
+                return true;
+        }
+        return false;
+    }
 
+    /**
+     * Cree un numero de boisson.
+     * @return un numero de boisson disponible
+     */
+    public int createNum(){
+        int n = 1;
+        while(this.isPresent(n)){
+            n++;
+        }
+        return n;
+    }
+
+    public String createID(int n, String langue){
+        return Integer.toString(n)+langue;
+    }
     public boolean create(String name, String description, String logotype, double price, int stock, int stockmax, int seuil) {
 
+        int numboisson = this.createNum();
+        String langue = this.getLangue();
+        String id = this.createID(numboisson, langue);
         // Définition des valeurs pour le nouvel élément dans la table BOISSON
-        //A changer!!!
+      
         ContentValues cv = new ContentValues();
-        cv.put(COL_NOMBOISSON,name);
-        cv.put(COL_DESCRIPTION,description);
+        cv.put(COL_NUMBOISSON, numboisson);
         cv.put(COL_LOGOTYPE, logotype);
-        cv.put(COL_PRIX, price);
         cv.put(COL_STOCK, stock);
         cv.put(COL_STOCKMAX,stockmax);
         cv.put(COL_SEUIL, seuil);
 
+        // Ajout à la base de données
+        int row = (int) db.insert(TABLE_BOISSON, null, cv);
 
-
-        // Ajout à la base de données (table songs).
-        int ci_id = (int) db.insert(TABLE_BOISSON, null, cv);
-
-        if (ci_id == -1) {
+        if (row == -1) {
             return false; // En cas d'erreur d'ajout, on retourne false directement.
         }
         cv.clear();
 
-        // Définition des valeurs pour le nouvel élément dans la table "owns".
-        // cv.put(DB_COL_ID, ci_id);
-        //cv.put(DB_COL_UID, User.getConnectedUser().getId());
-        //cv.put(DB_COL_RATING, rating);
+        // Définition des valeurs pour le nouvel élément dans la table ID.
+        cv.put(COL_NOMBOISSON,name);
+        cv.put(COL_DESCRIPTION,description);
+        cv.put(COL_ID, id);
 
-        //int result = (int) db.insert(DB_TABLE_OWNS, null, cv);
+        //Ajout à la base de données
+        int row1 = (int) db.insert(TABLE_IDs, null, cv);
+        if (row1 == -1){
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            return false;
+        }
 
-        //if (result == -1) {
-        // En cas d'erreur dans l'ajout de la deuxième table, il faut supprimer la ligne qu'on
-        // vient d'ajouter dans la première table pour ne pas qu'il y ait un élément qui n'est
-        // dans la collection de personne.
-        //  db.delete(DB_TABLE_S, DB_COL_ID + " = ?", new String[]{String.valueOf(ci_id)});
-        // return false;
-        //}
+        cv.clear();
+        //Definition des valeurs pour le nouvel element dans la table LANGUE
+        cv.put(COL_NUMBOISSON, numboisson);
+        cv.put(COL_ID, id);
+        cv.put(COL_LANGAGE, langue);
+
+        //Ajout à la base de données
+        int row2 = (int) db.insert(TABLE_LANGUE, null, cv);
+
+        if (row2 == -1){
+            //Supprimme les lignes qu'on a cree avant
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            db.delete(TABLE_IDs, COL_ROWID + " = ?", new String[]{String.valueOf(row1)});
+            return false;
+        }
+
         return true;
     }
+
 
 
 }

@@ -30,8 +30,7 @@ public class Commander extends Activity  {
     private TextView Nicomachine_Table;
     private TextView Nicomachine_Quantite;
     private int table;
-    public static int num = 8;
-    private static int numCom = 6;
+
     private String bsn;
     private int numBsn;
     private int qté;
@@ -121,6 +120,7 @@ public class Commander extends Activity  {
             if (Login.newBoisson == null || Login.newQté == null) {
                 Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
             } else {
+                int numCom = adao.nextnumcommande();
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
 
@@ -133,6 +133,7 @@ public class Commander extends Activity  {
                     System.out.println(table);
                     bdao.close();
                     // créér une nouvelle ligne de commande
+                    int num = ldao.nextnumligne();
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
 
 
