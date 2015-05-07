@@ -141,7 +141,7 @@ public class AdditionDAO {
         Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMCOMMANDE + " LIKE \"" + numCommande + "\"" + " AND " + COL_TYPEPAIEMENT + " LIKE \"" + null +"\"", null, null, null, null);
         int count = c.getCount();
         c.moveToFirst();
-        for (int i = 0; i < count; i++){
+        for (int i = 0; i < count-1; i++){
             cursorToAddition(c).setTypePaiement(TypePaiemennt);
             c.moveToNext();
         }
