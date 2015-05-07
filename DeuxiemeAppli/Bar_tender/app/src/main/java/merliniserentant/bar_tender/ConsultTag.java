@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,12 +21,13 @@ import java.util.List;
 public class ConsultTag extends Activity {
 
 
-    Button retour = null;
-    BoissonDAO boissondao = null;
+    private Button retour = null;
+    private BoissonDAO boissondao = null;
     private List<String> listnom;
     private ListView listviewboisson;
     private ArrayList<Boisson> listboisson;
     private ArrayAdapter<String> adapter;
+    private TextView textCommande;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -34,7 +36,20 @@ public class ConsultTag extends Activity {
         boissondao = new BoissonDAO(this);
         listviewboisson = (ListView)findViewById(R.id.listviewboisson);
         retour = (Button)findViewById(R.id.finconsult);
+        textCommande = (TextView)findViewById(R.id.textCommande);
         boissondao.open();
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            retour.setText("Return");
+            textCommande.setText("Board");
+
+        }
+        else if(Langue.equals("Néerlandais")){
+            retour.setText("Terug");
+            textCommande.setText("Kaart");
+        }
+
+
         Intent actual_intent = getIntent();
         String Tag = actual_intent.getStringExtra("Tag");
 

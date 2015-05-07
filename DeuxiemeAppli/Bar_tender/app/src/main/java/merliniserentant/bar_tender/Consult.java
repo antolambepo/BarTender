@@ -44,7 +44,7 @@ public class Consult extends Activity{
         listprix = new ArrayList<Double>();
         boissondao.open();
         int i;
-        for(i=0;i<20;i++) {
+        for(i=0;i<50;i++) {
             Boisson myboisson = boissondao.getBoissonwithNumboisson(i);
             if(myboisson!=null){listboisson.add(myboisson);
                 listnom.add(myboisson.getNom());
