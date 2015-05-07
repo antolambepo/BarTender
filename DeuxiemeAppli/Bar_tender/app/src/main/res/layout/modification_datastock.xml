@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="4"
-    android:useDefaultMargins="true" >
+    android:useDefaultMargins="true"
+    android:id="@+id/">
 
     <TextView
         android:layout_column="0"

@@ -213,7 +213,7 @@ public class BoissonDAO {
         System.out.println("ici1");
         Cursor id = db.query(TABLE_IDs, new String[]{COL_ID, COL_NOMBOISSON, COL_DESCRIPTION}, COL_NOMBOISSON + " LIKE \"" + NomBoisson + "\"", null, null, null, null);
         id.moveToFirst();
-        System.out.println(id.getString(NUM_COL_ID));
+       // System.out.println(id.getString(NUM_COL_ID));
         System.out.println(TABLE_LANGUE + COL_ID + " LIKE \" " + id.getString(NUM_COL_ID) + "\"");
         Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \"" + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
         if(lang.getCount()==0){System.out.println("ici3");}

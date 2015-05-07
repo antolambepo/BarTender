@@ -19,7 +19,7 @@ public class RetraitBoisson extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ajout_boisson);
+        setContentView(R.layout.retrait_boisson);
 
         retour = (Button) findViewById(R.id.returnbutton);
         retirer = (Button) findViewById(R.id.removebutton);
