@@ -123,4 +123,33 @@ public class LigneDeCommandeDAO {
         db.insert(TABLE_ADDITION, null, values);
     }
 
+    // Regroupe toutes les commandes qui ont le même numéro de tables
+    public int[] getNumLignedeCommandeWithTable(int table){
+        Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMTABLE + "=" + table , null, null, null, null);
+        int count = c.getCount();
+        if (count == 0){
+            return null;
+        }
+        int[] ligneCommandes = new int[count];
+        c.moveToFirst();
+        for (int i = 0; i < count -1; i++){
+            ligneCommandes[i] = c.getInt(NUM_COL_NUMLIGNE);
+            c.moveToNext();
+        }
+        ligneCommandes[count-1] = c.getInt(NUM_COL_NUMLIGNE);
+        return ligneCommandes;
     }
+
+    // Vérifie si la table existe bien
+    public boolean tableExist(int table){
+        Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMTABLE + "=" + table, null, null, null, null);
+        int count = c.getCount();
+        if (count == 0){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+}
