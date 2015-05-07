@@ -18,19 +18,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-    <TableRow
-        android:weightSum="2">
+
     <ListView
         android:id="@+id/listviewboisson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"></ListView>
-        <ListView
-            android:id="@+id/listprix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></ListView>
-    </TableRow>
+       
+
 
     </TableLayout>
     <Button

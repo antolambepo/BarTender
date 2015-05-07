@@ -13,7 +13,6 @@ public class ModificationInventaire extends Activity {
     private void saveChange() {
         BoissonDAO boissondao = new BoissonDAO(this);
         boissondao.open();
-
         String name = getName();
         Boisson changeboisson = boissondao.getBoissonwithName(name);
 
