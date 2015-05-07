@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Consult extends Activity{
     private List<Double> listprix;
     private ListView listviewboisson;
     private ListView listviewprix;
-    private TexVieuw textCommande;
+    private TextView textCommande;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
