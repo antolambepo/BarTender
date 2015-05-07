@@ -10,7 +10,7 @@
     <ImageView
 
         android:layout_height="300dp"
-        android:id="@+id/consult_details_picture"
+        android:id="@+id/consult_details_pictures"
         android:layout_width="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_above="@+id/show_details_name_ll"
@@ -23,12 +23,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/consult_details_picture"
-        android:id="@+id/show_details_name_ll"
+        android:layout_below="@+id/consult_details_pictures"
+        android:id="@+id/show_details_name_lls"
         >
 
         <TextView
-            android:id="@+id/consult_details_name"
+            android:id="@+id/consult_details_names"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -41,17 +41,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/show_details_name_ll"
-        android:id="@+id/show_details_description_ll">
+        android:layout_below="@+id/show_details_name_lls"
+        android:id="@+id/show_details_description_lls">
 
         <TextView
-            android:id="@+id/consult_details_description"
+            android:id="@+id/consult_details_descriptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/detailsDescription"
+        android:id="@+id/detailsDescriptions"
         android:text="@string/consult_details_description_title"
         style="@style/show_details_title"
         android:layout_alignParentBottom="true"
@@ -59,11 +59,11 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/nomBoisson"
+        android:id="@+id/nomBoissons"
         android:text="@string/consult_details_name_title"
         style="@style/show_details_title"
-        android:layout_above="@+id/detailsDescription"
-        android:layout_below="@id/show_details_description_ll"
+        android:layout_above="@+id/detailsDescriptions"
+        android:layout_below="@id/show_details_description_lls"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
