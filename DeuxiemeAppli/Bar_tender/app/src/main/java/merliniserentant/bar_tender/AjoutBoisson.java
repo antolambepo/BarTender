@@ -40,6 +40,7 @@ public class AjoutBoisson extends Activity{
             @Override
             public void onClick(View v) {
                 save();
+                System.out.println("C'est fini!");
                 finish();
             }
         });
@@ -48,28 +49,10 @@ public class AjoutBoisson extends Activity{
     }
 
 
-        public boolean onCreateOptionsMenu (Menu menu){
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_add, menu);
-            return true;
-        }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_save:
-                return save();  //On retourne true pour indiquer que l'action a été gérée.
-
-            case R.id.action_quit:
-                finish(); // On termine l'activité d'ajout sans enregistrer les données saisies.
-                return true; //On retourne true pour indiquer que l'action a été gérée.
-        }
-        return false;
-     }
-
 
     private boolean save() {
-        BoissonDAO boissondao = new BoissonDAO(this);
 
+        BoissonDAO boissondao = new BoissonDAO(this);
         boissondao.open();
         String name = getName();
         String description = getDescription();
@@ -77,12 +60,14 @@ public class AjoutBoisson extends Activity{
         int stockmax = getStockMax();
         int seuil = getSeuil();
         double price = getPrice();
-        if(boissondao.create(name, description, null, price, stock, stockmax, seuil)){
-            CollectorApp.notifyLong(R.string.boisson_ajoutée);
+        if(boissondao.create(name, description, "alcool", price, stock, stockmax, seuil)){
+            //CollectorApp.notifyLong(R.string.boisson_ajoutée);
+            System.out.println("Ca sors de save");
             return true;
         }
         else {
-            CollectorApp.notifyLong(R.string.boisson_erreur);
+           // CollectorApp.notifyLong(R.string.boisson_erreur);
+            boissondao.close();
             return false;
         }
 
@@ -96,7 +81,7 @@ public class AjoutBoisson extends Activity{
         String name = String.valueOf(nameEditText.getText());
 
         if (name.isEmpty()) {
-            System.out.println("Remplir le champ Boisson !");
+            CollectorApp.notifyLong(R.string.Remplir_champs_boisson);
             return null;
         }
         return name;
@@ -106,7 +91,6 @@ public class AjoutBoisson extends Activity{
         EditText descriptionEditText = (EditText) findViewById(R.id.descriptionboisson);
         String description = String.valueOf(descriptionEditText.getText());
         if(description.isEmpty()){
-            System.out.println("Remplir le champ Description !");
             return null;
         }
         return description ;

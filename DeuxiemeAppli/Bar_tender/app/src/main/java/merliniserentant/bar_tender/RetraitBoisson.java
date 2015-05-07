@@ -8,4 +8,6 @@ import android.app.Activity;
  * Classe qui permet au propriétaire de retirer une boisson de l'inventaire
  */
 public class RetraitBoisson extends Activity{
+
+
 }
