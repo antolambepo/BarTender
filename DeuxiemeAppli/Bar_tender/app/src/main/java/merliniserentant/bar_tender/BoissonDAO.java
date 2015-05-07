@@ -26,6 +26,7 @@ public class BoissonDAO {
     private static final int NUM_COL_SEUIL = 4;
     private static final String COL_PRIX = "PRIX";
     private static final int NUM_COL_PRIX = 5;
+    private static final String COL_ROWID = "rowid"; 
 
     private static final String TABLE_IDs = "IDs";
     private static final String COL_ID = "ID";

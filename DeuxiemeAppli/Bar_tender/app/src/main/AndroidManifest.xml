@@ -64,7 +64,7 @@
         </activity>
         <activity
             android:name=".AjoutBoisson"
-            android:label="@string/title_activity_ajoutboisson" >
+            android:label="Ajout Boisson" >
         </activity>
     </application>
 
