@@ -351,6 +351,20 @@ public class BoissonDAO {
         db.delete(TABLE_IDs, COL_ID + "= ?", new String[] {id});
     }
 
+    //enlève la quantité de la ligne de commande au stock de la boisson
+    public void downStock (int numboisson, int quantité){
+        Boisson bsn = getBoissonwithNumboisson(numboisson);
+        int stock = bsn.getStock();
+        stock = stock - quantité;
+        String nom = bsn.getNom();
+        String desc = bsn.getDescription();
+        String logo = bsn.getLogotype();
+        Double prix = bsn.getPrix();
+        int stockmax = bsn.getStockmax();
+        int seuil = bsn.getSeuil();
+        remove (numboisson);
+        create(nom, desc, logo, prix, stock, stockmax, seuil);
+    }
 
 
 }
