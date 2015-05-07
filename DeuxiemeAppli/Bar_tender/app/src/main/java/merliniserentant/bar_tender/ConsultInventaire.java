@@ -49,7 +49,7 @@ public class ConsultInventaire extends Activity {
         retour = (Button)findViewById(R.id.returninv);
         boutonNomBoisson = (Button) findViewById(R.id.boutonNomBoisson);
         boutonStock = (Button) findViewById(R.id.boutonStock);
-        boutonStockMac = (Button) findViewById(R.id.boutonStockMax);
+        boutonStockMax = (Button) findViewById(R.id.boutonStockMax);
         boutonSeuil = (Button) findViewById(R.id.boutonSeuil);
         String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
