@@ -251,6 +251,8 @@ public class BoissonDAO {
       *
      */
     public boolean isPresent(int n) {
+
+        System.out.println("Ca passe dans isPresent");
         Cursor c = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON}, null, null, null, null, null);
         if(c.getCount()==0)
             return false;
@@ -258,7 +260,9 @@ public class BoissonDAO {
         while(!c.isAfterLast()){
             if(n==c.getInt(NUM_COL_NUMBOISSON))
                 return true;
+            c.moveToNext();
         }
+        System.out.println("Ca sors de isPresent");
         return false;
     }
 
@@ -267,11 +271,14 @@ public class BoissonDAO {
      * @return un numero de boisson disponible
      */
     public int createNum(){
+        System.out.println("Ca passe dans createNum");
         int n = 1;
         while(this.isPresent(n)){
             n++;
         }
+        System.out.println("Ca sors de createNum");
         return n;
+
     }
 
     public String createID(int n, String langue){
@@ -279,7 +286,8 @@ public class BoissonDAO {
     }
     public boolean create(String name, String description, String logotype, double price, int stock, int stockmax, int seuil) {
 
-        int numboisson = this.createNum();
+        System.out.println("Ca passe dans create");
+        int numboisson = createNum();
         String langue = this.getLangue();
         String id = this.createID(numboisson, langue);
         // Définition des valeurs pour le nouvel élément dans la table BOISSON
@@ -290,6 +298,7 @@ public class BoissonDAO {
         cv.put(COL_STOCK, stock);
         cv.put(COL_STOCKMAX,stockmax);
         cv.put(COL_SEUIL, seuil);
+        cv.put(COL_PRIX, price);
 
         // Ajout à la base de données
         int row = (int) db.insert(TABLE_BOISSON, null, cv);
@@ -326,7 +335,7 @@ public class BoissonDAO {
             db.delete(TABLE_IDs, COL_ROWID + " = ?", new String[]{String.valueOf(row1)});
             return false;
         }
-
+        System.out.println("Ca sors de create");
         return true;
     }
 

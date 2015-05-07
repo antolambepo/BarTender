@@ -18,6 +18,10 @@ public class ConsultInventaire extends Activity {
     Button retour = null;
     private ArrayList<Boisson> listboisson;
     private MyListViewAdapter myListViewAdapter;
+    private Button boutonNomBoisson;
+    private Button boutonStock;
+    private Button boutonStockMax;
+    private Button boutonSeuil;
 
     @Override
     protected void onCreate(Bundle s) {
@@ -31,7 +35,9 @@ public class ConsultInventaire extends Activity {
         listboisson = new ArrayList<Boisson>();
         boissondao.open();
         int i;
-        for(i=0;i<20;i++) {
+
+        for(i=0;i<50;i++) {
+
             Boisson myboisson = boissondao.getBoissonwithNumboisson(i);
             if(myboisson!=null){
                 listboisson.add(myboisson);
@@ -43,6 +49,28 @@ public class ConsultInventaire extends Activity {
         myListViewAdapter = new MyListViewAdapter(this, listboisson);
         myListView.setAdapter(myListViewAdapter);
         retour = (Button)findViewById(R.id.returninv);
+        boutonNomBoisson = (Button) findViewById(R.id.boutonNomBoisson);
+        boutonStock = (Button) findViewById(R.id.boutonStock);
+        boutonStockMax = (Button) findViewById(R.id.boutonStockMax);
+        boutonSeuil = (Button) findViewById(R.id.boutonSeuil);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            retour.setText("Return");
+            boutonNomBoisson.setText("Name of beverage");
+            boutonStock.setText("Stock");
+            boutonStockMax.setText("Maximum Stock");
+            boutonSeuil.setText("Threshold");
+        }
+        else if(Langue.equals("Néerlandais")){
+            retour.setText("Terug");
+            boutonNomBoisson.setText("Name van drank");
+            boutonStock.setText("Voorraad");
+            boutonStockMax.setText("Maximale voorraad");
+            boutonSeuil.setText("Drempel");
+
+        }
+
+
 
         boissondao.close();
         retour.setOnClickListener(new View.OnClickListener() {

@@ -49,6 +49,7 @@ public class Commander extends Activity  {
         setContentView(R.layout.activity_commander);
         bdao.open();
         ldao.open();
+        adao.open();
         // récupérer le numéro de tables
 
         // Créer tableau de commandes à valider pour la table sélectionnée
@@ -67,8 +68,7 @@ public class Commander extends Activity  {
             ListView listTable = (ListView) findViewById(R.id.list_Table);
             listTable.setAdapter(ListAdapterTable);
         }
-        bdao.close();
-        ldao.close();
+
 
 
         // localise les Button
@@ -113,48 +113,32 @@ public class Commander extends Activity  {
     private View.OnClickListener onClickcommander = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            bdao.open();
-            ldao.open();
-            adao.open();
+
             // insérer les nouvelles ligne de commande dans la BDD
             if (Login.newBoisson == null || Login.newQté == null) {
                 Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
             } else {
                 int numCom = adao.nextnumcommande();
-                while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
+                while (!Login.newBoisson.isEmpty()) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
 
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
-                    System.out.println("ici6");
 
                     qté = Login.newQté.get(0);
                     System.out.println(qté);
                     table = Login.newTable.get(0);
                     System.out.println(table);
-                    bdao.close();
+
                     // créér une nouvelle ligne de commande
                     int num = ldao.nextnumligne();
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
-
-
                     AdditionClass newCommande = new AdditionClass(numCom, num, null);
-                    ldao.open();
-                    System.out.println("ici7");
-
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
-                    System.out.println("ici8");
-
                     adao.insertCommande(newCommande); // ajouter la commande dans la BDD
-                    System.out.println("ici9");
-
-
-                    num = num + 1;
                     Login.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
                     Login.newQté.remove(0);
-                    System.out.println("ici10");
-
+                    Login.newTable.remove(0);
                 }
-                numCom = numCom + 1;
             }
             adao.close();
             ldao.close();
@@ -168,6 +152,9 @@ public class Commander extends Activity  {
             Login.newBoisson = new ArrayList<String>();
             Login.newQté = new ArrayList<Integer>();
             Login.newTable = new ArrayList<Integer>();
+            adao.close();
+            ldao.close();
+            bdao.close();
             finish();
         }
     };

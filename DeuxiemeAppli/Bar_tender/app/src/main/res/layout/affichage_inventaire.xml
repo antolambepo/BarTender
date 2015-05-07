@@ -16,6 +16,7 @@
         android:weightSum="100">
 
         <Button
+            android:id="@+id/boutonNomBoisson"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
             android:textStyle="bold"/>
 
         <Button
+            android:id="@+id/boutonStock"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,6 +35,7 @@
 
 
         <Button
+            android:id="@+id/boutonStockMax"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -42,6 +45,7 @@
             />
 
         <Button
+            android:id="@+id/boutonSeuil"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

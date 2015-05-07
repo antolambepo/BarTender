@@ -17,7 +17,7 @@ public class consult_details extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consult_details);
+        setContentView(R.layout.activity_consult_detail);
 
         int number = getIntent().getIntExtra("numBoisson", -1);
         if (number==-1) {
@@ -61,7 +61,8 @@ public class consult_details extends Activity {
         //boissondao.close();
         ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
         System.out.println("a"+Integer.toString(currentBoisson.getNumboisson()));
-        picture.setImageResource(getResources().getIdentifier("a"+Integer.toString(currentBoisson.getNumboisson()), "drawable", getPackageName()));
-
+        if(currentBoisson.getNumboisson()<22) {
+            picture.setImageResource(getResources().getIdentifier("a" + Integer.toString(currentBoisson.getNumboisson()), "drawable", getPackageName()));
+        }
     }
 }
