@@ -358,17 +358,17 @@ public class BoissonDAO {
         create(nom, desc, logo, prix, stock, stockmax, seuil);
     }
 
-    public void upStock (int numboisson, int quantité){
-        Boisson bsn = getBoissonwithNumboisson(numboisson);
+    public void upStock (String nomboisson, int quantité){
+        Boisson bsn = getBoissonwithName(nomboisson);
         int stock = bsn.getStock();
         stock = stock + quantité;
-        String nom = bsn.getNom();
+        int num = bsn.getNumboisson();
         String desc = bsn.getDescription();
         String logo = bsn.getLogotype();
         Double prix = bsn.getPrix();
         int stockmax = bsn.getStockmax();
         int seuil = bsn.getSeuil();
-        remove (numboisson);
-        create(nom, desc, logo, prix, stock, stockmax, seuil);
+        remove (num);
+        create(nomboisson, desc, logo, prix, stock, stockmax, seuil);
     }
 }
