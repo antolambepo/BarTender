@@ -25,7 +25,7 @@ public class Addition extends Activity{
     AdditionDAO adao;
     LigneDeCommandeDAO ldao;
     private TextView tablelangue;
-
+    private String Langue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class Addition extends Activity{
         tablelangue=(TextView) findViewById(R.id.table);
         //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder
         mPasserelle = (Button) findViewById(R.id.premier);
-        String Langue  = MySQLite.Langue;
+        Langue  = MySQLite.Langue;
         if(Langue.equals("Néerlandais")){
             mPasserelle.setText("Betaling");
             tablelangue.setText("Tafel");
