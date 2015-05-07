@@ -15,7 +15,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
-public class Addition extends Activity {
+public class Addition extends Activity{
     private Button mPasserelle;
     private EditText table;
     private Button retour;

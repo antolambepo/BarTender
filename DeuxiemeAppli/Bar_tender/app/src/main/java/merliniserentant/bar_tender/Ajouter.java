@@ -27,6 +27,9 @@ public class Ajouter extends Activity implements View.OnClickListener {
     private int tbl;
     private Button ajouter;
     private Button annuler;
+    private TextView tableTexte;
+    private TextView boissonTexte;
+    private TextView texteQuantité;
 
     BoissonDAO bdao = null;
 
@@ -38,6 +41,21 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter);
+        tableTexte = (TextView) findViewById(R.id.tableTexte);
+        boissonTexte = (TextView) findViewById(R.id.boissonTexte);
+        texteQuantité = (TextView) findViewById(R.id.texteQuantité);
+
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            tableTexte.setText("table");
+            boissonTexte.setText("drink");
+            texteQuantité.setText("amount");
+        }
+        else if(Langue.equals("Néerlandais")){
+            tableTexte.setText("tafel");
+            boissonTexte.setText("drank");
+            texteQuantité.setText("hoeveelheid");
+        }
 
         // localise les EditText et TextView
         boisson = (AutoCompleteTextView) findViewById(R.id.giveBoisson);
