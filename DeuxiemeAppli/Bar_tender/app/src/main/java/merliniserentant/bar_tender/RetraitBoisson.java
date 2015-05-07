@@ -48,7 +48,9 @@ public class RetraitBoisson extends Activity{
         String nom = getName();
         BoissonDAO boissondao = new BoissonDAO(this);
         boissondao.open();
-        boissondao.remove();
+        Boisson toremove = boissondao.getBoissonwithName(nom);
+        int num = toremove.getNumboisson();
+        boissondao.remove(num);
     }
 
     private String getName() {
