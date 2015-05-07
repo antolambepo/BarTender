@@ -1,5 +1,6 @@
 package merliniserentant.bar_tender;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -74,7 +75,14 @@ public class AdditionDAO {
         return addition;
     }
 
+    public void insertCommande (AdditionClass add){
+        ContentValues values = new ContentValues();
 
+        values.put(COL_NUMCOMMANDE, add.getNumAddition());
+        values.put(COL_NUMLIGNE, add.getNumLignedeCommande());
+        values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
+        db.insert(TABLE_COMMANDE, null, values);
+    }
     // recherche la commande avec le numéro de ligne de commande
     public AdditionClass getCommandeWithNumLigne(int numLigne){
         Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMLIGNE + " LIKE \"" + numLigne +"\"" , null, null, null, null);

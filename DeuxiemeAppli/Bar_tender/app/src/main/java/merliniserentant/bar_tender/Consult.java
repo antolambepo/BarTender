@@ -55,7 +55,7 @@ public class Consult extends Activity{
         ArrayAdapter<Double> adapter1 = new ArrayAdapter<Double>(this, android.R.layout.simple_list_item_1, listprix);
         listviewboisson.setAdapter(adapter);
         listviewprix.setAdapter(adapter1);
-        textCommande = (TextView) findViewById(R.id.textComande);
+        textCommande = (TextView) findViewById(R.id.textCommande);
         String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
             textCommande.setText("Board");

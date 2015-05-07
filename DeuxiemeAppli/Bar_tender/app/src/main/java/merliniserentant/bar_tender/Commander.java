@@ -27,21 +27,22 @@ public class Commander extends Activity  {
     private Button commander;
     private Button annuler;
     private int table;
-    private static int num = 1;
-    private static int numCom = 1;
+    public static int num = 8;
+    private static int numCom = 6;
     private String bsn;
     private int numBsn;
     private int qté;
 
     BoissonDAO bdao = null;
     LigneDeCommandeDAO ldao = null;
+    AdditionDAO adao =  null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         bdao = new BoissonDAO(this);
         ldao = new LigneDeCommandeDAO(this);
-
+        adao = new AdditionDAO(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
         bdao.open();
@@ -92,15 +93,17 @@ public class Commander extends Activity  {
         public void onClick(View v) {
             bdao.open();
             ldao.open();
+            adao.open();
             // insérer les nouvelles ligne de commande dans la BDD
             if (Login.newBoisson == null || Login.newQté == null) {
                 Toast.makeText(Commander.this, "Erreur1", Toast.LENGTH_SHORT).show(); // message d'erreur
             } else {
                 while (Login.newBoisson != null) { // parcourir la liste des boissons ajoutées
                     bsn = Login.newBoisson.get(0);
-                    System.out.println("++++++++" + bsn);
-                    bdao.open();
+
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
+                    System.out.println("ici6");
+
                     qté = Login.newQté.get(0);
                     System.out.println(qté);
                     table = Login.newTable.get(0);
@@ -108,17 +111,28 @@ public class Commander extends Activity  {
                     bdao.close();
                     // créér une nouvelle ligne de commande
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
+
+
                     AdditionClass newCommande = new AdditionClass(numCom, num, null);
                     ldao.open();
+                    System.out.println("ici7");
+
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
-                    ldao.insertCommande(newCommande); // ajouter la commande dans la BDD
-                    ldao.close();
+                    System.out.println("ici8");
+
+                    adao.insertCommande(newCommande); // ajouter la commande dans la BDD
+                    System.out.println("ici9");
+
+
                     num = num + 1;
                     Login.newBoisson.remove(0); // enlever les éléments ajoutés de la liste
                     Login.newQté.remove(0);
+                    System.out.println("ici10");
+
                 }
                 numCom = numCom + 1;
             }
+            adao.close();
             ldao.close();
             bdao.close();
             finish();
