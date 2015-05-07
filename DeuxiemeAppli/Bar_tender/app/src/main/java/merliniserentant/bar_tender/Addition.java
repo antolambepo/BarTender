@@ -42,8 +42,15 @@ public class Addition extends Activity {
         if(Langue.equals("Néerlandais")){
             mPasserelle.setText("Betaling");
             tablelangue.setText("Tafel");
-            retour.setText("Terug")
+            retour.setText("Terug");
         }
+        if(Langue.equals("Anglais")){
+            mPasserelle.setText("Payment");
+            tablelangue.setText("Table");
+            retour.setText("Return");
+        }
+
+
         mPasserelle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
