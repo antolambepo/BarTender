@@ -78,11 +78,11 @@ public class AjoutBoisson extends Activity{
         int seuil = getSeuil();
         double price = getPrice();
         if(boissondao.create(name, description, null, price, stock, stockmax, seuil)){
-            System.out.println("La boisson a été bien ajouté");
+            CollectorApp.notifyLong(R.string.boisson_ajoutée);
             return true;
         }
         else {
-            System.out.println("Une erreur est survenue");
+            CollectorApp.notifyLong(R.string.boisson_erreur);
             return false;
         }
 

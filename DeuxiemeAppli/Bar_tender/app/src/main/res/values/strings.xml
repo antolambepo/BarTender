@@ -31,4 +31,8 @@
     <string name="title_activity_search">Search</string>
     <string name="title_activity_paiement">Paiement</string>
     <string name="title_activity_addition">Addition</string>
+
+    //Notification
+    <string name="boisson_ajoutée">La boisson a été ajoutée</string>
+    <string name="boisson_erreur">Une erreur est survenue</string>
 </resources>
