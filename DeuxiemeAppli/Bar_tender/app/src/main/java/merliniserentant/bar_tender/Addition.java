@@ -60,7 +60,15 @@ public class Addition extends Activity{
                 if (ldao.tableExist(numtable)){
                     adao.open();
                     if (adao.getAdditionToPay(numtable).size()==0) {
-                        Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
+                        if (Langue.equals("Néerlandais")){
+                            Toast.makeText(Addition.this, "Geen toeslag voor deze tabel", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (Langue.equals("Anglais")){
+                            Toast.makeText(Addition.this, "No addition for this table", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(Addition.this, "Aucune addition pour cette table", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
                     ArrayList<AdditionClass> additions = adao.getAdditionToPay(numtable);
@@ -78,7 +86,15 @@ public class Addition extends Activity{
                     adao.close();
                 }
                 else {
-                    Toast.makeText(Addition.this, "Cette table n'existe pas", Toast.LENGTH_SHORT).show();
+                    if (Langue.equals("Néerlandais")){
+                        Toast.makeText(Addition.this, "deze tabel bestaat niet", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (Langue.equals("Anglais")){
+                        Toast.makeText(Addition.this, "this table doesn't exist", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(Addition.this, "Cette table n'existe pas", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 ldao.close();
             }
