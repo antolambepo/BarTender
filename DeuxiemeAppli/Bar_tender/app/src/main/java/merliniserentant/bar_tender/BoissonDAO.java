@@ -339,6 +339,18 @@ public class BoissonDAO {
         return true;
     }
 
+    //Retire une boisson de la base de donnée en fonction de son numero
+    public void remove(int numboisson) {
+        Cursor c = db.query(TABLE_LANGUE, new String[] {COL_ID}, COL_NUMBOISSON + "=" + numboisson, null, null, null, null);
+        if(c.getCount()==0)
+            return;
+        c.moveToFirst();
+        String id = c.getString(NUM_COL_ID);
+        db.delete(TABLE_BOISSON, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
+        db.delete(TABLE_LANGUE, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
+        db.delete(TABLE_IDs, COL_ID + "= ?", new String[] {id});
+    }
+
 
 
 }

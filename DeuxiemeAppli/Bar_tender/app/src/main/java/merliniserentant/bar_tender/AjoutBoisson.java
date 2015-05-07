@@ -63,6 +63,7 @@ public class AjoutBoisson extends Activity{
         if(boissondao.create(name, description, "alcool", price, stock, stockmax, seuil)){
             //CollectorApp.notifyLong(R.string.boisson_ajoutée);
             System.out.println("Ca sors de save");
+            boissondao.close();
             return true;
         }
         else {

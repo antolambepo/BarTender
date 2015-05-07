@@ -50,11 +50,9 @@ public class ChoixInventaire extends Activity {
     private View.OnClickListener retraitListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            boissondao.open();
-            //Faire qqch
-            boissondao.close();
-           // Intent intent = new Intent(ChoixInventaire.this, mettre qqch);
-           // startActivity(intent);
+
+            Intent intent = new Intent(ChoixInventaire.this, RetraitBoisson.class);
+            startActivity(intent);
         }
     };
     private View.OnClickListener modificationListener = new View.OnClickListener() {

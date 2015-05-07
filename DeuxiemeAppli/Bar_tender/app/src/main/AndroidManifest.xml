@@ -67,6 +67,11 @@
             android:name=".AjoutBoisson"
             android:label="Ajout Boisson" >
         </activity>
+        <activity
+            android:name=".RetraitBoisson"
+            android:label="Retrait" >
+        </activity>
+
     </application>
 
 
