@@ -124,6 +124,18 @@ public class LigneDeCommandeDAO {
         //db.insert(TABLE_ADDITION, null, values);
     //}
 
+    //Retourne true si une ligne de commande a ce numéro de ligne là.
+    private boolean isnumligneintable(int i){
+        Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMLIGNE + "=" + i , null, null, null, null);
+        return !(c.getCount()==0);
+    }
+    public int nextnumligne(){
+        int i =1;
+        while(isnumligneintable(i)){
+            i++;
+        }
+        return i;
+    }
     // Regroupe toutes les commandes qui ont le même numéro de tables
     public int[] getNumLignedeCommandeWithTable(int table){
         Cursor c = db.query(TABLE_LIGNEDECOMMANDE, new String[]{COL_NUMLIGNE, COL_NUMTABLE, COL_LOGINCODE, COL_QUANTITE, COL_NUMBOISSON}, COL_NUMTABLE + "=" + table , null, null, null, null);
