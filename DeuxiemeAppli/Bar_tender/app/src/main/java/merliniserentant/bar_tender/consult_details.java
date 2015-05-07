@@ -17,7 +17,7 @@ public class consult_details extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consult_details);
+        setContentView(R.layout.activity_consult_detail);
 
         int number = getIntent().getIntExtra("numBoisson", -1);
         if (number==-1) {

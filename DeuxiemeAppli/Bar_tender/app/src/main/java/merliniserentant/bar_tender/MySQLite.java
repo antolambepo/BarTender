@@ -25,16 +25,20 @@ class MySQLite extends SQLiteOpenHelper {
     public static String Langue = "Français";
 
 
-    public String getLangue(){return this.Langue;}
+    public String getLangue() {
+        return this.Langue;
+    }
 
-    public void setLangue(String Langue){this.Langue =Langue;}
+    public void setLangue(String Langue) {
+        this.Langue = Langue;
+    }
 
 
     // Constructeur
     public MySQLite(Context context) {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.mycontext=context;
+        this.mycontext = context;
         String filesDir = context.getFilesDir().getPath(); // /data/data/com.package.nom/files/
         DATABASE_PATH = filesDir.substring(0, filesDir.lastIndexOf("/")) + "/databases/"; // /data/data/com.package.nom/databases/
 
@@ -64,8 +68,8 @@ class MySQLite extends SQLiteOpenHelper {
 
             // dossier de destination
             File pathFile = new File(DATABASE_PATH);
-            if(!pathFile.exists()) {
-                if(!pathFile.mkdirs()) {
+            if (!pathFile.exists()) {
+                if (!pathFile.mkdirs()) {
                     Toast.makeText(mycontext, "Erreur : copydatabase(), pathFile.mkdirs()", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -85,33 +89,32 @@ class MySQLite extends SQLiteOpenHelper {
             myOutput.flush();
             myOutput.close();
             myInput.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(mycontext, "Erreur : copydatabase()", Toast.LENGTH_SHORT).show();
         }
 
         // on greffe le numéro de version
-        try{
+        try {
             SQLiteDatabase checkdb = SQLiteDatabase.openDatabase(DATABASE_PATH + DATABASE_NAME, null, SQLiteDatabase.OPEN_READWRITE);
             checkdb.setVersion(DATABASE_VERSION);
-        }
-        catch(SQLiteException e) {
+        } catch (SQLiteException e) {
             // bdd n'existe pas
         }
 
     } // copydatabase()
 
     @Override
-    public void onCreate(SQLiteDatabase db) {}
+    public void onCreate(SQLiteDatabase db) {
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < newVersion){
+        if (oldVersion < newVersion) {
             //Log.d("debug", "onUpgrade() : oldVersion=" + oldVersion + ",newVersion=" + newVersion);
             mycontext.deleteDatabase(DATABASE_NAME);
             copydatabase();
         }
     } // onUpgrade
 
-} // class MySQLite
+}

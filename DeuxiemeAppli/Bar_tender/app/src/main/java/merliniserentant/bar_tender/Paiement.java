@@ -9,6 +9,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class Paiement extends Activity {
 
@@ -64,6 +66,8 @@ public class Paiement extends Activity {
                 }
                 adao.close();
                 Toast.makeText(Paiement.this, "Vous avez payez ! Félicitation", Toast.LENGTH_SHORT).show();
+                Addition.numCommande = new ArrayList<Integer>();
+                finish();
             }
         });
     }
