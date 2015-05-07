@@ -100,7 +100,7 @@ public class AdditionDAO {
         ldao.close();
         int count = numlignes.length;
         ArrayList<AdditionClass> additionsApayer = new ArrayList<AdditionClass>();
-        for (int i = 0; i < count -1; i++){
+        for (int i = 0; i < count; i++){
             AdditionClass add = getCommandeWithNumLigne(numlignes[i]);
             if (add.getTypePaiement() == null){
                 additionsApayer.add(add);
@@ -141,7 +141,7 @@ public class AdditionDAO {
         Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMCOMMANDE + "=" + numCommande +  "AND" + COL_TYPEPAIEMENT + "=" + null, null, null, null, null);
         int count = c.getCount();
         c.moveToFirst();
-        for (int i = 0; i < count -1; i++){
+        for (int i = 0; i < count; i++){
             cursorToAddition(c).setTypePaiement(TypePaiemennt);
             c.moveToNext();
         }
