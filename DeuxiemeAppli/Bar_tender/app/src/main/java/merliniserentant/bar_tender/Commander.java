@@ -37,14 +37,14 @@ public class Commander extends Activity  {
 
     BoissonDAO bdao = null;
     LigneDeCommandeDAO ldao = null;
-    AdditionDAO adao =  null;
+    CommandeDAO adao =  null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         bdao = new BoissonDAO(this);
         ldao = new LigneDeCommandeDAO(this);
-        adao = new AdditionDAO(this);
+        adao = new CommandeDAO(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commander);
         bdao.open();
@@ -132,7 +132,7 @@ public class Commander extends Activity  {
                     // créér une nouvelle ligne de commande
                     int num = ldao.nextnumligne();
                     LigneDeCommande newLigne = new LigneDeCommande(num, Utilisateur.connectedUser.getlogin(), numBsn, qté, table);
-                    AdditionClass newCommande = new AdditionClass(numCom, num, null);
+                    Commande newCommande = new Commande(numCom, num, null);
                     bdao.downStock(numBsn, qté);
                     ldao.insertLignedecommande(newLigne); // ajouter la nouvelle ligne de commande à la BDD
                     adao.insertCommande(newCommande); // ajouter la commande dans la BDD

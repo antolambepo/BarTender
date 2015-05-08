@@ -4,13 +4,13 @@ package merliniserentant.bar_tender;
 /**
  * Created by Roselien on 03/05/15.
  */
-public class AdditionClass {
+public class Commande {
 
     private int numAddition;
     private int numLignedeCommande;
     private String typePaiement;
 
-    public AdditionClass(int numAddition, int numLignedeCommande, String typePaiement ){
+    public Commande(int numAddition, int numLignedeCommande, String typePaiement ){
         this.numAddition = numAddition;
         this.numLignedeCommande = numLignedeCommande;
         this.typePaiement = typePaiement;

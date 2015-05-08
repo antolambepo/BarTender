@@ -22,7 +22,7 @@ public class Addition extends Activity{
     public static double prix;
     private int numtable;
     public static ArrayList<Integer> numCommande;
-    AdditionDAO adao;
+    CommandeDAO adao;
     LigneDeCommandeDAO ldao;
     private TextView tablelangue;
     private String Langue;
@@ -32,7 +32,7 @@ public class Addition extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addition);
 
-        adao = new AdditionDAO(this);
+        adao = new CommandeDAO(this);
         ldao = new LigneDeCommandeDAO(this);
         retour = (Button) findViewById(R.id.annulerAddition);
         table = (EditText) findViewById(R.id.tableAddition);
@@ -72,7 +72,7 @@ public class Addition extends Activity{
                         }
                     }
                     else {
-                    ArrayList<AdditionClass> additions = adao.getAdditionToPay(numtable);
+                    ArrayList<Commande> additions = adao.getAdditionToPay(numtable);
                     // reprend les numCommande à payer
                     numCommande.add(additions.get(0).getNumAddition());
                     for (int i = 1; i< additions.size(); i++ ){

@@ -19,7 +19,7 @@ public class Paiement extends Activity {
     RadioButton cash;
     RadioButton bancontact;
     RadioButton mastercard;
-    AdditionDAO adao;
+    CommandeDAO adao;
     String typePaiement;
     private TextView nico1;
     private TextView nico2;
@@ -31,7 +31,7 @@ public class Paiement extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paiement);
 
-        adao = new AdditionDAO(this);
+        adao = new CommandeDAO(this);
 
         montant = (TextView) findViewById(R.id.montant);
         montant.setText(Double.toString(Addition.prix));
