@@ -28,6 +28,7 @@ public class Login extends Activity {
     public static List<String> newBoisson;
     public static List<Integer> newQté;
     public static List<Integer> newTable;
+    private String Langue  = MySQLite.Langue;
     UtilisateurDAO utilisateurdao = null;
     EditText nom ;
 
@@ -50,7 +51,7 @@ public class Login extends Activity {
         textmdp = (TextView) findViewById(R.id.mdp);
         textpseudo = (TextView)findViewById(R.id.pseudo);
         textconnection = (TextView)findViewById(R.id.connection);
-        String Langue  = MySQLite.Langue;
+
         if(Langue.equals("Anglais")){
             textpseudo.setText("Username");
             textmdp.setText("Password");
@@ -95,20 +96,61 @@ public class Login extends Activity {
                     Utilisateur logintest = utilisateurdao.getLoginWithlogin(login.getText().toString());
                     if (logintest != null) {
                         login.getText().clear();
-                        Toast.makeText(Login.this, "Pseudo: " + newlogin.getlogin() + " déjà utilisé. Veuillez en choisir un autre svp." + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        if(Langue.equals("Anglais")){
+                            Toast.makeText(Login.this, "Nickname: " + newlogin.getlogin() + " already used. Please choose another one please." + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Langue.equals("Néerlandais")){
+                            Toast.makeText(Login.this, "Nijnaam: " + newlogin.getlogin() + " al gebruikt. Kies een andere alsjeblieft." + login.getText().toString(), Toast.LENGTH_SHORT).show();                        }
+                        else{
+                            Toast.makeText(Login.this, "Pseudo: " + newlogin.getlogin() + " déjà utilisé. Veuillez en choisir un autre svp." + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        }
+
                     } else {
                         utilisateurdao.insertLogin(newlogin);
-                        Toast.makeText(Login.this, "Votre compte a bien été enregistrer " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        if(Langue.equals("Anglais")){
+                            Toast.makeText(Login.this, "Your account has been record " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Langue.equals("Néerlandais")){
+                            Toast.makeText(Login.this, "Uw account is opnemen " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(Login.this, "Votre compte a bien été enregistrer " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     utilisateurdao.close();
                     mdp.getText().clear();
                 } else {
-                    Toast.makeText(Login.this, "Veuillez rentrer votre nom et prénom", Toast.LENGTH_SHORT).show();
+                    if(Langue.equals("Anglais")){
+                        Toast.makeText(Login.this, "Please enter your full name", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if(Langue.equals("Néerlandais")){
+                        Toast.makeText(Login.this, "Vul uw volledige naam", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else{
+                        Toast.makeText(Login.this, "Veuillez rentrer votre nom et prénom", Toast.LENGTH_SHORT).show();
+
+                    }
+
 
                 }
             }
             else{
-                Toast.makeText(Login.this, "Le pseudo ou mot de passe ne peuvent pas être nuls", Toast.LENGTH_SHORT).show();
+                if(Langue.equals("Anglais")){
+                    Toast.makeText(Login.this, "The username or password can not be null", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(Langue.equals("Néerlandais")){
+                    Toast.makeText(Login.this, "De gebruikersnaam of password kan niet leeg zijn", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    Toast.makeText(Login.this, "Le pseudo ou mot de passe ne peuvent pas être nuls", Toast.LENGTH_SHORT).show();
+
+                }
+
 
 
             }
@@ -121,7 +163,16 @@ public class Login extends Activity {
             utilisateurdao.open();
             Utilisateur logintest = utilisateurdao.getLoginWithlogin(login.getText().toString());
             if(logintest==null){
-                Toast.makeText(Login.this, "Votre pseudo n'existe pas", Toast.LENGTH_SHORT).show();
+                if(Langue.equals("Anglais")){
+                    Toast.makeText(Login.this, "Your nickname doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+                else if(Langue.equals("Néerlandais")){
+                    Toast.makeText(Login.this, "Je nickname bestaat niet", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Login.this, "Votre pseudo n'existe pas", Toast.LENGTH_SHORT).show();
+                }
+
             }
             else if((logintest.getmdp()).equals(mdp.getText().toString())) {
                 Intent secondactivity = new Intent(Login.this, Main.class);
@@ -134,10 +185,15 @@ public class Login extends Activity {
                 startActivity(secondactivity);
             }
             else{
-
-                Toast.makeText(Login.this, "Votre mot de passe est incorrect.", Toast.LENGTH_SHORT).show();
-
-
+                if(Langue.equals("Anglais")){
+                    Toast.makeText(Login.this, "Your passwoord was incorrect.", Toast.LENGTH_SHORT).show();
+                }
+                else if(Langue.equals("Néerlandais")){
+                    Toast.makeText(Login.this, "Je passtwoord was incorrect.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Login.this, "Votre mot de passe est incorrect.", Toast.LENGTH_SHORT).show();
+                }
             }
             utilisateurdao.close();
             mdp.getText().clear();
