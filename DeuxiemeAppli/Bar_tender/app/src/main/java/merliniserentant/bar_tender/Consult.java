@@ -45,9 +45,11 @@ public class Consult extends Activity{
         int i;
         for(i=0;i<50;i++) {
             Boisson myboisson = boissondao.getBoissonwithNumboisson(i);
+
             if(myboisson!=null){listboisson.add(myboisson);
                 listnom.add(myboisson.getNom());
             }
+            else{System.out.println("Pas de boisson en anglais");}
         }
         textCommande = (TextView) findViewById(R.id.textCommande);
         String Langue  = MySQLite.Langue;
