@@ -56,7 +56,6 @@ public class ConsultTag extends Activity {
 
 
         listboisson = boissondao.getBoissonwithTag(Tag);
-
         listnom = new ArrayList<String>();
         int i;
 

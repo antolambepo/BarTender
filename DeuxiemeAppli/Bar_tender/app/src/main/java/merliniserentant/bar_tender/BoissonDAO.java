@@ -76,9 +76,38 @@ public class BoissonDAO {
         db.close();
     }
     public ArrayList<Boisson> getBoissonwithTag(String Tag){
-        Cursor cccc=db.query(TABLE_TAG, new String[] {COL_ID,COL_TAG}, COL_TAG+" LIKE \"" + Tag +"\"", null, null, null, null);
         ArrayList<Boisson> list = new ArrayList<Boisson>();
-        if(cccc.getCount()==0){return null;}
+        Cursor ccccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION}, COL_NOMBOISSON + " LIKE \"" + Tag +"\"", null, null, null, null);
+        if(ccccc.getCount()!=0){
+            ccccc.moveToFirst();
+            Boisson boisson = new Boisson();
+            boisson.setNom(Tag);
+            boisson.setDescription(ccccc.getString(NUM_COL_DESCRIPTION));
+            Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_ID + " LIKE \""+ ccccc.getString(NUM_COL_ID) +"\" AND " + COL_LANGAGE+" LIKE \""+maBaseSQLite.getLangue() + "\"", null, null, null, null);
+            if(cc.getCount()!=0) { // Ca devrait pas arriver! Sinon c'est que la bdd est mal remplie!
+                //Info disponible dans la table BOISSON
+                cc.moveToFirst();
+                boisson.setNumboisson(cc.getInt(NUM_COL_NUMBOISSONLANGUE));
+                Cursor ccc = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON, COL_STOCK,COL_STOCKMAX, COL_LOGOTYPE,COL_SEUIL,COL_PRIX}, COL_NUMBOISSON + " LIKE \"" + boisson.getNumboisson()+"\"", null, null, null, null);
+                if(ccc.getCount()!=0) {
+
+                    ccc.moveToFirst();
+                    boisson.setStock(ccc.getInt(NUM_COL_STOCK));
+                    boisson.setStockmax(ccc.getInt(NUM_COL_STOCKMAX));
+                    boisson.setSeuil(ccc.getInt(NUM_COL_SEUIL));
+                    boisson.setPrix(ccc.getDouble(NUM_COL_PRIX));
+                    boisson.setLogotype(ccc.getString(NUM_COL_LOGOTYPE));
+
+                    list.add(boisson);
+
+
+                }
+            }
+
+        }
+        Cursor cccc=db.query(TABLE_TAG, new String[] {COL_ID,COL_TAG}, COL_TAG+" LIKE \"" + Tag +"\"", null, null, null, null);
+
+        if(cccc.getCount()==0 && list.size()==0){return null;}
         cccc.moveToFirst();
         int i;
         for(i=0;i<cccc.getCount();i++){
@@ -107,7 +136,6 @@ public class BoissonDAO {
             cccc.moveToNext();
 
         }
-
 
         return list;
     }
