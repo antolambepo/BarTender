@@ -35,7 +35,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
     BoissonDAO bdao = null;
 
 
-    private String Langue  = MySQLite.Langue;
+    private String Langue=MySQLite.Langue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
