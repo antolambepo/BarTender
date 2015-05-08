@@ -72,7 +72,7 @@ public class Addition extends Activity{
                         }
                     }
                     else {
-                    ArrayList<AdditionClass> additions = adao.getAdditionToPay(numtable);
+                    ArrayList<Commande> additions = adao.getAdditionToPay(numtable);
                     // reprend les numCommande à payer
                     numCommande.add(additions.get(0).getNumAddition());
                     for (int i = 1; i< additions.size(); i++ ){

@@ -121,7 +121,7 @@ public class CommandeDAO{
         return i;
     }
     public double getTotalPrix (int table){
-        ArrayList<AdditionClass> additionsApayer = getAdditionToPay(table);
+        ArrayList<Commande> additionsApayer = getAdditionToPay(table);
         double prix = 0;
         for (int i = 0; i < additionsApayer.size(); i++){
             int numCommande = (additionsApayer.get(i)).getNumLignedeCommande();
@@ -147,7 +147,7 @@ public class CommandeDAO{
         ContentValues values = new ContentValues();
         c.moveToFirst();
             for (int i = 0; i < count; i++){
-                AdditionClass add = cursorToAddition(c);
+                Commande add = cursorToAddition(c);
                 add.setTypePaiement(TypePaiemennt);
                 System.out.println("curseur modifié");
                 values.put(COL_NUMCOMMANDE, add.getNumAddition());
