@@ -46,12 +46,12 @@ public class carte extends Activity {
         if(Langue.equals("Anglais")){
             recherche.setText("search");
             carteBoisson.setText("Board");
-            texte_recherche.setText("search word");
+            texte_recherche.setHint("search word");
         }
         else if(Langue.equals("Néerlandais")){
             recherche.setText("zoeken");
             carteBoisson.setText("Board");
-            texte_recherche.setText("zoekword");
+            texte_recherche.setHint("zoekword");
         }
 
     }
