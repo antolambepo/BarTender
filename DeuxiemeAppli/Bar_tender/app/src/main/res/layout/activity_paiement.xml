@@ -14,6 +14,7 @@
         android:gravity="center"
         >
         <TextView
+            android:id="@+id/nico1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Voici le montant à payer: "
@@ -26,6 +27,7 @@
             android:inputType="numberDecimal"
             />
         <TextView
+            android:id="@+id/nico2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Veillez selectionnez votre mode de payement: "

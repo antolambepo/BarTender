@@ -21,6 +21,10 @@ public class Paiement extends Activity {
     RadioButton mastercard;
     AdditionDAO adao;
     String typePaiement;
+    private TextView nico1;
+    private TextView nico2;
+    private String Langue  = MySQLite.Langue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,22 @@ public class Paiement extends Activity {
         });
 
         Payer = (Button) findViewById(R.id.calcul);
+        nico1 = (TextView)findViewById(R.id.nico1);
+        nico2 = (TextView)findViewById(R.id.nico2);
+
+        if(Langue.equals("Anglais")){
+            Payer.setText("Pay");
+            nico1.setText("Here is the amount to be paid:");
+            nico2.setText("Ensure to choose your payment method:");
+
+        }
+        else if(Langue.equals("Néerlandais")){
+            Payer.setText("Betalen");
+            nico1.setText("Hier is het bedrag te betalen :");
+            nico2.setText("Zorg ervoor dat u uw betalingsmethode te kiezen");
+        }
+
+
         Payer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +85,17 @@ public class Paiement extends Activity {
                     adao.setAdditionPayed(Addition.numCommande.get(i), typePaiement);
                 }
                 adao.close();
-                Toast.makeText(Paiement.this, "Vous avez payez ! Félicitation", Toast.LENGTH_SHORT).show();
+                if(Langue.equals("Anglais")){
+                    Toast.makeText(Paiement.this, "You have pay for! Congratulation !", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(Langue.equals("Néerlandais")){
+                    Toast.makeText(Paiement.this, "U betaalt voor! Felicitatie", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Paiement.this, "Vous avez payez ! Félicitation", Toast.LENGTH_SHORT).show();
+                }
+
                 Addition.numCommande = new ArrayList<Integer>();
                 finish();
             }
