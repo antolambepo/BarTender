@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView"
+    >
+<GridLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="4"
     android:useDefaultMargins="true" >
+
+
 
     <TextView
         android:id="@+id/boutonAjouter"
@@ -212,8 +219,11 @@
     <Button
         android:id="@+id/retourajout"
         android:layout_column="2"
-        android:layout_row="14"
+        android:layout_row="15"
         android:text="@string/retour"
         android:layout_width="159dp" />
 
+
+
 </GridLayout>
+</ScrollView>
