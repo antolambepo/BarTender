@@ -54,6 +54,9 @@ public class Main extends Activity {
             commande.setVisibility(View.INVISIBLE);
             inventaire.setVisibility(View.INVISIBLE);
         }
+        if (typeoflogin.equals("SERVEUR")) {
+            inventaire.setVisibility(View.INVISIBLE);
+        }
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
