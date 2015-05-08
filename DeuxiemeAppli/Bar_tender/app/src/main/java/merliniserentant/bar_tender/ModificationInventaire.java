@@ -58,7 +58,6 @@ public class ModificationInventaire extends Activity {
             @Override
             public void onClick(View v) {
                 saveChange();
-                System.out.println("C'est fini!");
                 finish();
             }
         });
@@ -80,7 +79,6 @@ public class ModificationInventaire extends Activity {
         String name = String.valueOf(nameEditText.getText());
 
         if (name.isEmpty()) {
-            System.out.println("Remplir le champ Boisson !");
             return null;
         }
         return name;

@@ -141,20 +141,16 @@ public class CommandeDAO{
         //ArrayList<AdditionClass> additions = getAdditionToPay(numCommande);
         Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMCOMMANDE + " LIKE \"" + numCommande + "\"" + " AND " + COL_TYPEPAIEMENT + " is null "  , null, null, null, null); //
         int count = c.getCount();
-        System.out.println("count="+ count);
         db.delete(TABLE_COMMANDE, COL_NUMCOMMANDE + " = " + numCommande + " AND " + COL_TYPEPAIEMENT + " is null " , null);
-        System.out.println("commande enlevée");
         ContentValues values = new ContentValues();
         c.moveToFirst();
             for (int i = 0; i < count; i++){
                 Commande add = cursorToAddition(c);
                 add.setTypePaiement(TypePaiemennt);
-                System.out.println("curseur modifié");
                 values.put(COL_NUMCOMMANDE, add.getNumAddition());
                 values.put(COL_NUMLIGNE, add.getNumLignedeCommande());
                 values.put(COL_TYPEPAIEMENT, add.getTypePaiement());
                 db.insert(TABLE_COMMANDE, null, values);
-                System.out.println("commande ajoutée");
                 c.moveToNext();
             }
     }

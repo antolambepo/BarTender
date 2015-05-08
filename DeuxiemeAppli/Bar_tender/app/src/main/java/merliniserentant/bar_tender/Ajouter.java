@@ -116,10 +116,8 @@ public class Ajouter extends Activity implements View.OnClickListener {
                 qté = Integer.parseInt(quantité.getText().toString());
                 tbl = Integer.parseInt(table.getText().toString());
 
-                System.out.println("-----------"+qté);
 
                 bsn = boisson.getText().toString();
-                System.out.println("-----------"+bsn);
                 if (qté == 0 || bsn == null){
                     if (Langue.equals("Néerlandais")){
                         Toast.makeText(Ajouter.this, "Error: leeg command", Toast.LENGTH_SHORT).show(); // message d'erreur
@@ -134,17 +132,13 @@ public class Ajouter extends Activity implements View.OnClickListener {
 
                 }
                 else {
-                    System.out.println("-----------"+qté);
                         Login.newBoisson.add(bsn);
-                    System.out.println("-----------"+Login.newBoisson.get(0));
 
                     Login.newQté.add(qté);
-                    System.out.println("-----------"+qté);
 
                     Login.newTable.add(tbl);
 
                 }
-                System.out.println("Se fini bien");
                 Intent intent2 = new Intent(Ajouter.this, Commander.class);
                 startActivity(intent2);
                 finish();

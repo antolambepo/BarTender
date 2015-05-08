@@ -57,7 +57,6 @@ public class RetraitBoisson extends Activity{
             @Override
             public void onClick(View v) {
                 delete();
-                System.out.println("C'est fini!");
                 finish();
             }
         });

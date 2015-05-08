@@ -60,7 +60,6 @@ public class consult_details extends Activity {
         //}
         //boissondao.close();
         ImageView picture = (ImageView)findViewById(R.id.consult_details_picture);
-        System.out.println("a"+Integer.toString(currentBoisson.getNumboisson()));
         if(currentBoisson.getNumboisson()<22) {
             picture.setImageResource(getResources().getIdentifier("a" + Integer.toString(currentBoisson.getNumboisson()), "drawable", getPackageName()));
         }
