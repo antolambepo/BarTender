@@ -68,7 +68,7 @@ public class AjoutBoisson extends Activity{
             }
         });
 
-        appliquer.setOnClickListener(new View.OnClickListener() {
+        breels6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 save();
