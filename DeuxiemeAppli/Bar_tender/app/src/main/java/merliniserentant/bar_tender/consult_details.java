@@ -39,12 +39,12 @@ public class consult_details extends Activity {
 
         String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
-            nomBoisson.setText("Name of the beverage");
-            detailsDescription.setText("Description");
+            nomBoisson.setText("Name of the beverage : ");
+            detailsDescription.setText("Description : ");
         }
         else if(Langue.equals("Néerlandais")){
-            nomBoisson.setText("Name van drank");
-            detailsDescription.setText("Beschrijving");
+            nomBoisson.setText("Name van drank : ");
+            detailsDescription.setText("Beschrijving : ");
         }
 
 
