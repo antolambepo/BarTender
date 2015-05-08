@@ -20,6 +20,8 @@ public class AjoutBoisson extends Activity{
     private Button appliquer;
     private Button retour;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

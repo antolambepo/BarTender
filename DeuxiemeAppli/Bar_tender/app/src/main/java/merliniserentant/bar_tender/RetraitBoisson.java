@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Alice on 07-05-15.
@@ -16,6 +17,10 @@ public class RetraitBoisson extends Activity{
     private Button retirer;
     private Button retour;
 
+    private TextView textRetrait=null;
+    private TextView textBoisson = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +29,22 @@ public class RetraitBoisson extends Activity{
         retour = (Button) findViewById(R.id.returnbutton);
         retirer = (Button) findViewById(R.id.removebutton);
 
+        textRetrait = (TextView) findViewById(R.id.retrait);
+        textBoisson = (TextView) findViewById(R.id.boisson);
+
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            textRetrait.setText("Removal");
+            textBoisson.setText("Drink");
+            retour.setText("Return");
+            retirer.setText("Remove");
+        }
+        else if(Langue.equals("Néerlandais")){
+            textRetrait.setText("Verwijdering");
+            textBoisson.setText("Drank");
+            retour.setText("Terug");
+            retirer.setText("verwijderen");
+        }
 
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
