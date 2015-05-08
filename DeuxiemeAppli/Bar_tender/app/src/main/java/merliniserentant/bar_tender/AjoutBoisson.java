@@ -19,7 +19,12 @@ public class AjoutBoisson extends Activity{
 
     private Button appliquer;
     private Button retour;
-
+    private Button breels6;
+    private TextView breels1;
+    private TextView breels2;
+    private TextView breels3;
+    private TextView breels4;
+    private TextView breels5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +32,30 @@ public class AjoutBoisson extends Activity{
 
         retour = (Button) findViewById(R.id.retourajout);
         appliquer = (Button) findViewById(R.id.appajout);
+        breels6 = (Button) findViewById(R.id.breels6);
+        breels1=(TextView) findViewById(R.id.breels1);
+        breels2=(TextView) findViewById(R.id.breels2);
+        breels3=(TextView) findViewById(R.id.breels3);
+        breels4=(TextView) findViewById(R.id.breels4);
+        breels5=(TextView) findViewById(R.id.breels5);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            breels1.setText("Logotype");
+            breels2.setText("Stock");
+            breels3.setText("Maximum stock");
+            breels4.setText("threshold");
+            breels5.setText("Price");
+            breels6.setText("Toepassen");
+
+        }
+        else if(Langue.equals("Néerlandais")){
+            breels1.setText("Logotype");
+            breels2.setText("Stock");
+            breels3.setText("Maximale Stock");
+            breels4.setText("Drempel");
+            breels5.setText("Prijs");
+            breels6.setText("Apply");
+        }
 
 
         retour.setOnClickListener(new View.OnClickListener() {
