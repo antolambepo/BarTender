@@ -99,7 +99,7 @@ public class LigneDeCommandeDAO {
             return lignedecommande;
         }
     // crée une additionClass à partir d'un cursor
-    public AdditionClass cursorToAddition (Cursor c){
+    public Commande cursorToAddition (Cursor c){
         //si aucun élément n'a été retourné dans la requête, on renvoie null
         if (c.getCount() == 0)
             return null;
@@ -107,7 +107,7 @@ public class LigneDeCommandeDAO {
         //Sinon on se place sur le premier élément
         c.moveToFirst();
         //on créée un addition vide
-        AdditionClass addition = new AdditionClass(0, 0, null);
+        Commande addition = new Commande(0, 0, null);
         // on lui affecte les infos du cursor
         addition.setNumAddition(c.getInt(NUM_COL_NUMADDITION));
         addition.setNumLignedeCommande(c.getInt(NUM_COL_NUMLIGNECOMMANDE));

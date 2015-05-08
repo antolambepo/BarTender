@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Roselien on 03/05/15.
  */
-public class AdditionDAO {
+public class CommandeDAO{
 
     public LigneDeCommandeDAO ldao;
     public BoissonDAO bdao;
@@ -29,7 +29,7 @@ public class AdditionDAO {
     private SQLiteDatabase db;
 
     // Constructeur
-    public AdditionDAO(Context context) {
+    public CommandeDAO(Context context) {
         maBaseSQLite = new MySQLite(context);
         ldao = new LigneDeCommandeDAO(context);
         bdao = new BoissonDAO(context);
@@ -59,7 +59,7 @@ public class AdditionDAO {
     }
 
     // crée une additionClass à partir d'un cursor
-    public AdditionClass cursorToAddition (Cursor c){
+    public Commande cursorToAddition (Cursor c){
         //si aucun élément n'a été retourné dans la requête, on renvoie null
         if (c.getCount() == 0)
             return null;
@@ -67,7 +67,7 @@ public class AdditionDAO {
         //Sinon on se place sur le premier élément
         c.moveToFirst();
         //on créée un addition vide
-        AdditionClass addition = new AdditionClass(0, 0, null);
+        Commande addition = new Commande(0, 0, null);
         // on lui affecte les infos du cursor
         addition.setNumAddition(c.getInt(NUM_COL_NUMCOMMANDE));
         addition.setNumLignedeCommande(c.getInt(NUM_COL_NUMLIGNE));
@@ -75,7 +75,7 @@ public class AdditionDAO {
         return addition;
     }
 
-    public void insertCommande (AdditionClass add){
+    public void insertCommande (Commande add){
         ContentValues values = new ContentValues();
         values.put(COL_NUMCOMMANDE, add.getNumAddition());
         values.put(COL_NUMLIGNE, add.getNumLignedeCommande());
@@ -83,7 +83,7 @@ public class AdditionDAO {
         db.insert(TABLE_COMMANDE, null, values);
     }
     // recherche la commande avec le numéro de ligne de commande
-    public AdditionClass getCommandeWithNumLigne(int numLigne){
+    public Commande getCommandeWithNumLigne(int numLigne){
         Cursor c = db.query(TABLE_COMMANDE, new String[]{COL_NUMCOMMANDE, COL_NUMLIGNE, COL_TYPEPAIEMENT}, COL_NUMLIGNE + " LIKE \"" + numLigne +"\"" , null, null, null, null);
         int count = c.getCount();
         if (count == 0){
@@ -93,14 +93,14 @@ public class AdditionDAO {
     }
 
     // ne retient que les commandes non payées (où le payement est null)
-    public ArrayList<AdditionClass> getAdditionToPay(int table){
+    public ArrayList<Commande> getAdditionToPay(int table){
         ldao.open();
         int[] numlignes = ldao.getNumLignedeCommandeWithTable(table);
         ldao.close();
         int count = numlignes.length;
-        ArrayList<AdditionClass> additionsApayer = new ArrayList<AdditionClass>();
+        ArrayList<Commande> additionsApayer = new ArrayList<Commande>();
         for (int i = 0; i < count; i++){
-            AdditionClass add = getCommandeWithNumLigne(numlignes[i]);
+            Commande add = getCommandeWithNumLigne(numlignes[i]);
             System.out.println("ici" + add.getNumAddition());
             if (add.getTypePaiement() == null){
                 additionsApayer.add(add);
