@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Alice on 07-05-15.
@@ -31,7 +32,6 @@ public class AjoutBoisson extends Activity{
         setContentView(R.layout.ajout_boisson);
 
         retour = (Button) findViewById(R.id.retourajout);
-        appliquer = (Button) findViewById(R.id.appajout);
         breels6 = (Button) findViewById(R.id.breels6);
         breels1=(TextView) findViewById(R.id.breels1);
         breels2=(TextView) findViewById(R.id.breels2);
