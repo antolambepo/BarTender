@@ -26,6 +26,7 @@ public class Addition extends Activity{
     LigneDeCommandeDAO ldao;
     private TextView tablelangue;
     private String Langue;
+    private TextView textCommande;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Addition extends Activity{
         retour = (Button) findViewById(R.id.annulerAddition);
         table = (EditText) findViewById(R.id.tableAddition);
         tablelangue=(TextView) findViewById(R.id.table);
+        textCommande=(TextView) findViewById(R.id.textCommande);
         //Problème ici parce que tu demandes direct le numéro de la table alors que la personne a pas eu le temps de l'encoder
         mPasserelle = (Button) findViewById(R.id.premier);
         Langue  = MySQLite.Langue;
@@ -44,11 +46,13 @@ public class Addition extends Activity{
             mPasserelle.setText("Betaling");
             tablelangue.setText("Tafel");
             retour.setText("Terug");
+            textCommande.setText("toevoeging");
         }
         if(Langue.equals("Anglais")){
             mPasserelle.setText("Payment");
             tablelangue.setText("Table");
             retour.setText("Return");
+            textCommande.setText("bill");
         }
 
 
