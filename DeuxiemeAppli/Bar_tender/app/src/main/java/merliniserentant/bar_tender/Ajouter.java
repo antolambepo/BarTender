@@ -35,6 +35,7 @@ public class Ajouter extends Activity implements View.OnClickListener {
     BoissonDAO bdao = null;
 
 
+    private String Langue=MySQLite.Langue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,7 +49,6 @@ public class Ajouter extends Activity implements View.OnClickListener {
         ajouter = (Button) findViewById(R.id.ajouterBoisson);
         annuler = (Button) findViewById(R.id.annuler);
 
-        String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
             tableTexte.setText("table");
             boissonTexte.setText("drink");
@@ -87,7 +87,15 @@ public class Ajouter extends Activity implements View.OnClickListener {
                 bsn = (String) parent.getItemAtPosition(position);
             }
             public void onNothingSelected(AdapterView<?> parent){
-                Toast.makeText(Ajouter.this, "Sélectionner boisson", Toast.LENGTH_SHORT).show();
+                if (Langue.equals("Néerlandais")){
+                    Toast.makeText(Ajouter.this, "Selecteer drank", Toast.LENGTH_SHORT).show();
+                }
+                else if (Langue.equals("Anglais")){
+                    Toast.makeText(Ajouter.this, "Select beverage", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Ajouter.this, "Sélectionner boisson", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         
@@ -113,7 +121,17 @@ public class Ajouter extends Activity implements View.OnClickListener {
                 bsn = boisson.getText().toString();
                 System.out.println("-----------"+bsn);
                 if (qté == 0 || bsn == null){
-                    Toast.makeText(Ajouter.this, "Erreur", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    if (Langue.equals("Néerlandais")){
+                        Toast.makeText(Ajouter.this, "Error: leeg command", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    }
+                    else if (Langue.equals("Anglais")){
+                        Toast.makeText(Ajouter.this, "Error: empty command", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    }
+                    else {
+                        Toast.makeText(Ajouter.this, "Erreur: commande vide", Toast.LENGTH_SHORT).show(); // message d'erreur
+                    }
+
+
                 }
                 else {
                     System.out.println("-----------"+qté);

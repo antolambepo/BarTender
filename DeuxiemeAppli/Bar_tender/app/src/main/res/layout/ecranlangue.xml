@@ -4,12 +4,17 @@
     android:layout_height="match_parent"
     >
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bar Tender"
+        android:id="@+id/titleapp"/>
+    <TextView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose a language please"
         android:gravity="center"
-        android:textSize="25dp"/>
+        android:textSize="17dp"/>
     <Button
         android:layout_marginTop="50dp"
         android:id="@+id/Francais"

@@ -43,7 +43,7 @@ public class Consult extends Activity{
         listnom = new ArrayList<String>();
         boissondao.open();
         int i;
-        for(i=0;i<21;i++) {
+        for(i=0;i<50;i++) {
             Boisson myboisson = boissondao.getBoissonwithNumboisson(i);
             if(myboisson!=null){listboisson.add(myboisson);
                 listnom.add(myboisson.getNom());
@@ -68,7 +68,6 @@ public class Consult extends Activity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent myintent = new Intent(Consult.this, consult_details.class);
-                System.out.println("Coucou "+listboisson.get(position).getNumboisson());
                 myintent.putExtra("numBoisson", listboisson.get(position).getNumboisson());
                 startActivity(myintent);
             }
