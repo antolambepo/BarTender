@@ -14,7 +14,7 @@
 
     //Modification datastock
     <string name="modif">Modification du stock</string>
-    <string name="nomboisson">Boisson :</string>
+    <string name="nomboisson">Boisson </string>
     <string name="stock">Stock :</string>
     <string name="seuil">Seuil :</string>
     <string name="stockmax">Stock max :</string>

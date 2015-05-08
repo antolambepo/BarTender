@@ -278,11 +278,17 @@ public class BoissonDAO {
     public String createID(int n, String langue){
         return Integer.toString(n)+langue;
     }
-    public boolean create(String name, String description, String logotype, double price, int stock, int stockmax, int seuil) {
+    public boolean create(String nom, String name, String naam, String description, String descript, String desc, String logotype, double price, int stock, int stockmax, int seuil) {
 
         int numboisson = createNum();
-        String langue = this.getLangue();
-        String id = this.createID(numboisson, langue);
+        String langue = "Français";
+        String language = "Anglais";
+        String lan = "Néerlandais";
+
+        String idFR = this.createID(numboisson, "FR");
+        String idNL = this.createID(numboisson, "Nl");
+        String idEN = this.createID(numboisson, "EN");
+
         // Définition des valeurs pour le nouvel élément dans la table BOISSON
       
         ContentValues cv = new ContentValues();
@@ -301,10 +307,10 @@ public class BoissonDAO {
         }
         cv.clear();
 
-        // Définition des valeurs pour le nouvel élément dans la table ID.
-        cv.put(COL_NOMBOISSON,name);
+        // Définition des valeurs pour le nouvel élément dans la table ID en francais
+        cv.put(COL_NOMBOISSON,nom);
         cv.put(COL_DESCRIPTION,description);
-        cv.put(COL_ID, id);
+        cv.put(COL_ID, idFR);
 
         //Ajout à la base de données
         int row1 = (int) db.insert(TABLE_IDs, null, cv);
@@ -314,51 +320,149 @@ public class BoissonDAO {
         }
 
         cv.clear();
-        //Definition des valeurs pour le nouvel element dans la table LANGUE
+
+        // Définition des valeurs pour le nouvel élément dans la table ID en en anglais
+        cv.put(COL_NOMBOISSON,name);
+        cv.put(COL_DESCRIPTION,descript);
+        cv.put(COL_ID, idEN);
+
+        //Ajout à la base de données
+        int row2 = (int) db.insert(TABLE_IDs, null, cv);
+        if (row2 == -1){
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row1)});
+            return false;
+        }
+        cv.clear();
+        // Définition des valeurs pour le nouvel élément dans la table ID en neerlandais
+        cv.put(COL_NOMBOISSON,naam);
+        cv.put(COL_DESCRIPTION,desc);
+        cv.put(COL_ID, idNL);
+
+        //Ajout à la base de données
+        int row3 = (int) db.insert(TABLE_IDs, null, cv);
+        if (row3 == -1){
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row1)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row2)});
+            return false;
+        }
+
+        cv.clear();
+
+        //Definition des valeurs pour le nouvel element dans la table LANGUE en fr
         cv.put(COL_NUMBOISSON, numboisson);
-        cv.put(COL_ID, id);
+        cv.put(COL_ID, idFR);
         cv.put(COL_LANGAGE, langue);
 
         //Ajout à la base de données
-        int row2 = (int) db.insert(TABLE_LANGUE, null, cv);
+        int row4 = (int) db.insert(TABLE_LANGUE, null, cv);
 
-        if (row2 == -1){
+        if (row4 == -1){
             //Supprimme les lignes qu'on a cree avant
             db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
-            db.delete(TABLE_IDs, COL_ROWID + " = ?", new String[]{String.valueOf(row1)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row1)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row2)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row3)});
             return false;
         }
+
+        cv.clear();
+
+        //Definition des valeurs pour le nouvel element dans la table LANGUE en anglais
+        cv.put(COL_NUMBOISSON, numboisson);
+        cv.put(COL_ID, idEN);
+        cv.put(COL_LANGAGE, language);
+
+        //Ajout à la base de données
+        int row5 = (int) db.insert(TABLE_LANGUE, null, cv);
+
+        if (row5 == -1){
+            //Supprimme les lignes qu'on a cree avant
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row1)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row2)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row3)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row4)});
+            return false;
+        }
+        cv.clear();
+
+        //Definition des valeurs pour le nouvel element dans la table LANGUE en anglais
+        cv.put(COL_NUMBOISSON, numboisson);
+        cv.put(COL_ID, idNL);
+        cv.put(COL_LANGAGE, lan);
+
+        //Ajout à la base de données
+        int row6 = (int) db.insert(TABLE_LANGUE, null, cv);
+
+        if (row6 == -1){
+            //Supprimme les lignes qu'on a cree avant
+            db.delete(TABLE_BOISSON, COL_ROWID + " = ?", new String[]{String.valueOf(row)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row1)});
+            db.delete(TABLE_IDs, COL_ROWID + "= ?", new String[] {String.valueOf(row2)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row3)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row4)});
+            db.delete(TABLE_LANGUE, COL_ROWID + "= ?", new String[] {String.valueOf(row5)});
+            return false;
+        }
+
         return true;
     }
 
     //Retire une boisson de la base de donnée en fonction de son numero
     public void remove(int numboisson) {
+
+        db.delete(TABLE_BOISSON, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
+        db.delete(TABLE_LANGUE, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
         Cursor c = db.query(TABLE_LANGUE, new String[] {COL_ID}, COL_NUMBOISSON + "=" + numboisson, null, null, null, null);
         if(c.getCount()==0)
             return;
+
         c.moveToFirst();
-        String id = c.getString(NUM_COL_ID);
-        db.delete(TABLE_BOISSON, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
-        db.delete(TABLE_LANGUE, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
-        db.delete(TABLE_IDs, COL_ID + "= ?", new String[] {id});
+
+        while(!c.isAfterLast()) {
+            String id = c.getString(NUM_COL_ID);
+            db.delete(TABLE_IDs, COL_ID + "= ?", new String[]{id});
+            c.moveToNext();
+        }
     }
 
     //enlève la quantité de la ligne de commande au stock de la boisson
-    public void downStock (int numboisson, int quantité){
+    public void downStock(int numboisson, int quantité){
         Boisson bsn = getBoissonwithNumboisson(numboisson);
         int stock = bsn.getStock();
         stock = stock - quantité;
         String nom = bsn.getNom();
         String desc = bsn.getDescription();
         String logo = bsn.getLogotype();
-        Double prix = bsn.getPrix();
+        double prix = bsn.getPrix();
         int stockmax = bsn.getStockmax();
         int seuil = bsn.getSeuil();
-        remove (numboisson);
-        create(nom, desc, logo, prix, stock, stockmax, seuil);
+
+        db.delete(TABLE_BOISSON, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(numboisson)});
+
+        ContentValues cv = new ContentValues();
+        cv.put(COL_NUMBOISSON, numboisson);
+        cv.put(COL_LOGOTYPE, logo);
+        cv.put(COL_STOCK, stock);
+        cv.put(COL_STOCKMAX,stockmax);
+        cv.put(COL_SEUIL, seuil);
+        cv.put(COL_PRIX, prix);
+
+        // Ajout à la base de données
+        int row = (int) db.insert(TABLE_BOISSON, null, cv);
+
+        if (row == -1) {
+            return;
+        }
+        cv.clear();
+
+
+
     }
 
-    public void upStock (String nomboisson, int quantité){
+    public void upStock(String nomboisson, int quantité){
         Boisson bsn = getBoissonwithName(nomboisson);
         int stock = bsn.getStock();
         stock = stock + quantité;
@@ -368,7 +472,24 @@ public class BoissonDAO {
         Double prix = bsn.getPrix();
         int stockmax = bsn.getStockmax();
         int seuil = bsn.getSeuil();
-        remove (num);
-        create(nomboisson, desc, logo, prix, stock, stockmax, seuil);
+
+        db.delete(TABLE_BOISSON, COL_NUMBOISSON + "= ?", new String[] {String.valueOf(num)});
+
+        ContentValues cv = new ContentValues();
+        cv.put(COL_NUMBOISSON, num);
+        cv.put(COL_LOGOTYPE, logo);
+        cv.put(COL_STOCK, stock);
+        cv.put(COL_STOCKMAX,stockmax);
+        cv.put(COL_SEUIL, seuil);
+        cv.put(COL_PRIX, prix);
+
+        // Ajout à la base de données
+        int row = (int) db.insert(TABLE_BOISSON, null, cv);
+
+        if (row == -1) {
+            return;
+        }
+        cv.clear();
+
     }
 }

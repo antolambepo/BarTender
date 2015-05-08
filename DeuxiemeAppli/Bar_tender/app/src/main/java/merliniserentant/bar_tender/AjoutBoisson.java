@@ -54,13 +54,22 @@ public class AjoutBoisson extends Activity{
 
         BoissonDAO boissondao = new BoissonDAO(this);
         boissondao.open();
-        String name = getName();
-        String description = getDescription();
+        String nom = getNameFr();
+        String name = getNameEn();
+        String naam = getNameNl();
+
+        String description = getDescriptionFr();
+        String descrip = getDescriptionEn();
+        String desc = getDescriptionNl();
+
+        String logo = getLogo();
+
         int stock = getStock();
         int stockmax = getStockMax();
         int seuil = getSeuil();
         double price = getPrice();
-        if(boissondao.create(name, description, "alcool", price, stock, stockmax, seuil)){
+
+        if(boissondao.create(nom, name,naam,description, descrip, desc, logo, price, stock, stockmax, seuil)){
             //CollectorApp.notifyLong(R.string.boisson_ajoutée);
             System.out.println("Ca sors de save");
             boissondao.close();
@@ -76,7 +85,7 @@ public class AjoutBoisson extends Activity{
 
 
 
-    private String getName() {
+    private String getNameFr() {
         /* Récupération du nom  */
         EditText nameEditText = (EditText) findViewById(R.id.nameboisson);
         String name = String.valueOf(nameEditText.getText());
@@ -87,7 +96,30 @@ public class AjoutBoisson extends Activity{
         }
         return name;
     }
-    private String getDescription() {
+    private String getNameEn() {
+        /* Récupération du nom  */
+        EditText nameEditText = (EditText) findViewById(R.id.nomboisson);
+        String name = String.valueOf(nameEditText.getText());
+
+        if (name.isEmpty()) {
+            CollectorApp.notifyLong(R.string.Remplir_champs_boisson);
+            return null;
+        }
+        return name;
+    }
+    private String getNameNl() {
+        /* Récupération du nom  */
+        EditText nameEditText = (EditText) findViewById(R.id.naamboisson);
+        String name = String.valueOf(nameEditText.getText());
+
+        if (name.isEmpty()) {
+            CollectorApp.notifyLong(R.string.Remplir_champs_boisson);
+            return null;
+        }
+        return name;
+    }
+
+    private String getDescriptionFr() {
         /* Récupération de la description */
         EditText descriptionEditText = (EditText) findViewById(R.id.descriptionboisson);
         String description = String.valueOf(descriptionEditText.getText());
@@ -96,6 +128,38 @@ public class AjoutBoisson extends Activity{
         }
         return description ;
     }
+
+    private String getDescriptionEn() {
+        /* Récupération de la description */
+        EditText descriptionEditText = (EditText) findViewById(R.id.descriptboisson);
+        String description = String.valueOf(descriptionEditText.getText());
+        if(description.isEmpty()){
+            return null;
+        }
+        return description ;
+    }
+
+    private String getDescriptionNl() {
+        /* Récupération de la description */
+        EditText descriptionEditText = (EditText) findViewById(R.id.descboisson);
+        String description = String.valueOf(descriptionEditText.getText());
+        if(description.isEmpty()){
+            return null;
+        }
+        return description ;
+    }
+
+    private String getLogo() {
+        /* Récupération de la description */
+        EditText logoEditText = (EditText) findViewById(R.id.logotypeboisson);
+        String logo = String.valueOf(logoEditText.getText());
+        if(logo.isEmpty()){
+            return null;
+        }
+        return logo ;
+    }
+
+
     private int getStock() {
         /* Récupération du stock */
         EditText stockEditText = (EditText) findViewById(R.id.stockboisson);
