@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Alice on 07-05-15.
@@ -18,7 +19,7 @@ import android.widget.TextView;
  */
 public class AjoutBoisson extends Activity{
 
-    private Button appliquer;
+
     private Button retour;
 
     private Button breels6;
@@ -41,7 +42,7 @@ public class AjoutBoisson extends Activity{
         breels3=(TextView) findViewById(R.id.breels3);
         breels4=(TextView) findViewById(R.id.breels4);
         breels5=(TextView) findViewById(R.id.breels5);
-        String Langue  = MySQLite.Langue;
+        final String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
             breels1.setText("Logotype");
             breels2.setText("Stock");
@@ -71,7 +72,26 @@ public class AjoutBoisson extends Activity{
         breels6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+                boolean fait=save();
+                if(Langue.equals("Anglais")) {
+                    if(fait)
+                        Toast.makeText(AjoutBoisson.this, "Your drink has been added !", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AjoutBoisson.this, "An error occured!", Toast.LENGTH_SHORT).show();
+                }
+                else if(Langue.equals("Néerlandais")) {
+                    if(fait)
+                        Toast.makeText(AjoutBoisson.this, "Uw drank was toegevoegd !", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AjoutBoisson.this, "Een fout kwam voor!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if(fait)
+                        Toast.makeText(AjoutBoisson.this, "Votre boisson a été ajoutée !", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(AjoutBoisson.this, "Une erreur est survenue !", Toast.LENGTH_SHORT).show();
+
+                }
                 finish();
             }
         });
@@ -101,12 +121,12 @@ public class AjoutBoisson extends Activity{
         double price = getPrice();
 
         if(boissondao.create(nom, name,naam,description, descrip, desc, logo, price, stock, stockmax, seuil)){
-            //CollectorApp.notifyLong(R.string.boisson_ajoutée);
+
             boissondao.close();
             return true;
         }
         else {
-           // CollectorApp.notifyLong(R.string.boisson_erreur);
+            CollectorApp.notifyLong(R.string.boisson_erreur);
             boissondao.close();
             return false;
         }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Alice on 07-05-15.
@@ -32,7 +33,7 @@ public class RetraitBoisson extends Activity{
         textRetrait = (TextView) findViewById(R.id.retrait);
         textBoisson = (TextView) findViewById(R.id.boisson);
 
-        String Langue  = MySQLite.Langue;
+        final String Langue  = MySQLite.Langue;
         if(Langue.equals("Anglais")){
             textRetrait.setText("Removal");
             textBoisson.setText("Drink");
@@ -57,6 +58,19 @@ public class RetraitBoisson extends Activity{
             @Override
             public void onClick(View v) {
                 delete();
+                if(Langue.equals("Anglais")) {
+
+                        Toast.makeText(RetraitBoisson.this, "Your drink has been added !", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(Langue.equals("Néerlandais")) {
+
+                    Toast.makeText(RetraitBoisson.this, "Uw drank was verweden !", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                        Toast.makeText(RetraitBoisson.this, "Votre boisson a été retirée !", Toast.LENGTH_SHORT).show();
+
                 finish();
             }
         });
@@ -71,6 +85,7 @@ public class RetraitBoisson extends Activity{
         Boisson toremove = boissondao.getBoissonwithName(nom);
         int num = toremove.getNumboisson();
         boissondao.remove(num);
+
     }
 
     private String getName() {
@@ -79,7 +94,6 @@ public class RetraitBoisson extends Activity{
         String name = String.valueOf(nameEditText.getText());
 
         if (name.isEmpty()) {
-            CollectorApp.notifyLong(R.string.Remplir_champs_boisson);
             return null;
         }
         return name;

@@ -34,6 +34,7 @@
 
     //Notification
     <string name="boisson_ajoutée">La boisson a été ajoutée</string>
+    <string name= "boisson_retiré">La boisson a été retirée</string>
     <string name="boisson_erreur">Une erreur est survenue</string>
     <string name="Remplir_champs_boisson">"Remplir le champ Boisson !"</string>
 
