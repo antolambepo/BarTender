@@ -88,6 +88,7 @@ public class BoissonDAO {
             c.moveToFirst();
             boisson.setDescription(c.getString(NUM_COL_DESCRIPTION));
             boisson.setNom(c.getString(NUM_COL_NOMBOISSON));
+            System.out.println("La langue ets : "+maBaseSQLite.getLangue());
             Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_ID + " LIKE \""+ c.getString(NUM_COL_ID) +"\" AND " + COL_LANGAGE+" LIKE \""+maBaseSQLite.getLangue() + "\"", null, null, null, null);
             if(cc.getCount()!=0) { // Ca devrait pas arriver! Sinon c'est que la bdd est mal remplie!
                 //Info disponible dans la table BOISSON
