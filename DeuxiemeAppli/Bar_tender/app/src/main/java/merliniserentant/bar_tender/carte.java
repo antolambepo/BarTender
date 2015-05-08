@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,10 @@ public class carte extends Activity {
         setContentView(R.layout.activity_carte);
         Date date = new Date();
         int hours = date.getHours();
-        if(hours>=1 && hours<=3){
-            TextView happyhour1 = (TextView)findViewById(R.id.happyhour1);
-            happyhour1.setText("HAPPY HOURS!");
+        if(hours>=15 && hours<=17){
+            ImageView happyhour1 = (ImageView)findViewById(R.id.happyhour1);
+            happyhour1.setImageResource(getResources().getIdentifier("happyhour", "drawable", getPackageName()));
+
             TextView happyhour2 = (TextView)findViewById(R.id.happyhour2);
             happyhour2.setText("Bières et alcool à moitié prix.");
 

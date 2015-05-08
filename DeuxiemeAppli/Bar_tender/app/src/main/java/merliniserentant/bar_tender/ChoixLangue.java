@@ -22,8 +22,7 @@ public class ChoixLangue extends Activity {
     public void onCreate(Bundle savedInstancedState){
         super.onCreate(savedInstancedState);
 
-        ImageView image  = (ImageView)findViewById(R.id.imagebar);
-        image.setImageResource(getResources().getIdentifier("bartender", "drawable", getPackageName()));
+
 
         setContentView(R.layout.ecranlangue);
         francais = (Button) findViewById(R.id.Francais);
