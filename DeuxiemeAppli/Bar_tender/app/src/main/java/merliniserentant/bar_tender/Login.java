@@ -25,6 +25,7 @@ public class Login extends Activity {
     private TextView textmdp=null;
     private TextView textpseudo = null;
     private TextView textconnection=null;
+    private TextView textnomprenom=null;
     public static List<String> newBoisson;
     public static List<Integer> newQté;
     public static List<Integer> newTable;
@@ -51,11 +52,13 @@ public class Login extends Activity {
         textmdp = (TextView) findViewById(R.id.mdp);
         textpseudo = (TextView)findViewById(R.id.pseudo);
         textconnection = (TextView)findViewById(R.id.connection);
+        textnomprenom = (TextView) findViewById(R.id.nomprenom);
 
         if(Langue.equals("Anglais")){
             textpseudo.setText("Username");
             textmdp.setText("Password");
             textconnection.setText("Login");
+            textnomprenom.setText("Name and firstname");
             test.setText("Login");
             creer.setText("Create");
             retourlangue.setText("Chose another language");
@@ -64,6 +67,7 @@ public class Login extends Activity {
             textpseudo.setText("gebruikersnaam");
             textmdp.setText("wachtwoord");
             textconnection.setText("Log In");
+            textnomprenom.setText("Naam en voornaam");
             test.setText("Log In");
             creer.setText("Creëren");
             retourlangue.setText("Kies een andere taal");

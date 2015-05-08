@@ -36,12 +36,14 @@ public class ModificationInventaire extends Activity {
         if(Langue.equals("Anglais")){
             textmodification.setText("Change");
             textboisson.setText("Drink");
+            textquantite.setText("Quantity");
             retour.setText("Return");
             appliquer.setText("To Apply");
         }
         else if(Langue.equals("Néerlandais")){
             textmodification.setText("Wijziging");
             textboisson.setText("Drank");
+            textquantite.setText("Hoeveelheid");
             retour.setText("Terug");
             appliquer.setText("Toepassen");
         }
