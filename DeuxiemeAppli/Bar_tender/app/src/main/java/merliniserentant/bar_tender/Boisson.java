@@ -20,7 +20,7 @@ public class Boisson {
     private String Nom;
     private String LOGOTYPE;
     private String Description;
-
+    private String Langue=MySQLite.Langue;
     public Boisson(){}
 
     public Boisson(int Stockmax,int Numboisson, int Stock,double Prix, int Seuil, String Nom, String LOGOTYPE, String Desciption){
@@ -110,8 +110,16 @@ public class Boisson {
     public void downStock(int down) { setStock( getStock()- down);} //Attention traiter cas où down>stock.
 
     public String alertStock(String boisson) {
+        if (Langue.equals("Néerlandais")){
+            return "Drankje"+ boisson +" is onvoldoende. Vergeet niet om de voorraad aan te vullen.";
+        }
+        else if (Langue.equals("Anglais")){
+            return " The drink "+ boisson +" is insufficient. Remember to refill the stock.";
+        }
+        else {
 
-        return " La boisson "+ boisson +" est en quantité insuffisante. Pensez à réapprovisionner le stock.";
+            return " La boisson " + boisson + " est en quantité insuffisante. Pensez à réapprovisionner le stock.";
+        }
 
     }
 
