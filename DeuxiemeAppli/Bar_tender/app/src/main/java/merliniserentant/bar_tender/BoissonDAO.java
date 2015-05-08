@@ -136,11 +136,12 @@ public class BoissonDAO {
 
         //il faut charger le reste des données
 
-        System.out.println("Voila ce qui est mis" + c.getInt(NUM_COL_NUMBOISSON) );
-
+        System.out.println("Voila ce qui est mis " + c.getInt(NUM_COL_NUMBOISSON) );
+        System.out.println("Voila la langue "+ maBaseSQLite.getLangue());
         Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_LANGAGE + " LIKE \"" + maBaseSQLite.getLangue() +"\" AND " + COL_NUMBOISSON + " LIKE \""+ boisson.getNumboisson() +"\"", null, null, null, null);
 
         if(cc.getCount() ==0){
+            System.out.println("Sort en 1");
 
 
             return null;}
@@ -149,6 +150,7 @@ public class BoissonDAO {
         System.out.println(cc.getString(NUM_COL_IDLANGUE));
         Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION}, COL_ID + " LIKE \"" + cc.getString(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
         if(ccc.getCount() ==0){
+            System.out.println("Sort en 2");
 
             return null;
         }

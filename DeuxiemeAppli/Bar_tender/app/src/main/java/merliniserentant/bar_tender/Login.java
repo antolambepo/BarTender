@@ -86,7 +86,7 @@ public class Login extends Activity {
     private View.OnClickListener creerlistener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(login.getText().toString().equals("")||mdp.getText().toString().equals("")) {
+
                 if (!nom.getText().toString().equals("")) {
                     Utilisateur newlogin = new Utilisateur(login.getText().toString(), mdp.getText().toString(), "CLIENT", "Nom par défaut");
                     //A changer!!!!!!!!!!!!!!!!!!!!!
@@ -137,25 +137,8 @@ public class Login extends Activity {
 
                 }
             }
-            else{
-                if(Langue.equals("Anglais")){
-                    Toast.makeText(Login.this, "The username or password can not be null", Toast.LENGTH_SHORT).show();
 
-                }
-                else if(Langue.equals("Néerlandais")){
-                    Toast.makeText(Login.this, "De gebruikersnaam of password kan niet leeg zijn", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    Toast.makeText(Login.this, "Le pseudo ou mot de passe ne peuvent pas être nuls", Toast.LENGTH_SHORT).show();
-
-                }
-
-
-
-            }
-
-        }
+        
     };
     private View.OnClickListener testlistener = new View.OnClickListener() {
         @Override
