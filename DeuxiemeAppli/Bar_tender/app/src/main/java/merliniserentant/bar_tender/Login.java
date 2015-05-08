@@ -71,7 +71,7 @@ public class Login extends Activity {
         test.setOnClickListener(testlistener);
         creer.setOnClickListener(creerlistener);
         retourlangue.setOnClickListener(retourlanguelistener);
-        nom = (EditText)findViewById(R.id.nomutilisateur);
+        nom = (EditText) findViewById (R.id.input3);
 
 
     }

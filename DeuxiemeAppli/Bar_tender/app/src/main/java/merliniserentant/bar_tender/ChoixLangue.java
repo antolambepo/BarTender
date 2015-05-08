@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,11 +17,13 @@ public class ChoixLangue extends Activity {
     private Button english = null;
     private Button neederlands =null;
     private UtilisateurDAO utilisateurdao=null;
+
     @Override
     public void onCreate(Bundle savedInstancedState){
         super.onCreate(savedInstancedState);
 
-        
+        ImageView image  = (ImageView)findViewById(R.id.imagebar);
+        image.setImageResource(getResources().getIdentifier("bartender", "drawable", getPackageName()));
 
         setContentView(R.layout.ecranlangue);
         francais = (Button) findViewById(R.id.Francais);
