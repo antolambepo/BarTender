@@ -35,6 +35,24 @@ public class ChoixInventaire extends Activity {
         affichage.setOnClickListener(affichageListener);
         retour.setOnClickListener(retourListener);
         boissondao = new BoissonDAO(this);
+        String Langue  = MySQLite.Langue;
+        if(Langue.equals("Anglais")){
+            ajout.setText("Add a drink");
+            retrait.setText("Remove a drink");
+            modification.setText("Edit the stock");
+            affichage.setText("Show inventory");
+            retour.setText("Return");
+        }
+        else if(Langue.equals("Néerlandais")){
+            ajout.setText("Drankje toevoegen");
+            retrait.setText("Drankje verwijderen");
+            modification.setText("Voorraad wijzigen");
+            affichage.setText("Inventaris tonen");
+            retour.setText("Terug");
+        }
+        else{
+
+        }
 
     }
     private View.OnClickListener ajoutListener = new View.OnClickListener() {
