@@ -125,9 +125,7 @@ public class Commander extends Activity  {
                     numBsn = bdao.getBoissonwithName(bsn).getNumboisson();
 
                     qté = Login.newQté.get(0);
-                    System.out.println(qté);
                     table = Login.newTable.get(0);
-                    System.out.println(table);
 
                     // créér une nouvelle ligne de commande
                     int num = ldao.nextnumligne();

@@ -127,7 +127,6 @@ public class BoissonDAO {
         Boisson boisson = new Boisson();
         //On peut deja remplir quelque information
         boisson.setNumboisson(c.getInt(NUM_COL_NUMBOISSON));
-        System.out.println(c.getInt(NUM_COL_NUMBOISSON));
         boisson.setStock(c.getInt(NUM_COL_STOCK));
         boisson.setStockmax(c.getInt(NUM_COL_STOCKMAX));
         boisson.setSeuil(c.getInt(NUM_COL_SEUIL));
@@ -136,27 +135,21 @@ public class BoissonDAO {
 
         //il faut charger le reste des données
 
-        System.out.println("Voila ce qui est mis " + c.getInt(NUM_COL_NUMBOISSON) );
-        System.out.println("Voila la langue "+ maBaseSQLite.getLangue());
         Cursor cc = db.query(TABLE_LANGUE, new String[] {COL_LANGAGE, COL_ID,COL_NUMBOISSON}, COL_LANGAGE + " LIKE \"" + maBaseSQLite.getLangue() +"\" AND " + COL_NUMBOISSON + " LIKE \""+ boisson.getNumboisson() +"\"", null, null, null, null);
 
         if(cc.getCount() ==0){
-            System.out.println("Sort en 1");
 
 
             return null;}
 
         cc.moveToFirst();
-        System.out.println(cc.getString(NUM_COL_IDLANGUE));
         Cursor ccc = db.query(TABLE_IDs, new String[] {COL_ID, COL_NOMBOISSON,COL_DESCRIPTION}, COL_ID + " LIKE \"" + cc.getString(NUM_COL_IDLANGUE) +"\"", null, null, null, null);
         if(ccc.getCount() ==0){
-            System.out.println("Sort en 2");
 
             return null;
         }
 
         ccc.moveToFirst();
-        System.out.println(ccc.getString(NUM_COL_NOMBOISSON));
         boisson.setDescription(ccc.getString(NUM_COL_DESCRIPTION));
 
         boisson.setNom(ccc.getString(NUM_COL_NOMBOISSON));
@@ -216,7 +209,6 @@ public class BoissonDAO {
         id.moveToFirst();
 
         Cursor lang = db.query(TABLE_LANGUE, new String[]{COL_LANGAGE, COL_ID, COL_NUMBOISSON}, COL_ID + " LIKE \"" + id.getString(NUM_COL_ID) + "\"", null, null, null, null);
-        if(lang.getCount()==0){System.out.println("ici3");}
         lang.moveToFirst();
 
         Boisson retour = getBoissonwithNumboisson(lang.getInt(NUM_COL_NUMBOISSONLANGUE));
@@ -250,7 +242,6 @@ public class BoissonDAO {
      */
     public boolean isPresent(int n) {
 
-        System.out.println("Ca passe dans isPresent");
         Cursor c = db.query(TABLE_BOISSON, new String[] {COL_NUMBOISSON}, null, null, null, null, null);
         if(c.getCount()==0)
             return false;
@@ -260,7 +251,6 @@ public class BoissonDAO {
                 return true;
             c.moveToNext();
         }
-        System.out.println("Ca sors de isPresent");
         return false;
     }
 

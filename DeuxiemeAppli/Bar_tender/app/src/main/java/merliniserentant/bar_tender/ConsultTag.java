@@ -28,6 +28,7 @@ public class ConsultTag extends Activity {
     private ArrayList<Boisson> listboisson;
     private ArrayAdapter<String> adapter;
     private TextView textCommande;
+    private MyListViewAdapter2 myListViewAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -63,8 +64,10 @@ public class ConsultTag extends Activity {
             for (i = 0; i < listboisson.size(); i++) {
                 listnom.add(listboisson.get(i).getNom());
             }
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
-            listviewboisson.setAdapter(adapter);
+           // adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listnom);
+            myListViewAdapter = new MyListViewAdapter2(this, listboisson);
+
+            listviewboisson.setAdapter(myListViewAdapter);
         }
         listviewboisson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -72,7 +72,6 @@ public class AjoutBoisson extends Activity{
             @Override
             public void onClick(View v) {
                 save();
-                System.out.println("C'est fini!");
                 finish();
             }
         });
@@ -103,7 +102,6 @@ public class AjoutBoisson extends Activity{
 
         if(boissondao.create(nom, name,naam,description, descrip, desc, logo, price, stock, stockmax, seuil)){
             //CollectorApp.notifyLong(R.string.boisson_ajoutée);
-            System.out.println("Ca sors de save");
             boissondao.close();
             return true;
         }
@@ -224,7 +222,6 @@ public class AjoutBoisson extends Activity{
         EditText priceEditText = (EditText) findViewById(R.id.priceboisson);
         String price = String.valueOf(priceEditText.getText());
         if(price.isEmpty()){
-            System.out.println("Remplir le champ Prix !");
             return 0.0;
         }
         return Double.parseDouble(price);
