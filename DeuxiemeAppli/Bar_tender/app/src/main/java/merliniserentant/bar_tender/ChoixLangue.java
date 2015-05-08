@@ -20,9 +20,8 @@ public class ChoixLangue extends Activity {
     public void onCreate(Bundle savedInstancedState){
         super.onCreate(savedInstancedState);
 
+        
 
-        Typeface font = Typeface.createFromAsset(this.getAssets(), "fonts/Walkway Bold.ttf");
-        ((TextView) findViewById(R.id.titleapp)).setTypeface(font);
         setContentView(R.layout.ecranlangue);
         francais = (Button) findViewById(R.id.Francais);
         english = (Button) findViewById(R.id.English);
