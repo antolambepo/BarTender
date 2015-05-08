@@ -85,25 +85,31 @@ public class Login extends Activity {
     private View.OnClickListener creerlistener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(!nom.getText().equals("")) {
-                Utilisateur newlogin = new Utilisateur(login.getText().toString(), mdp.getText().toString(), "CLIENT", "Nom par défaut");
-                //A changer!!!!!!!!!!!!!!!!!!!!!
+            if(login.getText().toString().equals("")||mdp.getText().toString().equals("")) {
+                if (!nom.getText().toString().equals("")) {
+                    Utilisateur newlogin = new Utilisateur(login.getText().toString(), mdp.getText().toString(), "CLIENT", "Nom par défaut");
+                    //A changer!!!!!!!!!!!!!!!!!!!!!
 
 
-                utilisateurdao.open();
-                Utilisateur logintest = utilisateurdao.getLoginWithlogin(login.getText().toString());
-                if (logintest != null) {
-                    login.getText().clear();
-                    Toast.makeText(Login.this, "Pseudo: " + newlogin.getlogin() + " déjà utilisé. Veuillez en choisir un autre svp." + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                    utilisateurdao.open();
+                    Utilisateur logintest = utilisateurdao.getLoginWithlogin(login.getText().toString());
+                    if (logintest != null) {
+                        login.getText().clear();
+                        Toast.makeText(Login.this, "Pseudo: " + newlogin.getlogin() + " déjà utilisé. Veuillez en choisir un autre svp." + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        utilisateurdao.insertLogin(newlogin);
+                        Toast.makeText(Login.this, "Votre compte a bien été enregistrer " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    utilisateurdao.close();
+                    mdp.getText().clear();
                 } else {
-                    utilisateurdao.insertLogin(newlogin);
-                    Toast.makeText(Login.this, "Votre compte a bien été enregistrer " + login.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Veuillez rentrer votre nom et prénom", Toast.LENGTH_SHORT).show();
+
                 }
-                utilisateurdao.close();
-                mdp.getText().clear();
             }
             else{
-                Toast.makeText(Login.this, "Veuillez rentrer votre nom et prénom", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Le pseudo ou mot de passe ne peuvent pas être nuls", Toast.LENGTH_SHORT).show();
+
 
             }
 
